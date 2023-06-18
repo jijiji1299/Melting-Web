@@ -16,17 +16,17 @@ Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 웹 사이트
 
 
 #  기술 스택
+- <div>Backend </div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=spring&logoColor=white">
+<img src="https://img.shields.io/badge/SpringBoot-green?style=flat&logo=SpringBoot&logoColor=white"/>
+
 - <div>Frontend </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/HTML-red?style=flat&logo=html5&logoColor=white"/>
 <img src="https://img.shields.io/badge/CSS-blue?style=flat&logo=css3&logoColor=white"/>
 <img src="https://img.shields.io/badge/JavaScript-yellow?style=flat&logo=JavaScript&logoColor=white"/>
 <img src="https://img.shields.io/badge/jQuery-blue?style=flat&logo=jquery&logoColor=black"/>
-
-- <div>Backend </div>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=spring&logoColor=white">
-<img src="https://img.shields.io/badge/SpringBoot-green?style=flat&logo=SpringBoot&logoColor=white"/>
 
 - <div>Database </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
