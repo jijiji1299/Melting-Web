@@ -21,21 +21,21 @@ a {
 
 
 #header {
-	height:80px;
+	height:200px;
 	width:100%;
-	border-bottom: 1px solid black;
 }
 
 .header-area {
-	width: 1140px;
+	width: 1000px;
 	position:relative;
 	margin: 0 auto;
 	height:100%;
+	border-bottom: 1px solid black;
 }
 
 .logo {
 	position:absolute;
-	top:22px;
+	top:50px;
 	
 }
 
@@ -45,8 +45,7 @@ a {
 
 .menu {
 	position:absolute;
-    top: 30px;
-    left: 230px;
+	top:160px;
 	
 }
 
@@ -112,7 +111,7 @@ a {
 
 .my {
 	position:absolute;
-	top:30px;
+	top:160px;
 	right:1px;
 	font-size: 23px;
 	display: inline-block;
@@ -140,7 +139,7 @@ a {
 }
 
 #container {
-	width: 1140px;
+	width: 1000px;
 	position:relative;
 	margin: 35px auto 0;
 	display:flex;
@@ -194,8 +193,6 @@ a {
 .board {
 	position:relative;
 	width:100%;
-	height:350px;
-    margin-top: 30px;
 }
 
 
@@ -205,13 +202,27 @@ a {
 	border-bottom:1px solid black;
 }
 
+.array-views {
+	float:left;
+	width: 80px;
+}
+
+.array-comment {
+	float:left;
+	width: 80px;
+}
+
+.array-like {
+	float:left;
+	width: 80px;
+
+}
 
 .boardlist {
 	width:100%;
 	border-bottom:1px solid black;
-	height: 350px;
+	height: 1000px;
 	margin-bottom: 20px;
-	
 }
 
 .boardlist-image {
@@ -264,8 +275,9 @@ a {
 
 
 #right {
-    width: 300px;
-    margin-left: 64px;
+	width:250px;
+	height:100%;
+	margin-left: auto;
 }
 
 .write {
@@ -285,8 +297,8 @@ a {
 }
 
 .form-control {
-	width: 730px;
-    height: 60px;
+	width:248px;
+	height: 35px;
 	background-color:lightgray;
 	border:1px solid black;
 	color:gray;
@@ -294,7 +306,6 @@ a {
 
 .bestsearch {
 	width:248px;
-    margin-top: 120px;
 }
 
 .bestsearch-list {
