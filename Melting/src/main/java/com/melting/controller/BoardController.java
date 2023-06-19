@@ -69,8 +69,7 @@ public class BoardController{
 		// 조회순으로 정렬
 		List<Crawling> viewscntSortedList = crawlingService.getViewscntSortedList();
 		model.addAttribute("viewscntSortedList", viewscntSortedList);
-//		System.out.println(viewscntSortedList);
-//		
+		
 //		// 추천순으로 정렬
 //		List<Crawling> likecntSortedList = crawlingService.getLikecntSortedList();
 //		model.addAttribute("likecntSortedList", likecntSortedList);
@@ -93,6 +92,38 @@ public class BoardController{
 		return "/main";
 	}
 	
+	/*게시글 목록 화면 요청*/
+	@GetMapping("/board/bestlist")
+	public String bestlist(String memberid, Model model, Authentication authentication) {
+		List<Board> list = boardService.getAllList(memberid);
+		model.addAttribute("list", list);
+		model.addAttribute("memberid", memberid);
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			model.addAttribute("membername", membername);
+		}
+		
+		// 크롤링 List
+		List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
+		model.addAttribute("dcSearchList", dcSearchList);
+		
+		// 조회순으로 정렬
+		List<Crawling> viewscntSortedList = crawlingService.getViewscntSortedList();
+		model.addAttribute("viewscntSortedList", viewscntSortedList);
+		
+		return "/board/bestlist";
+	}
+	
+	
+	
+	
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////////////
 	
 	@GetMapping("/main2")
 	public String main2(Model model, Authentication authentication) throws IOException {
