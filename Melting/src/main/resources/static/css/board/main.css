@@ -1,9 +1,10 @@
 @charset "UTF-8";
 @font-face {
-	font-family: 'Pretendard-Regular';
 	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
 	font-weight: 400;
 	font-style: normal;
+	font-family: 'Roboto','Noto Sans KR',AppleSDGothicNeo-Regular,'Malgun Gothic','맑은 고딕',dotum,'돋움',sans-serif;
+	font-size:14px;
 }
 
 * {
@@ -12,7 +13,8 @@
 	box-sizing: border-box;
 	color: black;
 	user-select: none;
-	font-family:'Pretendard-Regular';
+	font-family: 'Roboto','Noto Sans KR',AppleSDGothicNeo-Regular,'Malgun Gothic','맑은 고딕',dotum,'돋움',sans-serif;
+	
 }
 
 a {
@@ -23,7 +25,7 @@ a {
 #header {
 	height:80px;
 	width:100%;
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #d4d4d4;
 }
 
 .header-area {
@@ -35,12 +37,12 @@ a {
 
 .logo {
 	position:absolute;
-	top:22px;
-	
+	top:24px;
 }
 
 .logo img {
-	width:200px;
+	width:150px;
+	
 }
 
 .menu {
@@ -50,93 +52,100 @@ a {
 	
 }
 
-.hot {
-	font-size:28px;
+.home {
 	width: 80px;
 	float: left;
+	font-size: 20px;
 }
 
-.hot a {
-	color:red;
+.home a {
+	font-weight: bold;
 }
 
 .all {
-	font-size:28px;
 	margin-left:5px;
 	color:black;
 	float: left;
 	width: 80px;
+	font-size: 20px;
 	
 }
 
 .humor {
-	font-size:28px;
 	margin-left:5px;
 	color:black;
 	float: left;
-	width: 80px;	
+	width: 80px;
+	font-size: 20px;	
 }
 
 .sports {
-	font-size:28px;
 	margin-left:5px;
 	color:black;
 	float: left;
-	width: 80px;	
+	width: 80px;
+	font-size: 20px;	
 }
 
 .game {
-	font-size:28px;
 	margin-left:5px;
 	color:black;
 	float: left;
 	width: 80px;	
-}
-
-.free {
-	font-size:28px;
-	margin-left:5px;
-	color:black;
-	float: left;
-	width: 80px;	
+	font-size: 20px;
 }
 
 
-.m {
-	float: left;
-	color:black;
-	font-size:28px;
-	margin-left:5px;
-	width: 80px;
+.write {
+	width: 50px;
+	top:30px;
+	position: absolute;
+	right: 90px;
+	text-align: center;
+	width: 82px;
+    height: 40px;
+    font-size: 14px;
+    line-height: 38px;
+    background-color:#da3238;
+    
+}
+
+.write a {
+	font-weight: bold;
+	color:white;
 }
 
 .my {
 	position:absolute;
 	top:30px;
 	right:1px;
-	font-size: 23px;
 	display: inline-block;
-	
+	width: 82px;
+    height: 40px;
+	font-size: 14px;
+    line-height: 38px;
+    border: 1px solid #d4d4d4;
 }
 
-.join {
-	float:left;
-	margin:0px 2px;
-}
 
 .login {
 	float:left;
-	margin:0px 2px;
+	width: 82px;
+    height: 40px;
+    font-weight: bold;
 }
 
-.logout {
-	float:left;
-	margin:0px 2px;
-}
 
 .myid {
 	float:left;
-	margin:0px 2px;
+	width:100%;
+	text-align: center;
+	
+}
+
+.myid a {
+	text-align: center;
+	
 }
 
 #container {
@@ -154,13 +163,143 @@ a {
 	float:left;
 }
 
+
+.search{
+	height:60px;
+	position:relative;
+	margin-top: 25px;
+}
+
+.search-icon {
+	width:56px;
+	height:56px;
+	position:absolute;
+    top: 18px;
+    left: 19px;
+}
+
+.form-control {
+	width: 730px;
+    height: 60px;
+	color:gray;
+    border: 2px solid #222;
+    border-radius: 30px;
+    font-size: 18px;
+    padding: 0 10px 0 62px;
+}
+
+
+.board {
+	position:relative;
+	width:100%;
+	height:450px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.board-top {
+	height:40px;
+	width:100%;
+	border-bottom:1px solid #d4d4d4;
+	margin-bottom: 15px;
+}
+
+.board-title {
+	float:left;
+}
+
+.board-more {
+	float:left;
+	position:absolute;
+	right:0px;
+	top:10px;
+	font-size: 13px;
+}
+
+
+.boardlist {
+	width:100%;
+	margin-bottom: 20px;
+	line-height: 30px;
+	font-size:14.5px;
+	
+	
+}
+
+.boardlist table {
+	width:100%;
+}
+
+.boardlist-kind {
+	border : 1px solid #eee;
+	text-align:center;
+	font-size:12px;
+	float:left;
+	margin-right: 8px;
+    padding: 0px 6px 0px 6px;
+	
+}
+
+.boardlist-title {
+	float:left;
+}
+
+.boardlist-reply-area {
+	float:left;
+	width: 35px;
+}
+
+.boardlist-reply-i {
+	float:left;
+}
+
+.boardlist-reply-i img {
+	width:16px;
+	height:16px;
+	margin-top: 10px;
+}
+
+.boardlist-reply-num {
+	padding:2px;
+	color:#94969B;
+	font-size:12px;
+	float:left;
+	
+}
+
+.boardlist-like-area {
+	float:left;
+	width: 35px;
+}
+
+.boardlist-like-i {
+	float:left;
+}
+
+.boardlist-like-i img {
+	width:16px;
+	height:16px;
+	margin-top: 10px;
+}
+
+.boardlist-like-num {
+	padding:2px;
+	color:#94969B;
+	font-size:12px;
+	float:left;
+}
+
+
+
 .hit-area {
 	width:100%;
 	height:280px;
 }
 
 .hit-title {
-	border-bottom:1px solid black;
+	border-bottom:1px solid #d4d4d4;
+	margin-bottom:15px;
+	height: 40px;
 }
 
 .hit-list {
@@ -175,12 +314,12 @@ a {
 .hit-l {
 	height:114px;
 	width:auto;
-	/* margin-left:12px; */
 }
 
 .hit-l img {
 	height:114px;
-	width:182px;
+    width: 180px;
+    margin: 0px 1px 0px 1px;
 }
 
 .hit-title2 {
@@ -189,78 +328,107 @@ a {
     position:absolute;
     top:120px;
     left:1px;
+    font-weight: 600;
 }
 
-.board {
-	position:relative;
+.side-board-1 {
+	height:300px;
 	width:100%;
-	height:350px;
-    margin-top: 30px;
 }
 
+.all-area {
+	font:14px;
+	line-height: 30px;
+	float:left;
+	height:100%;
+}
 
-.board-array {
+.all-title-area {
+    border-bottom:1px solid #d4d4d4;
+	margin-bottom:15px;
 	height:40px;
-	width:100%;
-	border-bottom:1px solid black;
-}
-
-
-.boardlist {
-	width:100%;
-	border-bottom:1px solid black;
-	height: 350px;
-	margin-bottom: 20px;
 	
 }
 
-.boardlist-image {
-	width:80px;
-	height:60px;
-	overflow: hidden;
+.all-title {
+    float:left;
 }
 
-.boardlist .category {
-	width:30px;
-	background-color:red;
-	float:left;
-}
-
-.boardlist .title {
-	width:200px;
-	background-color:yellow;
-	float:left;
-}
-
-.boardlist .comment {
-	width:30px;
-	background-color:aqua;
-	float:left;
-}
-
-.boardlist .writer {
-	width:70px;
-	background-color:orange;
-	float:left;
-}
-
-.boardlist .like {
-	width:30px;
-	background-color:lightblue;
+.all-title-more {
 	float:right;
+	font-size:12px;
+	margin-right:5px;
 }
 
-.boardlist .views {
-	width:30px;
-	background-color:red;
-	float:right;
+.all-list {
+    margin-bottom: 80px;
+	
 }
 
-.boardlist .regdate {
-	width:80px;
-	background-color:pink;
-	float:right;
+.all-title2 {
+	display:inline-block;
+	width: 285px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size:14.5px;
 }
+
+.all-views-area {
+	width:52px;
+	float:left;
+}
+
+.all-views-i {
+	float:left;
+}
+
+.all-views-i img {
+	width:16px;
+	height:16px;
+	margin-top: 7.5px;
+}
+
+.all-views-num {
+	font-size:12px;
+	color:#94969B;
+}
+
+
+.humor-area {
+	float:left;
+	width:350px;
+	height:100%;
+	font:14px;
+	line-height: 30px;
+	margin-left:23px;
+}
+
+.side-board-2 {
+	margin-top:40px;
+	height:270px;
+	width:100%;
+	margin-bottom:100px;
+}
+
+.game-area {
+	float:left;
+	width:350px;
+	height:100%;
+	font:14px;
+	line-height: 30px;
+	
+}
+
+.sports-area {
+	float:left;
+	width:350px;
+	height:100%;
+	font:14px;
+	line-height: 30px;
+	margin-left:23px;
+}
+
 
 
 #right {
@@ -268,38 +436,34 @@ a {
     margin-left: 64px;
 }
 
-.write {
-	width: 50px;
-	position: absolute;
-	top: -30px;
-	right: 0px;
-	border: 1px solid black;
-	text-align: center;
-    
-}
-
-.search{
-	height:60px;
-	position:relative;
-	margin-top: 25px;
-}
-
-.form-control {
-	width: 730px;
-    height: 60px;
-	background-color:lightgray;
-	border:1px solid black;
-	color:gray;
-}
 
 .bestsearch {
-	width:248px;
+    width: 300px;
+    height: 400px;
     margin-top: 120px;
+    background-color: #f8f8f8;
+}
+
+.bestsearch h3 {
+	padding: 22px 21px 0px;
 }
 
 .bestsearch-list {
-	background-color:lightgray;
-	border:1px solid gray;
+    margin-bottom: 24px;
+    padding: 22px 21px 14px;
+}
+
+.bestsearch-list p {
+	padding:0px 10px 10px 0px;
+}
+
+.bestsearch-list span {
+	display: inline-block;
+	color: #94969b;
+	width: 20px;
+    margin-right: 10px;
+    text-align:center;
+	
 }
 
 .bestkeyword {
@@ -311,6 +475,43 @@ a {
 .bestkeyword-list {
 	background-color:lightgray;
 	border:1px solid gray;
+}
+
+#footer {
+	width:100%;
+	height:80px;
+	border-top:1px solid #d4d4d4;
+}
+
+.footer-area {
+	margin: 0 auto;
+	margin-top:20px;
+	width: 1140px;
+    position: relative;
+    height: 100%;
+}
+
+.f-logo {
+	width:150px;
+	float:left;
+	
+}
+
+.f-logo img {
+	width:150px;
+	
+}
+
+.footer-list {
+	position:absolute;
+	left:300px;
+	float:left;
+	top: 12px;
+	
+}
+
+.footer-list a {
+	color: #94969b;
 }
 
 
