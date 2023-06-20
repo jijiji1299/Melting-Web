@@ -18,7 +18,6 @@ public class Member {
 	private String memberid;
 	private String memberpwd;
 	private String membername;
-	private String email;
 	private int enabled;
 	private String rolename;
 }

@@ -1,11 +1,11 @@
 package com.melting.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+//import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+//import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.melting.domain.Member;
@@ -38,6 +38,21 @@ public class MemberController {
 	public String join() {
 		return "/member/joinView";
 	}
+	
+	/**/
+	@GetMapping("/join2")
+	public String join2() {
+		return "/member/joinView2";
+	}
+	
+	 /*회원가입 처리*/
+	 @PostMapping("/join2")
+	 public String join2(Member member) {
+	 	int result = memberService.insertMember(member);
+	 	return "redirect:/";
+	 }
+	
+	/**/
 	
 	 /*회원가입 처리*/
 	 @PostMapping("/join")
