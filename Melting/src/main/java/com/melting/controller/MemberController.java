@@ -1,11 +1,9 @@
 package com.melting.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.melting.domain.Member;
@@ -17,42 +15,12 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
-	/*Restful api start */
-
-	/*회원가입 처리 */
-//	@PostMapping("/join")
-//	public ResponseEntity<String> join(@RequestBody Member member) {
-//		int result = memberService.insertMember(member);
-//		if (result > 0) {
-//			return ResponseEntity.ok("Member joined successfully");
-//		} else {
-//			return ResponseEntity.badRequest().body("Failed to join member");
-//		}
-//	}
-
-	/*Restful api end */
-
-
 	/*회원가입 화면 요청*/
 	@GetMapping("/join")
 	public String join() {
 		return "/member/joinView";
 	}
 	
-	/**/
-	@GetMapping("/join2")
-	public String join2() {
-		return "/member/joinView2";
-	}
-	
-	 /*회원가입 처리*/
-	 @PostMapping("/join2")
-	 public String join2(Member member) {
-	 	int result = memberService.insertMember(member);
-	 	return "redirect:/";
-	 }
-	
-	/**/
 	
 	 /*회원가입 처리*/
 	 @PostMapping("/join")
@@ -87,6 +55,7 @@ public class MemberController {
 		return result;
 	}
 	
+	
 	/*중복 닉네임 확인*/
 	@ResponseBody
 	@GetMapping("/nameCheck")
@@ -98,5 +67,19 @@ public class MemberController {
 			return "OK";
 		return "FAIL";
 	}
+	
+
+	/*중복 닉네임 확인 - 버튼용*/
+	@ResponseBody
+	@GetMapping("/nameChk")
+	public int nameChk(Member member) {
+		int result = memberService.nameChk(member);
+		return result;
+	}
+	
+	
+	
+
+	
 
 }

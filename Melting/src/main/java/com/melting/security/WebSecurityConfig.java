@@ -32,7 +32,8 @@ public class WebSecurityConfig {
 				"/script/**",
 				"/idChk",
 				"/idCheck",
-				"/nameCheck"
+				"/nameCheck",
+				"/nameChk"
 				).permitAll()
 		.anyRequest().authenticated()
 		.and()

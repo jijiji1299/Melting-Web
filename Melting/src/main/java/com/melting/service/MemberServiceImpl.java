@@ -47,9 +47,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public int nameChk(Member member) {
+		int result = memberDao.nameChk(member);
+		return result;
+	}
+	
+	@Override
 	public Member getMemberUsername(String username) {
 		return memberDao.getMemberByUsername(username);
 	}
+
 
 
 }

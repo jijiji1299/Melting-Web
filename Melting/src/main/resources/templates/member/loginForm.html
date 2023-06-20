@@ -1,26 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org"
+	  xmls:sec="http://www.thymelef.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Melting | 통합 유머 커뮤니티</title>
+<link rel="stylesheet" type="text/css" th:href="@{css/member/login.css}">
 </head>
 <body>
-	<h2>로그인</h2>
-	<form th:action="@{/login}" method="POST">
-		<table border="1">
-			<tr>
-				<th>ID</th>
-				<td><input type="text" name="memberid"></td>
-			</tr>
-			<tr>
-				<th>PASSWORD</th>
-				<td><input type="password" name="memberpwd"></td>
-			</tr>
-			<tr>
-				<th></th>
-				<td><input type="submit" value="login"></td>
-			</tr>
-		</table>
-	</form>
+	<div id="container">
+		<div class="logo">
+			<a th:href="@{/}"><img th:src="@{/images/meltingLogo.JPG}"></a>
+		</div>
+		<h2 class="logo-ex1">Melting에 오신것을 환영합니다.</h2>
+		<p class="logo-ex2">Melting은 통합 유머 커뮤니티입니다.</p>
+		
+		<form th:action="@{/login}" method="POST">
+			<div class="id-area">
+				<div class="title">아이디</div>
+				<div class="id-input">
+					<input type="text" name="memberid" id="memberid">
+				</div>
+				<span id="checkResult1" class="checkResult"></span>
+			</div>
+			
+			<div class="pwd-area">
+				<div class="title">비밀번호</div>
+				<div class="pwd-input">
+					<input type="password" name="memberpwd" id="memberpwd">
+				</div>
+				<span id="checkResult2" class="checkResult"></span>
+			</div>
+
+			<input type="submit" value="로그인" class="submit">
+			
+			<div class="login-area">
+				<p>아직 회원이 아니신가요? <a th:href="@{/join}">회원가입</a> </p>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

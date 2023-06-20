@@ -27,7 +27,13 @@
 		WHERE memberid = #{memberid}
 	</select>
 	
-	<select id="nameCheck" parameterType="String" resultType="String">
+	<select id="nameChk" resultType="int">
+		SELECT count(*) 
+		FROM m_member
+		WHERE membername = #{membername}
+	</select>
+	
+  	<select id="nameCheck" parameterType="String" resultType="String">
 		SELECT membername
 		FROM m_member
 		WHERE membername = #{membername}
