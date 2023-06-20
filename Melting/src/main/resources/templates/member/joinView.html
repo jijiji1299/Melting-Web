@@ -1,49 +1,67 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org"
+	  xmls:sec="http://www.thymelef.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
+<link rel="stylesheet" type="text/css" th:href="@{css/member/join.css}">
 <script th:inline="javascript" th:src="@{/script/member.js}"></script>
 <script th:inline="javascript" th:src="@{/script/jquery-3.6.3.min.js}"></script>
 <script th:inline="javascript" th:src="@{/script/idcheck.js}"></script>
-<script th:inline="javascript" th:src="@{/script/namecheck.js}"></script>
 </head>
 <body>
-	<h2>[ 회원 가입 ]</h2>
-	<form th:action="@{/join}" method="POST" onsubmit="return validation();">
-		<table border="1">
-			<tr>
-				<th>ID</th>
-				<td>
-					<input type="text" name="memberid" id="memberid" placeholder="아이디를 3~10자 사이로 입력">
-					<span id="checkResult"></span>
-					<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
-				</td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="memberpwd" id="memberpwd" placeholder="비밀번호를 3~10 사이로 입력"></td>
-			</tr>
-			<tr>
-				<th>비밀번호 확인</th>
-				<td><input type="password" id="memberpwd2" placeholder="비밀번호 다시 입력"></td>
-			</tr>
-			<tr>
-				<th>닉네임</th>
-				<td>
-					<input type="text" name="membername" id="membername" placeholder="닉네임 입력">
-					<span id="checkResult2"></span>
-				</td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td><input type="email" name="email" placeholder="Email을 입력"></td>
-			</tr>
-			<tr>
-				<td><input type="reset"  value="다시 입력하기"></td>
-				<td><input type="submit" value="가입하기"></td>
-			</tr>
-		</table>
-	</form>
+	<div id="container">
+		<div class="logo">
+			<a th:href="@{/}"><img th:src="@{/images/meltingLogo.JPG}"></a>
+		</div>
+		<h2 class="logo-ex1">Melting에 오신것을 환영합니다.</h2>
+		<p class="logo-ex2">Melting은 통합 유머 커뮤니티입니다.</p>
+		
+		<form th:action="@{/join}" method="POST" onsubmit="return validation();">
+			<div class="id-area">
+				<div class="title">아이디</div>
+				<div class="id-input">
+					<input type="text" name="memberid" id="memberid" placeholder="이메일을 입력하세요">
+					<div class="idChk-area">
+						<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
+					</div>
+				</div>
+				<span id="checkResult1" class="checkResult"></span>
+			</div>
+			
+			<div class="pwd-area">
+				<div class="title">비밀번호</div>
+				<div class="pwd-input">
+					<input type="password" name="memberpwd" id="memberpwd" placeholder="비밀번호를 3~15자 사이로 입력하세요">
+				</div>
+				<span id="checkResult2" class="checkResult"></span>
+			</div>
+			<div class="pwd-area">
+				<div class="title">비밀번호 확인</div>
+				<div class="pwd-input2">
+					<input type="password" id="memberpwd2" placeholder="비밀번호를 재확인하세요">
+				</div>
+				<span id="checkResult3" class="checkResult"></span>
+			</div>
+				
+			<div class="nickname-area">
+				<div class="title">닉네임</div>
+				<div class="nickname-input">
+					<input type="text" name="membername" id="membername" placeholder="닉네임은 20자 이하로 입력하세요">
+				</div>
+				<span id="checkResult4" class="checkResult"></span>
+			</div>
+			<input type="submit" value="회원가입" class="submit">
+			<!-- <div class="submit-area">
+				<input type="submit" value="회원가입">
+			</div> -->
+			
+			<div class="login-area">
+				<p>이미 회원이신가요? <a th:href="@{/loginForm}">로그인</a> </p>
+			</div>
+		</form>
+		
+		
+	</div>
 </body>
 </html>

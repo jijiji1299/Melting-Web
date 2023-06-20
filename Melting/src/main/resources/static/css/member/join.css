@@ -1,0 +1,202 @@
+@charset "UTF-8";
+@font-face {
+	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-family: 'Roboto','Noto Sans KR',AppleSDGothicNeo-Regular,'Malgun Gothic','맑은 고딕',dotum,'돋움',sans-serif;
+	font-size:14px;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: black;
+	user-select: none;
+	font-family: 'Roboto','Noto Sans KR',AppleSDGothicNeo-Regular,'Malgun Gothic','맑은 고딕',dotum,'돋움',sans-serif;
+	
+}
+
+a {
+	text-decoration: none;
+}
+
+#container {
+	height:670px;
+	width:450px;
+	margin:0 auto;
+	margin-top:120px;
+	/* border:1px solid black; */
+	position:relative;
+}
+
+.join-area {
+	height:100%;
+	width:100%;
+}
+
+.logo {
+ 	width:100%;
+ 	height: 65px;
+}
+
+
+.logo img {
+    width: 150px;
+    margin: 0 auto;
+    position: absolute;
+    left: 147px;
+	
+}
+
+.logo-ex1 {
+	width:100%;
+	text-align: center;
+	font-size:30px;
+	height:36px;
+	margin-bottom:15px;
+    letter-spacing: -1.5px;
+}
+
+.logo-ex2 {
+	width:100%;
+	height:20px;
+	text-align: center;
+    letter-spacing: -1px;	
+    color:#4B5563;
+    font-weight: 500;
+}
+
+
+.id-area {
+	width:100%;
+    height: 110px;
+    margin-top: 50px;
+}
+
+.title {
+	width:100%;
+	font-size: 14px;
+	font-weight: 600;
+    height: 27px;
+}
+
+
+
+.idChk-area {
+	width:70px;
+	height:40px;
+	float:right;
+	border-radius: 6px;
+}
+
+.idChk {
+	width:100%;
+	height:100%;
+	text-align: center;
+    border-radius: 6px;
+    border: 1px solid gray;
+    background-color: #f3f3f3;
+}
+
+
+.id-input input {
+	width:84%;
+	height:40px;
+	float:left;
+	font-size: 1rem;
+	line-height: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid #8f8f8f;
+    padding-left: 5px;
+    letter-spacing: -1px;
+}
+
+
+.checkResult {
+	display:block;
+	font-size:12.5px;
+	color: rgb(239 68 68);
+	float:left;
+	width:100%;
+	height:40px;
+}
+
+
+.pwd-area {
+	width:100%;
+	height:100px;
+	height: 110px;
+}
+
+.pwd-input input {
+	width:100%;
+	height:40px;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	border-radius: 6px;
+    border: 1px solid #8f8f8f;
+    padding-left: 5px;
+    letter-spacing: -1px;
+}
+
+.pwd-input2 input {
+	width:100%;
+	height:40px;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	border-radius: 6px;
+    border: 1px solid #8f8f8f;
+    padding-left: 5px;
+    letter-spacing: -1px;
+}
+
+.nickname-area {
+	width:100%;
+	height:100px;
+	height: 110px;
+}
+
+.nickname-input input {
+	width:100%;
+	height:40px;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	border-radius: 6px;
+    border: 1px solid #8f8f8f;
+    padding-left: 5px;
+    letter-spacing: -1px;
+}
+
+
+.submit {
+	width:100%;
+	height:40px;
+	background-color:#0090F9;
+	border:0;
+    border-radius: 5px;
+    font-size:14px;
+    color:white;
+    font-weight:600;
+    border-radius: 6px;
+    
+}
+
+
+.login-area {
+	width:100%;
+	height:30px;
+}
+
+.login-area p {
+	text-align: center;
+	margin-top:20px;
+    font-weight: 500;
+    font-size:14px;
+}
+
+.login-area a {
+	color:#0090F9;
+	border-bottom:1px solid #0090F9;
+}
+

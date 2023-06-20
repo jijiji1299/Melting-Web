@@ -22,6 +22,7 @@ public class WebSecurityConfig {
 		http.csrf().disable()
 		.authorizeRequests()
 		.antMatchers("/", 
+				"/board/bestlist",
 				"/board/newlist",
 				"/read",
 				"/board/download",

@@ -131,15 +131,21 @@ a {
 
 .login {
 	float:left;
-	width: 82px;
+	width:100%;
     height: 40px;
     font-weight: bold;
+    text-align: center;
 }
 
+.login a {
+	text-align: center;
+	
+}
 
 .myid {
 	float:left;
 	width:100%;
+ 	font-weight: bold;
 	text-align: center;
 	
 }
@@ -191,7 +197,6 @@ a {
 
 .boardlist-area {
 	width:1150px;
-	/* margin:0 15px 0 15px; */
     padding: 40px 20px 0;
     margin: 0 auto;
 
@@ -338,9 +343,6 @@ a {
 	color:#94969B;
 	font-size:14px;
 }
-
-
-
 
 
 
