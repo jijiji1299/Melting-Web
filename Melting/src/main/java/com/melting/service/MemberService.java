@@ -14,6 +14,8 @@ public interface MemberService {
 
 	public Member getMemberUsername(String username);
 
+	public int nameChk(Member member);
+
 
 
 }
