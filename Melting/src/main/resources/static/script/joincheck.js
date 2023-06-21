@@ -52,7 +52,7 @@ function fn_idChk(){
 			, data : {"membername" : mid}
 			, success : function(resp) {	
 				if(resp == "OK") {  
-					$("#checkResult4").text('✔ 사용가능한 닉네임입니다.');
+					$("#checkResult4").text('✔ 중복되지 않은 닉네임입니다.');
 				} else if(resp == "FAIL") {
 					$("#checkResult4").text('✔ 이미 사용중인 닉네임입니다.');
 				}
