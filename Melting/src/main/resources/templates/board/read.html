@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
-<link rel="stylesheet" type="text/css" href="css/board/read.css">
+<link rel="stylesheet" type="text/css" th:href="@{css/board/read.css}">
 <script th:src="@{/script/jquery-3.6.3.min.js}"></script>
 <script th:src="@{/script/reply.js}"></script>
 </head>
@@ -13,90 +13,103 @@
 		<div class="header-area">
 			<div class="logo"><a th:href="@{/}"><img src="images/meltingLogo.JPG"></a></div>
 			<div class="menu">
-				<div class="hot">HOT</div>
+				<div class="home"><a th:href="@{/board/bestlist}">홈</a></div>
 				<div class="all"><a th:href="@{/board/newlist}">전체</a></div>
 				<div class="humor">유머</div>
-				<div class="sports">스포츠</div>
 				<div class="game">게임</div>
-				<div class="free">자유</div>
+				<div class="sports">스포츠</div>
+			</div>
+			<div class="write">
+				<a th:href="@{/write}">글쓰기</a>
 			</div>
  			<div class="my">
- 				<div class="join"  sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/join}">회원가입</a></div>
- 				<div class="login"  sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/loginForm}">로그인</a></div>
+ 				<div class="login" sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/loginForm}">로그인</a></div>
  				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{/mypage}" th:text="${membername} + '님'"></a></div>
- 				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></div>
  			</div>				
 		</div>
 	</div>
+	
 	<div id="container">
-		<div class="category-area">
-			<div class="category">
-				<span th:if="${board.kind=='free'}">자유 게시판</span>
-				<span th:if="${board.kind=='humor'}">유머 게시판</span>
-				<span th:if="${board.kind=='sports'}">스포츠 게시판</span>
-				<span th:if="${board.kind=='game'}">게임 게시판</span>
-			</div>
-		</div>
-		<div class="read">
-			<div class="read-header">
-				<div class="title" th:text="${board.title}">제목</div>
-				<div class="read-header-l">
-					<div class="writer" th:text="${board.membername}">작성자</div>
-					<div class="regdate" th:text="${board.regdate}">작성일</div>
+	
+		<div id="left">
+			<div class="top-area">
+				<span th:if="${board.kind=='free'}">자유</span>
+				<span th:if="${board.kind=='humor'}">유머</span>
+				<span th:if="${board.kind=='game'}">게임</span>
+				<span th:if="${board.kind=='sports'}">스포츠</span>
+				<h2 th:text="${board.title}"></h2>
+				
+				<div class="name-area">
+					<span th:text="${board.membername}"></span>
 				</div>
-				<div class="read-header-r">
-					<div class="replycnt" th:text="${board.replycnt}">댓글수</div>
-					<div class="likecnt" th:text="${board.likecnt}">추천수</div>
-					<div class="viewscnt" th:text="${board.viewscnt}">조회수</div>
+				
+				<div class="info-area">
+					<div class="boardlist-regdate-area">
+						<div class="boardlist-regdate-i"><img th:src="@{/images/regdate-i.JPG}"></div>
+						<div th:text="${board.regdate}" class="boardlist-regdate-num"></div>
+					</div>
+					<div class="boardlist-views-area">
+						<div class="boardlist-views-i"><img th:src="@{/images/views-i.JPG}"></div>
+						<div th:text="${board.viewscnt}" class="boardlist-views-num"></div>
+					</div>
+					<div class="boardlist-reply-area">
+						<div class="boardlist-reply-i"><img th:src="@{/images/reply-i.JPG}"></div>
+						<div th:text="${board.replycnt}" class="boardlist-reply-num"></div>
+					</div>
 				</div>
-			</div>
+			</div>	
+				<div class="content-area">
+					<div th:utext="${board.content}"></div>
+					
+					<div class="content-info-area">
+						<div class="content-info2-area">
+							<div class="content-info2-i"><img th:src="@{/images/like-i2.JPG}"></div>
+							<div th:text="${board.likecnt}" class="content-info2-num"></div>
+						</div>
+						<div class="content-info2-area">
+							<div class="content-info2-i"><img th:src="@{/images/reply-i2.JPG}"></div>
+							<div th:text="${board.replycnt}" class="content-info2-num"></div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- 댓글 작성 폼 -->
+				<div class="reply-area1">
+					<h3>댓글</h3>
+					<form class="reply-write-area" th:action="@{/reply/replywrite}" method="post">
+						<div class="replytxt-area">
+							<input type="text" id="replytxt" class="replytxt" name="replytxt" placeholder="댓글을 남겨주세요">
+						</div>
+						<input type="hidden" name="boardseq"  th:value="${board.boardseq}">
+						<input type="hidden" name="membername" th:value="${membername}">
+						<button type="submit" class="reply-submit">댓글 쓰기</button>
+					</form>
+				</div>
+				
+				<!-- 댓글 목록 -->
+				<div class="reply-area2">
+					<div class="reply-list-title">댓글 보기</div>
+					<div th:each="reply : ${replylist}" class="reply-list-area">
+						<input type="hidden" name="boardseq" id="boardseq" th:value="${board.boardseq}">
+						<div id="membername" th:text="${reply.membername}" class="reply-list-membername"></div>
+						<div id="replytxt" th:text="${reply.replytxt}" class="reply-list-replytxt"></div>
+						<div id="regdate" th:text="${reply.regdate}" class="reply-list-regdate"></div>
+						<div class="reply-list-del">
+							<th:blok th:if="${membername} == ${reply.membername}">
+							<a th:href="@{/reply/replydelete(replyseq=${reply.replyseq})}"><img th:src="@{/images/delete-i.JPG}"></a>
+							</th:blok>
+						</div>
+						<div class="reply-list-bottom"></div>
+					</div>
+				</div>	
 			
-			<div class="boardtxt" th:utext="${board.content}">본문내용칸</div>
-			<img th:src="@{/board/download(boardseq=${board.boardseq})}" alt="첨부 이미지" />
-			<div>첨부파일<a th:href="@{/board/download(boardseq=${board.boardseq})}" th:text="${board.originalfile}"></a></div>
-			
-			<a th:href="@{/delete(boardseq=${board.boardseq})}">삭제</a>
-			<a th:href="@{/update(boardseq=${board.boardseq})}">수정</a>		
 		</div>
-		<!-- <button type ="button" id="btnRecommend">추천하기</button> -->
 		
-		<br><hr><br>
-		<!-- 댓글 목록 -->
-		<div th:each="reply : ${replylist}">
-		<input type="hidden" name="boardseq" id="boardseq" th:value="${board.boardseq}">
-		  <div>
- 		    <p>작성자: <span id="membername" th:text="${reply.membername}"></span></p>
-		    <p>내용: <span id="replytxt" th:text="${reply.replytxt}"></span></p>
-		    <p>작성일: <span th:text="${reply.regdate}"></span></p>
-		    <a th:href="@{/reply/replydelete(replyseq=${reply.replyseq})}">댓글 삭제</a>
-		    
-		    <hr>
-		  </div>
+		
+		<div id="right">
+			<h1>오른쪽</h1>
 		</div>
-
-		<!-- 댓글 작성 폼 -->
-		<form action="#" th:action="@{/reply/replywrite}" method="post">
-		  <input type="hidden" name="boardseq"  th:value="${board.boardseq}">
-		  <input type="hidden" name="membername" th:value="${membername}">
-		  <!-- <input type="text" name="membername" placeholder="작성자"> -->
-		  <input type="text"   id="replytxt" name="replytxt" placeholder="내용">
-		  <button type="submit">댓글 등록하기</button>
-		</form>
-		<br><br><br>
-		
-		<!-- 댓글 처리 영역 -->
-		<!-- 댓글 입력 창 -->
-		<!-- <form th:action="@{/reply/replywrite}" method="POST">
-			<input type="hidden" id="boardseq"  name="boardseq" th:value="${board.boardseq}">
-			<input type="text"   id="replytxt" name="replytxt">
-			<input type="button" id="replybtn" value="등록">
-		</form>
-		<br> -->
-		
-		<!-- 댓글 출력창 -->
-		<!-- <span id="loginID" th:text="${#authentication.name}" style="display:none"></span>
-		<div id="replyResult"></div> -->
-		
 	</div>
+	
 </body>
 </html>

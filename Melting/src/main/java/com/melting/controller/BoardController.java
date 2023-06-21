@@ -282,6 +282,29 @@ public class BoardController{
 		return "/board/newlist2";
 	}
 	
+	/*게시글 읽기 화면 요청*/
+	@GetMapping("/read2")
+	public String read2(int boardseq, Model model, Authentication authentication) {
+		Board board = boardService.read(boardseq);
+		boardService.updateViewsCount(boardseq);
+		model.addAttribute("board", board);
+		
+		// 댓글 목록 출력
+		List<Reply> replylist = replyService.listReply(boardseq);
+		model.addAttribute("replylist", replylist);
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			model.addAttribute("membername", membername);
+		}
+		
+		return "/board/read2";
+		
+	}
+	
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/*게시글 읽기 화면 요청*/
@@ -311,6 +334,8 @@ public class BoardController{
 	@GetMapping("/delete")
 	public String delete(int boardseq) {
 		int result = boardService.delete(boardseq);
+		
+		
 		return "redirect:/board/newlist";
 	}
 	

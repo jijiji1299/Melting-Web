@@ -58,9 +58,6 @@ a {
 	font-size: 20px;
 }
 
-.home a {
-	font-weight: bold;
-}
 
 .all {
 	margin-left:-8px;
@@ -71,6 +68,10 @@ a {
 	
 }
 
+
+.all a {
+	font-weight: bold;
+}
 
 .humor {
 	margin-left:5px;
@@ -195,6 +196,9 @@ a {
 	position:relative;
 	margin: 35px auto 0;
 	display:flex;
+	min-height:830px;
+	overflow:hidden;
+	
 }
 
 .boardlist-area {
