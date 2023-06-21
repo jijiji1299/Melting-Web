@@ -119,6 +119,22 @@ public class BoardController{
 	}
 	
 	
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	/*게시글 쓰기 화면 요청*/
+	@GetMapping("/write2")
+	public String write2(Model model, Member member, Authentication authentication) {
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			model.addAttribute("membername", membername);
+		}
+		
+		model.addAttribute("member", member);
+		return "/board/write2";
+	}
 	
 	
 	

@@ -106,7 +106,8 @@ a {
     height: 40px;
     font-size: 14px;
     line-height: 38px;
-    background-color:#da3238;
+    background-color:#0090F9;
+    border-radius: 6px;
     
 }
 
@@ -125,6 +126,7 @@ a {
 	font-size: 14px;
     line-height: 38px;
     border: 1px solid #d4d4d4;
+    border-radius: 6px;
 }
 
 
