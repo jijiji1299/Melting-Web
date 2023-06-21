@@ -42,7 +42,7 @@
 	<select id="getAllList" parameterType="String" resultType="Board">
 		SELECT 
 			boardseq, memberid, membername, title, kind, viewscnt,
-			to_char(regdate, 'YYYY-MM-DD HH24:MI:SS') as regdate, content, originalfile, savedfile
+			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate, content, originalfile, savedfile
 		FROM m_board
 		ORDER BY boardseq DESC, regdate DESC
 	</select>
@@ -50,7 +50,7 @@
 	<select id="read" parameterType="int" resultType="Board">
 		SELECT
 			boardseq, memberid, title, boardtxt, kind,
-			to_char(regdate, 'YYYY-MM-DD') as regdate,
+			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate,
 			viewscnt, likecnt, replycnt, content, originalfile, savedfile
 		FROM m_board
 		WHERE boardseq = #{boardseq} 
