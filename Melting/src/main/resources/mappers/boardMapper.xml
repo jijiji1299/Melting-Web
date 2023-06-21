@@ -49,7 +49,7 @@
 	
 	<select id="read" parameterType="int" resultType="Board">
 		SELECT
-			boardseq, memberid, title, boardtxt, kind,
+			boardseq, memberid, title, boardtxt, kind, membername,
 			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate,
 			viewscnt, likecnt, replycnt, content, originalfile, savedfile
 		FROM m_board

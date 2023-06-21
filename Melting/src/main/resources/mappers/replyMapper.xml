@@ -13,7 +13,9 @@
 	</insert>
 	
  	<select id="listReply" parameterType="int" resultType="Reply">
-		SELECT *
+		SELECT
+			replyseq, boardseq, membername, replytxt, replycnt, 
+			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate
 		FROM m_reply
 		WHERE boardseq = #{boardseq}
 		ORDER BY regdate ASC

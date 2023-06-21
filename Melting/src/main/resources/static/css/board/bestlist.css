@@ -195,6 +195,8 @@ a {
 	position:relative;
 	margin: 35px auto 0;
 	display:flex;
+	min-height:830px;
+	overflow:hidden;
 }
 
 .boardlist-area {

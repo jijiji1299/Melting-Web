@@ -50,9 +50,6 @@
 					<span th:if="${board.kind=='game'}">게임</span>
 				</div>
 				
-				
-				
-				
 				<h3><a th:href="@{/read(boardseq=${board.boardseq})}" th:text="${board.title}" class="boardlist-title"></a></h3>
 				
 				<div th:text="${board.membername}" class="boardlist-membername"></div>
@@ -71,8 +68,21 @@
 						<div class="boardlist-views-i"><img src="../images/views-i.JPG"></div>
 						<div th:text="${board.viewscnt}" class="boardlist-views-num"></div>
 					</div>
+					
 					<div th:text="${board.regdate}" class="boardlist-regdate"></div>
 				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="footer">
+		<div class="footer-area">
+			<div class="f-logo"><a th:href="@{/}"><img th:src="@{../images/meltingLogo.JPG}"></a></div>
+			<div class="footer-list">
+				<a th:href="@{#}">서비스소개 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
+				<a th:href="@{#}">공지사항 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
+				<a th:href="@{#}">연락처 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
+				<a th:href="@{#}">신고가이드</a>
 			</div>
 		</div>
 	</div>
