@@ -24,6 +24,7 @@ public class WebSecurityConfig {
 		.antMatchers("/", 
 				"/board/bestlist",
 				"/board/newlist",
+				"/board/alllist",
 				"/read",
 				"/board/download",
 				"/join",

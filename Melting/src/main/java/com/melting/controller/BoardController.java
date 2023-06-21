@@ -254,6 +254,35 @@ public class BoardController{
 		
 		return "/board/newlist";
 	}
+		
+	
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	/*게시글 목록 화면 요청*/
+	@GetMapping("/board/newlist2")
+	public String boardlist2(String memberid, Model model, Authentication authentication) {
+		List<Board> list = boardService.getAllList(memberid);
+		model.addAttribute("list", list);
+		model.addAttribute("memberid", memberid);
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			model.addAttribute("membername", membername);
+		}
+		
+		// 크롤링 List
+		List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
+		model.addAttribute("dcSearchList", dcSearchList);
+		
+		return "/board/newlist2";
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/*게시글 읽기 화면 요청*/
 	@GetMapping("/read")
