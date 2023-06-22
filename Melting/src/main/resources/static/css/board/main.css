@@ -328,6 +328,8 @@ a {
 	height:114px;
     width: 180px;
     margin: 0px 1px 0px 1px;
+    border:0;
+    border-radius: 3px;
 }
 
 .hit-title2 {
@@ -337,6 +339,7 @@ a {
     top:120px;
     left:1px;
     font-weight: 600;
+    letter-spacing: -1px;
 }
 
 .side-board-1 {

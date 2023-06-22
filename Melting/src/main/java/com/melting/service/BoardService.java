@@ -18,6 +18,8 @@ public interface BoardService {
 	
 	public int updateViewsCount(int boardseq);
 
+	public List<Board> getRecommendList(int boardseq);
+
 
 
 

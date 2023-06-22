@@ -58,58 +58,121 @@
 					</div>
 				</div>
 			</div>	
-				<div class="content-area">
-					<div th:utext="${board.content}"></div>
-					
-					<div class="content-info-area">
-						<div class="content-info2-area">
-							<div class="content-info2-i"><img th:src="@{/images/like-i2.JPG}"></div>
-							<div th:text="${board.likecnt}" class="content-info2-num"></div>
-						</div>
-						<div class="content-info2-area">
-							<div class="content-info2-i"><img th:src="@{/images/reply-i2.JPG}"></div>
-							<div th:text="${board.replycnt}" class="content-info2-num"></div>
-						</div>
+			<div class="content-area">
+			  
+				<div th:utext="${board.content}"></div>
+				<img th:if="${board.originalfile}" th:src="@{/board/download(boardseq=${board.boardseq})}" />
+				<div><a th:href="@{/board/download(boardseq=${board.boardseq})}" th:if="${board.originalfile}"></a></div>
+			  
+				<div class="content-info-area">
+					<div class="content-info2-area">
+						<div class="content-info2-i"><img th:src="@{/images/like-i2.JPG}"></div>
+						<div th:text="${board.likecnt}" class="content-info2-num"></div>
+					</div>
+					<div class="content-info2-area">
+						<div class="content-info2-i"><img th:src="@{/images/reply-i2.JPG}"></div>
+						<div th:text="${board.replycnt}" class="content-info2-num"></div>
+					</div>
+					<div class="content-info3-area">
+						<th:block th:if="${#authentication.name} == ${board.memberid}">
+							<a th:href="@{/update(boardseq=${board.boardseq})}">수정</a> 
+							<a th:href="@{/delete(boardseq=${board.boardseq})}">삭제</a> 
+						</th:block>
 					</div>
 				</div>
+			</div>
 				
-				<!-- 댓글 작성 폼 -->
-				<div class="reply-area1">
-					<h3>댓글</h3>
-					<form class="reply-write-area" th:action="@{/reply/replywrite}" method="post">
-						<div class="replytxt-area">
-							<input type="text" id="replytxt" class="replytxt" name="replytxt" placeholder="댓글을 남겨주세요">
-						</div>
-						<input type="hidden" name="boardseq"  th:value="${board.boardseq}">
-						<input type="hidden" name="membername" th:value="${membername}">
-						<button type="submit" class="reply-submit">댓글 쓰기</button>
-					</form>
-				</div>
-				
-				<!-- 댓글 목록 -->
-				<div class="reply-area2">
-					<div class="reply-list-title">댓글 보기</div>
-					<div th:each="reply : ${replylist}" class="reply-list-area">
-						<input type="hidden" name="boardseq" id="boardseq" th:value="${board.boardseq}">
-						<div id="membername" th:text="${reply.membername}" class="reply-list-membername"></div>
-						<div id="replytxt" th:text="${reply.replytxt}" class="reply-list-replytxt"></div>
-						<div id="regdate" th:text="${reply.regdate}" class="reply-list-regdate"></div>
-						<div class="reply-list-del">
-							<th:blok th:if="${membername} == ${reply.membername}">
-							<a th:href="@{/reply/replydelete(replyseq=${reply.replyseq})}"><img th:src="@{/images/delete-i.JPG}"></a>
-							</th:blok>
-						</div>
-						<div class="reply-list-bottom"></div>
+			<!-- 댓글 작성 폼 -->
+			<div class="reply-area1">
+				<h3>댓글</h3>
+				<form class="reply-write-area" th:action="@{/reply/replywrite}" method="post">
+					<div class="replytxt-area">
+						<input type="text" id="replytxt" class="replytxt" name="replytxt" placeholder="댓글을 남겨주세요">
 					</div>
-				</div>	
+					<input type="hidden" name="boardseq"  th:value="${board.boardseq}">
+					<input type="hidden" name="membername" th:value="${membername}">
+					<button type="submit" class="reply-submit">댓글 쓰기</button>
+				</form>
+			</div>
+				
+			<!-- 댓글 목록 -->
+			<div class="reply-area2">
+				<div class="reply-list-title">댓글 보기</div>
+				<div th:each="reply : ${replylist}" class="reply-list-area">
+					<input type="hidden" name="boardseq" id="boardseq" th:value="${board.boardseq}">
+					<div id="membername" th:text="${reply.membername}" class="reply-list-membername"></div>
+					<div id="replytxt" th:text="${reply.replytxt}" class="reply-list-replytxt"></div>
+					<div id="regdate" th:text="${reply.regdate}" class="reply-list-regdate"></div>
+					<div class="reply-list-del">
+						<th:blok th:if="${membername} == ${reply.membername}">
+						<a th:href="@{/reply/replydelete(replyseq=${reply.replyseq})}"><img th:src="@{/images/delete-i.JPG}"></a>
+						</th:blok>
+					</div>
+					<div class="reply-list-bottom"></div>
+				</div>
+			</div>
 			
+			<!-- HIT 글 목록 -->
+			<div class="hit-area">
+				<div class="hit-title"><h3>오늘의 HIT!</h3></div>
+				<div class="hit-list-area">
+					<div th:each="crawlingData : ${hitList}">
+						<ul class="hit-list">
+							<li class="hit-l">
+								<a th:href="${crawlingData.link}">
+						            <span><img th:src="${crawlingData.image}" /></span>
+						            <span class="hit-title2" th:text="${crawlingData.title}"></span>
+						        </a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<!-- BEST 긂 목록 -->
+				<div class="best-area">
+					<h3 class="best-title">오늘의 베스트</h3>
+					<div class="best-list-area">
+						<div th:each="crawlingData : ${viewscntSortedList}" class="best-list">
+							<div th:text="${crawlingData.kind}" class="best-list-kind"></div>
+							<div th:text="${crawlingData.title}" class="best-list-title"></div>
+							<div class="best-bottom-list">
+								<div th:text="${crawlingData.membername}" class="best-list-membername"></div><div class="bar">|</div>
+								<div class="best-list-viewscnt">조회수</div>
+								<div th:text="${crawlingData.viewscnt2}" class="best-list-viewscnt"></div>
+								<div class="best-list-likecnt-tit">좋아요</div>
+								<div th:text="${crawlingData.likecnt2}" class="best-list-likecnt"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+				
 		</div>
 		
 		
 		<div id="right">
-			<h1>오른쪽</h1>
+			<div class="recommend-area">
+				<h1>추천하는 글</h1>
+				<div th:each="recommendlist : ${recommendlist}" class="recommend-title-area">
+					<p><span>•</span><a th:href="@{/read(boardseq=${recommendlist.boardseq})}" th:text="${recommendlist.title}"></a></p>
+				</div>
+			</div>
 		</div>
+		
 	</div>
 	
+	<!-- 밑 영역 -->
+	<div id="footer">
+		<div class="footer-area">
+			<div class="f-logo"><a th:href="@{/}"><img src="images/meltingLogo.JPG"></a></div>
+			<div class="footer-list">
+				<a th:href="@{#}">서비스소개 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
+				<a th:href="@{#}">공지사항 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
+				<a th:href="@{#}">연락처 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
+				<a th:href="@{#}">신고가이드</a>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

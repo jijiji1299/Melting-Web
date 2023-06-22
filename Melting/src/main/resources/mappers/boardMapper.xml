@@ -5,26 +5,6 @@
   
 <mapper namespace="com.melting.dao.BoardDAO">
 
-<!-- 	<insert id="insertBoard" parameterType="Board">
-		INSERT INTO m_board
-		(
-			boardseq, memberid, title,
-			boardtxt, kind, content, membername,
-			<if test="originalfile !=null">
-			originalfile, savedfile		
-			</if>
-		)
-		VALUES
-		(
-			m_board_seq.NEXTVAL, #{memberid}, #{title},
-			#{boardtxt}, #{kind}, #{content},
-			(SELECT membername FROM m_member WHERE memberid = #{memberid}),
-			<if test="originalfile !=null">
-			#{originalfile}, #{savedfile}		
-			</if>
-		)
-	</insert> -->
-	
 	<insert id="insertBoard" parameterType="Board">
 	    INSERT INTO m_board (
 	        boardseq, memberid, title, boardtxt, kind, content, membername
@@ -32,7 +12,8 @@
 	            , originalfile, savedfile
 	        </if>
 	    ) VALUES (
-	        m_board_seq.NEXTVAL, #{memberid}, #{title}, #{boardtxt}, #{kind}, #{content}, (SELECT membername FROM m_member WHERE memberid = #{memberid})
+	        m_board_seq.NEXTVAL, #{memberid}, #{title}, #{boardtxt}, #{kind}, #{content}, 
+	        (SELECT membername FROM m_member WHERE memberid = #{memberid})
 	        <if test="originalfile != null">
 	            , #{originalfile}, #{savedfile}
 	        </if>
@@ -74,5 +55,10 @@
 		SET viewscnt = viewscnt + 1
 		WHERE boardseq = #{boardseq}
 	</update>
+	
+	<select id="getRecommendList" parameterType="int" resultType="Board">
+		SELECT * FROM m_board
+		WHERE boardseq != #{boardseq}
+	</select>
 	
 </mapper>
