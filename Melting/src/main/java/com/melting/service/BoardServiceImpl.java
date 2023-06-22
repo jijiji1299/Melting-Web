@@ -56,6 +56,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
+	@Override
+	public List<Board> getRecommendList(int boardseq) {
+		List<Board> list = boardDao.getRecommendList(boardseq);
+		return list;
+	}
+
+
 
 
 

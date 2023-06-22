@@ -201,7 +201,7 @@ public class BoardController{
 	
 	/*게시글 저장 요청*/
 	@PostMapping("/write")
-	public String write(Board board, @RequestParam("boardtxt") String boardtxt, MultipartFile upload) {
+	public String write(Board board,  String boardtxt, MultipartFile upload) {
 		
 		// 마크다운 적용
 		String markdownContent = boardtxt;
@@ -312,7 +312,14 @@ public class BoardController{
 	public String read(int boardseq, Model model, Authentication authentication) {
 		Board board = boardService.read(boardseq);
 		boardService.updateViewsCount(boardseq);
+		
+		List<Board> recommendlist = boardService.getRecommendList(boardseq);
+		if (recommendlist.size() > 10) {
+		    recommendlist = recommendlist.subList(0, 10);
+		}
+		
 		model.addAttribute("board", board);
+		model.addAttribute("recommendlist", recommendlist);
 		
 		// 댓글 목록 출력
 		List<Reply> replylist = replyService.listReply(boardseq);
@@ -325,6 +332,14 @@ public class BoardController{
 			String membername = member.getMembername();
 			model.addAttribute("membername", membername);
 		}
+		
+		// [크롤링] 조회순으로 정렬
+		List<Crawling> viewscntSortedList = crawlingService.getViewscntSortedList();
+		model.addAttribute("viewscntSortedList", viewscntSortedList);
+		
+		// 크롤링 List
+        List<Crawling> hitList = crawlingService.getHitCrawlingData();
+        model.addAttribute("hitList", hitList);
 		
 		return "/board/read";
 		
@@ -369,16 +384,16 @@ public class BoardController{
 	}
 	
 	/*첨부파일 다운로드*/
-	@GetMapping("board/download")
-	public String download(int boardseq, HttpServletResponse response) {
-		Board board = boardService.read(boardseq);	// db에 접근하는 식
+	@GetMapping("/board/download")
+	public void download(int boardseq, HttpServletResponse response) {
+		Board board = boardService.read(boardseq);
 		
-		// 원래 파일명
+		// 기본 파일명
 		String originalFileName = board.getOriginalfile();
 		
-		// encode에 마우스 데서 surround 뭐시기 클릭
+		// encode에 마우스 오버해서 surround 클릭
 		if (originalFileName==null) {
-			originalFileName="이름이 없음요";
+			originalFileName="이름 없음";
 		}else {
 			try {
 				response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(originalFileName, "UTF-8"));
@@ -388,7 +403,6 @@ public class BoardController{
 				
 			}
 		}
-		
 		
 		// 저장된 파일명
 		String savedFileName = board.getSavedfile();
@@ -406,17 +420,12 @@ public class BoardController{
 			
 			filein.close();
 			fileout.close();
+			
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/";
 	}
 
-
-
-	
-	
-	
 
 }
