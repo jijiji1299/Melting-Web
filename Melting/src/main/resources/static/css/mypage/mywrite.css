@@ -1,0 +1,348 @@
+@charset "UTF-8";
+@font-face {
+	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-family: 'Roboto','Noto Sans KR',AppleSDGothicNeo-Regular,'Malgun Gothic','맑은 고딕',dotum,'돋움',sans-serif;
+	font-size:14px;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: black;
+	user-select: none;
+	font-family: 'Roboto','Noto Sans KR',AppleSDGothicNeo-Regular,'Malgun Gothic','맑은 고딕',dotum,'돋움',sans-serif;
+	letter-spacing: -1px;
+}
+
+a {
+	text-decoration: none;
+}
+
+
+#header {
+	height:80px;
+	width:100%;
+	border-bottom: 1px solid #d4d4d4;
+}
+
+.header-area {
+	width: 1140px;
+	position:relative;
+	margin: 0 auto;
+	height:100%;
+}
+
+.logo {
+	position:absolute;
+	top:24px;
+}
+
+.logo img {
+	width:150px;
+	
+}
+
+.menu {
+	position:absolute;
+    top: 30px;
+    left: 230px;
+	
+}
+
+.home {
+    width: 75px;
+	float: left;
+	font-size: 20px;
+}
+
+
+.all {
+	margin-left:-8px;
+	color:black;
+	float: left;
+	width: 75px;
+	font-size: 20px;
+	
+}
+
+
+.humor {
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 75px;
+	font-size: 20px;	
+}
+
+.sports {
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 75px;
+	font-size: 20px;	
+}
+
+.game {
+	margin-left:5px;
+	color:black;
+	float: left;
+	width: 75px;	
+	font-size: 20px;
+}
+
+.write {
+	width: 50px;
+	top:30px;
+	position: absolute;
+	right: 90px;
+	text-align: center;
+	width: 82px;
+    height: 40px;
+    font-size: 14px;
+    line-height: 38px;
+    background-color:#0090F9;
+    border-radius: 6px;
+    
+}
+
+.write a {
+	font-weight: bold;
+	color:white;
+}
+
+.my {
+	position:absolute;
+	top:30px;
+	right:1px;
+	display: inline-block;
+	width: 82px;
+    height: 40px;
+	font-size: 14px;
+    line-height: 38px;
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+}
+
+
+.login {
+	float:left;
+	width:100%;
+    height: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.login a {
+	text-align: center;
+	
+}
+
+.myid {
+	float:left;
+	width:100%;
+ 	font-weight: bold;
+	text-align: center;
+	
+}
+
+.myid a {
+	text-align: center;
+	
+}
+
+
+#container {
+	width: 1140px;
+	position:relative;
+	margin: 50px auto 0;
+    margin-bottom: 85px;
+    display: flex;
+	/* border:1px solid black; */
+	
+}
+
+#left {
+	height:100%;
+	width:300px;
+	padding-right:65px;
+	float:left;
+}
+
+.left-tit {
+	font-size:20px;
+	width:100%;
+	margin-bottom:30px;
+}
+
+.left-tit h2 {
+	font-size:20px;
+	
+	
+}
+
+.menu-area {
+	width:100%;
+	font-size:16px;
+	
+	
+}
+
+.menu-area div {
+	width:100%;
+	height:40px;
+	padding:8px 12px;
+	border:0;
+	border-radius: 6px;
+	font-weight:500;
+	color:#1F2937;
+	
+}
+
+
+.menu-mywrite {
+	width:100%;
+	background-color:#E5E7E8;
+	
+}
+
+
+
+
+#right {
+	width:840px;
+	height:100%;
+	border-left:1px solid #d4d4d4;
+	border-right:1px solid #d4d4d4;
+	
+}
+
+#right h2 {
+	width:100%;
+	font-size:20px;
+	font-weight:600;
+	padding-left:80px;
+    margin-bottom: 20px;
+}
+
+
+
+.boardlist {
+	width:600px;
+	height:150px;
+	float:left;
+	border-bottom: 1px solid #eee;
+	padding-left:80px;
+	padding-right:50px;
+	width:100%;
+}
+
+.boardlist-kind {
+    width: 100%;
+    height: 20px;
+    margin-top: 15px;
+    font-size:13px;
+}
+
+.boardlist-title {
+    height: 52px;
+    max-height: 52px;
+    margin-top: 1px;
+    font-size: 18px;
+    line-height: 1.4em;
+    padding-right: 5px;
+    display: block;
+}
+
+.boardlist-membername {
+    font-size: 14px;
+    width:100%;
+}
+
+.boardlist-reply-area {
+	float:left;
+	width: 70px;
+}
+
+.boardlist-reply-i {
+	float:left;
+}
+
+.boardlist-reply-i img {
+	width:16px;
+	height:16px;
+	margin-top: 10px;
+}
+
+.boardlist-reply-num {
+	padding:2px;
+	color:#94969B;
+	font-size:14px;
+	float:left;
+	padding-top: 7.5px;
+}
+	
+.boardlist-bottom {
+	height:30px;
+}
+
+.boardlist-like-area {
+	float:left;
+	width: 70px;
+}
+
+.boardlist-like-i {
+	float:left;
+}
+
+.boardlist-like-i img {
+	width:16px;
+	height:16px;
+	margin-top: 10px;
+}
+
+.boardlist-like-num {
+	padding:2px;
+	color:#94969B;
+	font-size:14px;
+	float:left;
+	padding-top: 7.5px;
+	
+}
+
+.boardlist-views-area {
+	float:left;
+	width: 70px;
+}
+
+.boardlist-views-i {
+	float:left;
+}
+
+.boardlist-views-i img {
+	width:16px;
+	height:16px;
+	margin-top: 10px;
+}
+
+.boardlist-views-num {
+	padding:2px;
+	color:#94969B;
+	font-size:14px;
+	float:left;
+	padding-top: 7.5px;
+	
+}
+
+.boardlist-regdate {
+    padding-top: 7.5px;
+	float:right;
+	color:#94969B;
+	font-size:14px;
+	width: 105px;
+}
+
+
+

@@ -43,19 +43,35 @@ public class MypageController {
 	
 	/*내가 쓴 글 확인하기*/
 	@GetMapping("/mypage/mywrite")
-	public String mywrite(String membername, Model model) {
+	public String mywrite(String membername, Model model, Authentication authentication) {
 		List<Board> list = mypageService.mywrite(membername);
 		model.addAttribute("list", list);
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername2 = member.getMembername();
+			model.addAttribute("membername", membername2);
+		}
 		
 		return "/mypage/mywrite";
 	}
 	
 	/*내가 쓴 댓글 확인하기*/
 	@GetMapping("/mypage/myreply")
-	public String myreply(String membername, Model model) {
+	public String myreply(String membername, Model model, Authentication authentication) {
 		List<Reply> list = mypageService.myreply(membername);
 		model.addAttribute("list", list);
 		System.out.println("내가 쓴 댓글 :" + list);
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername2 = member.getMembername();
+			model.addAttribute("membername", membername2);
+		}
 		
 		return "/mypage/myreply";
 	}
