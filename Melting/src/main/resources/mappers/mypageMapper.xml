@@ -6,13 +6,21 @@
 <mapper namespace="com.melting.dao.MypageDAO">
 
 	<select id="mywrite" parameterType="String" resultType="Board">
-		SELECT * FROM m_board
+		SELECT 
+			boardseq, memberid, membername, title, kind, viewscnt,
+			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate, content, originalfile, savedfile
+		FROM m_board
 		WHERE membername = #{membername}
+		ORDER BY regdate DESC
 	</select>
 	
 	<select id="myreply" parameterType="String" resultType="Reply">
-		SELECT * FROM m_reply
+		SELECT
+			replyseq, boardseq, membername, replytxt, replycnt, 
+			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate
+		FROM m_reply
 		WHERE membername = #{membername}
+		ORDER BY regdate DESC
 	</select>
 	
 </mapper>

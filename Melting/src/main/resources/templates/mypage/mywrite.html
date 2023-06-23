@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmls:sec="http://www.thymelef.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Melting | 통합 유머 커뮤니티</title>
+<link rel="stylesheet" type="text/css" th:href="@{../css/mypage/mywrite.css}">
+</head>
+<body>
+	<div id="header">
+		<div class="header-area">
+			<div class="logo"><a th:href="@{/}"><img src="../images/meltingLogo.JPG"></a></div>
+			<div class="menu">
+				<div class="home"><a th:href="@{/board/bestlist}">홈</a></div>
+				<div class="all"><a th:href="@{/board/newlist}">전체</a></div>
+				<div class="humor">유머</div>
+				<div class="game">게임</div>
+				<div class="sports">스포츠</div>
+			</div>
+			<div class="write">
+				<a th:href="@{/write}">글쓰기</a>
+			</div>
+ 			<div class="my">
+ 				<div class="login" sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/loginForm}">로그인</a></div>
+ 				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{/mypage}" th:text="${membername} + '님'"></a></div>
+ 			</div>				
+		</div>
+	</div>
+	
+	<div id="container">
+		<div id="left">
+			<h2 class="left-tit">마이페이지</h2>
+			<div class="menu-area">
+				<div class="menu-myinfo"><a th:href="@{/mypage}">회원 정보</a></div>
+				<div class="menu-mywrite"><a th:href="@{/mypage/mywrite(membername=${membername})}">내가 쓴 글</a></div>
+				<div class="menu-myreply"><a th:href="@{/mypage/myreply(membername=${membername})}">내가 단 댓글</a></div>
+				<div class="menu-logout" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></div>
+			</div>
+			
+		</div>
+		
+		<div id="right">
+			<h2>내가 쓴 글</h2>
+			
+			<div th:each="board : ${list}" class="boardlist">
+				<div class="boardlist-kind">
+					<span th:if="${board.kind=='free'}">자유</span>
+					<span th:if="${board.kind=='humor'}">유머</span>
+					<span th:if="${board.kind=='sports'}">스포츠</span>
+					<span th:if="${board.kind=='game'}">게임</span>
+				</div>
+				
+				<h3><a th:href="@{/read(boardseq=${board.boardseq})}" th:text="${board.title}" class="boardlist-title"></a></h3>
+				
+				<div th:text="${board.membername}" class="boardlist-membername"></div>
+				
+				<div class="boardlist-bottom">
+					<div class="boardlist-reply-area">
+						<div class="boardlist-reply-i"><img src="../images/reply-i.JPG"></div>
+						<div th:text="${board.replycnt}" class="boardlist-reply-num"></div>
+					</div>
+					<div class="boardlist-like-area">
+						<div class="boardlist-like-i"><img src="../images/like-i.JPG"></div>
+						<div th:text="${board.likecnt}" class="boardlist-like-num"></div>
+					</div>
+					
+					<div class="boardlist-views-area">
+						<div class="boardlist-views-i"><img src="../images/views-i.JPG"></div>
+						<div th:text="${board.viewscnt}" class="boardlist-views-num"></div>
+					</div>
+					
+					<div th:text="${board.regdate}" class="boardlist-regdate"></div>
+				</div>
+			</div>
+			
+			
+			
+		</div>
+	</div>
+</body>
+</html>

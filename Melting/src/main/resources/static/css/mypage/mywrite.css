@@ -160,7 +160,6 @@ a {
 	margin: 50px auto 0;
     margin-bottom: 85px;
     display: flex;
-    /* height:1000px; */
 	/* border:1px solid black; */
 	
 }
@@ -203,7 +202,7 @@ a {
 }
 
 
-.menu-myinfo {
+.menu-mywrite {
 	width:100%;
 	background-color:#E5E7E8;
 	
@@ -216,6 +215,7 @@ a {
 	width:840px;
 	height:100%;
 	border-left:1px solid #d4d4d4;
+	border-right:1px solid #d4d4d4;
 	
 }
 
@@ -224,52 +224,125 @@ a {
 	font-size:20px;
 	font-weight:600;
 	padding-left:80px;
+    margin-bottom: 20px;
 }
 
-.right-top-area {
-	width:100%;
-	margin:40px 0;
+
+
+.boardlist {
+	width:600px;
+	height:150px;
+	float:left;
+	border-bottom: 1px solid #eee;
 	padding-left:80px;
-}
-
-
-.myinfo-area {
-	margin-bottom:24px;
-}
-
-.myinfo-tit {
-	font-size:14px;
-}
-
-
-.myinfo-content {
-	width:510px;
-	height:40px;
-	border:1px solid #d4d4d4;
-	border-radius: 6px;
-	padding:8px 12px;
-	margin-top:3px;
-	font-size:15px;
-}
-
-
-.myinfo-content input {
-	border:0;
-	font-size:15px;
-}
-
-
-
-.right-bottom-area {
+	padding-right:50px;
 	width:100%;
-	border-top:1px solid #d4d4d4;
+}
+
+.boardlist-kind {
+    width: 100%;
+    height: 20px;
+    margin-top: 15px;
+    font-size:13px;
+}
+
+.boardlist-title {
+    height: 52px;
+    max-height: 52px;
+    margin-top: 1px;
+    font-size: 18px;
+    line-height: 1.4em;
+    padding-right: 5px;
+    display: block;
+}
+
+.boardlist-membername {
+    font-size: 14px;
+    width:100%;
+}
+
+.boardlist-reply-area {
+	float:left;
+	width: 70px;
+}
+
+.boardlist-reply-i {
+	float:left;
+}
+
+.boardlist-reply-i img {
+	width:16px;
+	height:16px;
+	margin-top: 10px;
+}
+
+.boardlist-reply-num {
+	padding:2px;
+	color:#94969B;
+	font-size:14px;
+	float:left;
+	padding-top: 7.5px;
+}
+	
+.boardlist-bottom {
+	height:30px;
+}
+
+.boardlist-like-area {
+	float:left;
+	width: 70px;
+}
+
+.boardlist-like-i {
+	float:left;
+}
+
+.boardlist-like-i img {
+	width:16px;
+	height:16px;
+	margin-top: 10px;
+}
+
+.boardlist-like-num {
+	padding:2px;
+	color:#94969B;
+	font-size:14px;
+	float:left;
+	padding-top: 7.5px;
 	
 }
 
-
-.accountdrop {
-	padding-left:80px;
-	margin:40px 0;
+.boardlist-views-area {
+	float:left;
+	width: 70px;
 }
+
+.boardlist-views-i {
+	float:left;
+}
+
+.boardlist-views-i img {
+	width:16px;
+	height:16px;
+	margin-top: 10px;
+}
+
+.boardlist-views-num {
+	padding:2px;
+	color:#94969B;
+	font-size:14px;
+	float:left;
+	padding-top: 7.5px;
+	
+}
+
+.boardlist-regdate {
+    padding-top: 7.5px;
+	float:right;
+	color:#94969B;
+	font-size:14px;
+	width: 105px;
+}
+
 
 
