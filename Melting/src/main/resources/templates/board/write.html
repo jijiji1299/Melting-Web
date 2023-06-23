@@ -23,9 +23,6 @@
 				<div class="game">게임</div>
 				<div class="sports">스포츠</div>
 			</div>
-			<div class="write">
-				<a th:href="@{/write}">글쓰기</a>
-			</div>
  			<div class="my">
  				<div class="login" sec:authorize="not isAuthenticated()"><a href="#" th:href="@{/loginForm}">로그인</a></div>
  				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{/mypage}" th:text="${membername} + '님'"></a></div>
