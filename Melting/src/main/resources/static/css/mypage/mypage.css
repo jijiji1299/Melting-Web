@@ -158,10 +158,9 @@ a {
 	width: 1140px;
 	position:relative;
 	margin: 50px auto 0;
-    margin-bottom: 85px;
     display: flex;
-    /* height:1000px; */
-	/* border:1px solid black; */
+    margin-bottom: 65px;
+    min-height:600px;
 	
 }
 
@@ -170,6 +169,7 @@ a {
 	width:300px;
 	padding-right:65px;
 	float:left;
+	
 }
 
 .left-tit {
@@ -210,6 +210,9 @@ a {
 }
 
 
+.menu-logout a {
+	color:#f16868;
+}
 
 
 #right {
@@ -273,3 +276,41 @@ a {
 }
 
 
+
+
+#footer {
+	width:100%;
+	height:80px;
+	border-top:1px solid #d4d4d4;
+}
+
+.footer-area {
+	margin: 0 auto;
+	margin-top:20px;
+	width: 1140px;
+    position: relative;
+    height: 100%;
+}
+
+.f-logo {
+	width:150px;
+	float:left;
+	
+}
+
+.f-logo img {
+	width:150px;
+	
+}
+
+.footer-list {
+	position:absolute;
+	left:300px;
+	float:left;
+	top: 12px;
+	
+}
+
+.footer-list a {
+	color: #94969b;
+}
