@@ -160,7 +160,6 @@ a {
 	margin: 50px auto 0;
     margin-bottom: 85px;
     display: flex;
-    /* height:1000px; */
 	/* border:1px solid black; */
 	
 }
@@ -203,7 +202,7 @@ a {
 }
 
 
-.menu-myinfo {
+.menu-myreply {
 	width:100%;
 	background-color:#E5E7E8;
 	
@@ -216,6 +215,7 @@ a {
 	width:840px;
 	height:100%;
 	border-left:1px solid #d4d4d4;
+	border-right:1px solid #d4d4d4;
 	
 }
 
@@ -224,52 +224,49 @@ a {
 	font-size:20px;
 	font-weight:600;
 	padding-left:80px;
+    margin-bottom: 20px;
 }
 
-.right-top-area {
-	width:100%;
-	margin:40px 0;
+
+
+.replylist {
+	width:600px;
+	/* height:150px; */
+	float:left;
+	border-bottom: 1px solid #eee;
 	padding-left:80px;
+	padding-right:50px;
+	width:100%;
 }
 
-
-.myinfo-area {
-	margin-bottom:24px;
-}
-
-.myinfo-tit {
+.reply-membername {
+	margin-top:20px;
 	font-size:14px;
+	font-weight:bold;
+}
+
+.reply-replytxt {
+    min-height: 40px;
+    margin-top: 1px;
+    font-size: 18px;
+    line-height: 1.4em;
+    padding-right: 5px;
+    display: block;
+    width:100%;
+    word-wrap: break-word;
+    margin-top:5px;
+}
+
+.reply-regdate {
+	font-size:14px;
+	padding-top: 7.5px;
+	float:right;
+	color:#94969B;
+	font-size:14px;
+	width: 105px;
+    padding-bottom: 15px;
 }
 
 
-.myinfo-content {
-	width:510px;
-	height:40px;
-	border:1px solid #d4d4d4;
-	border-radius: 6px;
-	padding:8px 12px;
-	margin-top:3px;
-	font-size:15px;
-}
-
-
-.myinfo-content input {
-	border:0;
-	font-size:15px;
-}
-
-
-
-.right-bottom-area {
-	width:100%;
-	border-top:1px solid #d4d4d4;
-	
-}
-
-
-.accountdrop {
-	padding-left:80px;
-	margin:40px 0;
-}
 
 

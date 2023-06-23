@@ -11,6 +11,7 @@
 			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate, content, originalfile, savedfile
 		FROM m_board
 		WHERE membername = #{membername}
+		ORDER BY regdate DESC
 	</select>
 	
 	<select id="myreply" parameterType="String" resultType="Reply">
@@ -19,6 +20,7 @@
 			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate
 		FROM m_reply
 		WHERE membername = #{membername}
+		ORDER BY regdate DESC
 	</select>
 	
 </mapper>

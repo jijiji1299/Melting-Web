@@ -33,7 +33,7 @@
 			<div class="menu-area">
 				<div class="menu-myinfo"><a th:href="@{#}">회원 정보</a></div>
 				<div class="menu-mywrite"><a th:href="@{/mypage/mywrite(membername=${membername})}">내가 쓴 글</a></div>
-				<div class="menu-myreply"><a th:href="@{/mypage/myreply(membername=${membername})}">내가 쓴 댓글</a></div>
+				<div class="menu-myreply"><a th:href="@{/mypage/myreply(membername=${membername})}">내가 단 댓글</a></div>
 				<div class="menu-logout" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></div>
 			</div>
 			

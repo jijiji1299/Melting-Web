@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.melting.domain.Board;
 import com.melting.domain.Member;
 import com.melting.domain.Reply;
+import com.melting.service.BoardService;
 import com.melting.service.MemberService;
 import com.melting.service.MypageService;
 
@@ -21,9 +22,11 @@ public class MypageController {
 	MypageService mypageService;
 	
 	private MemberService memberService;
+	private BoardService boardService;
 
 	public MypageController(MemberService memberService) {
 		this.memberService = memberService;
+		this.boardService = boardService;
 	}
 	
 	/*마이페이지 화면 요청*/
@@ -64,6 +67,8 @@ public class MypageController {
 		List<Reply> list = mypageService.myreply(membername);
 		model.addAttribute("list", list);
 		System.out.println("내가 쓴 댓글 :" + list);
+		
+		
 		
 		// 유저이름 불러오기 (membername)
 		if (authentication != null) {
