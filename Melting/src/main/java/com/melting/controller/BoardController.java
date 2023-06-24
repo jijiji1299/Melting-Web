@@ -94,17 +94,20 @@ public class BoardController{
 	
 	/*게시글 목록 화면 요청*/
 	@GetMapping("/board/bestlist")
-	public String bestlist(String memberid, Model model, Authentication authentication) {
-		List<Board> list = boardService.getAllList(memberid);
+	public String bestlist(Model model, Authentication authentication) {
+		List<Board> list = boardService.getAllList();
 		model.addAttribute("list", list);
-		model.addAttribute("memberid", memberid);
+//		model.addAttribute("memberid", memberid);
 		
 		// 유저이름 불러오기 (membername)
 		if (authentication != null) {
 			String username = authentication.getName();
 			Member member = memberService.getMemberUsername(username);
 			String membername = member.getMembername();
+			String memberid = member.getMemberid();
+			
 			model.addAttribute("membername", membername);
+			model.addAttribute("memberid", memberid);
 		}
 		
 		// 크롤링 List
@@ -129,7 +132,10 @@ public class BoardController{
 			String username = authentication.getName();
 			member = memberService.getMemberUsername(username);
 			String membername = member.getMembername();
+			String memberid = member.getMemberid();
+			
 			model.addAttribute("membername", membername);
+			model.addAttribute("memberid", memberid);
 		}
 		
 		model.addAttribute("member", member);
@@ -143,12 +149,12 @@ public class BoardController{
 	public String main2(Model model, Authentication authentication) throws IOException {
 		
 		// 유저이름 불러오기 (membername)
-		if (authentication != null) {
-			String username = authentication.getName();
-			Member member = memberService.getMemberUsername(username);
-			String membername = member.getMembername();
-			model.addAttribute("membername", membername);
-		}
+//		if (authentication != null) {
+//			String username = authentication.getName();
+//			Member member = memberService.getMemberUsername(username);
+//			String membername = member.getMembername();
+//			model.addAttribute("membername", membername);
+//		}
 		
 //		// DB 데이터 가져오기
 //		List<Crawling> list = crawlingService.getCrawlingList();
@@ -234,9 +240,9 @@ public class BoardController{
 	/*게시글 목록 화면 요청*/
 	@GetMapping("/board/newlist")
 	public String boardlist(String memberid, Model model, Authentication authentication) {
-		List<Board> list = boardService.getAllList(memberid);
+		List<Board> list = boardService.getAllList();
 		model.addAttribute("list", list);
-		model.addAttribute("memberid", memberid);
+//		model.addAttribute("memberid", memberid);
 		
 		// 유저이름 불러오기 (membername)
 		if (authentication != null) {
@@ -261,9 +267,9 @@ public class BoardController{
 	/*게시글 목록 화면 요청*/
 	@GetMapping("/board/newlist2")
 	public String boardlist2(String memberid, Model model, Authentication authentication) {
-		List<Board> list = boardService.getAllList(memberid);
+		List<Board> list = boardService.getAllList();
 		model.addAttribute("list", list);
-		model.addAttribute("memberid", memberid);
+//		model.addAttribute("memberid", memberid);
 		
 		// 유저이름 불러오기 (membername)
 		if (authentication != null) {
@@ -328,7 +334,10 @@ public class BoardController{
 			String username = authentication.getName();
 			Member member = memberService.getMemberUsername(username);
 			String membername = member.getMembername();
+			String memberid = member.getMemberid();
+			
 			model.addAttribute("membername", membername);
+			model.addAttribute("memberid", memberid);
 		}
 		
 		// [크롤링] 조회순으로 정렬

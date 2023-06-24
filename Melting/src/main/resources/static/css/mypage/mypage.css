@@ -257,10 +257,19 @@ a {
 
 
 .myinfo-content input {
-	border:0;
+	border:none;
 	font-size:15px;
 }
 
+
+.nickname-submit {
+	width:90px;
+	background-color: red;
+    position: absolute;
+    right: 130px;
+    top: 172px;
+    height: 40px;
+}
 
 
 .right-bottom-area {

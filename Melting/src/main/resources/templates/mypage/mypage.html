@@ -47,11 +47,24 @@
 					<div sec:authorize="isAuthenticated()" class="myinfo-content">[[${#authentication.name}]]</div>
 				</div>
 				
-				<div class="myinfo-area">
-					<div class="myinfo-tit">닉네임</div>
-					<div sec:authorize="isAuthenticated()" class="myinfo-content"><input th:value="${membername}"></div>
-				</div>
+				<!-- <form th:action="@{/mypage/updatename}" method="POST">
+					<div class="myinfo-area">
+						<div class="myinfo-tit">닉네임</div>
+						<div sec:authorize="isAuthenticated()" class="myinfo-content"><input th:value="${membername}" name="membername"></div>
+						<input type="submit" value="닉넴변경">
+					</div>
+				</form> -->
 				
+				
+				
+				<form th:action="@{/mypage/updatename}" method="POST">
+				<input type="hidden" th:value="${memberid}" name="memberid">
+					<div class="myinfo-area">
+						<div class="myinfo-tit">닉네임</div>
+						<div class="myinfo-content"><input th:value="${membername}" name="membername"></div>
+						<span class="nickname-submit"><input type="submit" value="닉네임변경"></span>
+					</div>				
+				</form>
 				
 			</div>
 			<div class="right-bottom-area">

@@ -8,8 +8,6 @@ public interface BoardService {
 
 	public int write(Board board);
 
-	public List<Board> getAllList(String memberid);
-
 	public Board read(int boardseq);
 
 	public int delete(int boardseq);
@@ -19,6 +17,8 @@ public interface BoardService {
 	public int updateViewsCount(int boardseq);
 
 	public List<Board> getRecommendList(int boardseq);
+
+	public List<Board> getAllList();
 
 
 

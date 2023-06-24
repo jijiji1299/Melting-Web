@@ -20,7 +20,7 @@
 	    )
 	</insert>
 	
-	<select id="getAllList" parameterType="String" resultType="Board">
+	<select id="getAllList" resultType="Board">
 		SELECT 
 			boardseq, memberid, membername, title, kind, viewscnt,
 			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate, content, originalfile, savedfile
