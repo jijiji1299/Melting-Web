@@ -5,6 +5,8 @@
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
 <link rel="stylesheet" type="text/css" th:href="@{css/mypage/mypage.css}">
+<script th:inline="javascript" th:src="@{/script/jquery-3.6.3.min.js}"></script>
+<script th:inline="javascript" th:src="@{/script/updatemember.js}"></script>
 </head>
 <body>
 	<div id="header">
@@ -47,22 +49,15 @@
 					<div sec:authorize="isAuthenticated()" class="myinfo-content">[[${#authentication.name}]]</div>
 				</div>
 				
-				<!-- <form th:action="@{/mypage/updatename}" method="POST">
-					<div class="myinfo-area">
-						<div class="myinfo-tit">닉네임</div>
-						<div sec:authorize="isAuthenticated()" class="myinfo-content"><input th:value="${membername}" name="membername"></div>
-						<input type="submit" value="닉넴변경">
-					</div>
-				</form> -->
-				
-				
-				
-				<form th:action="@{/mypage/updatename}" method="POST">
+				<form th:action="@{/mypage/updatename}" method="POST" onsubmit="return validateForm();">
 				<input type="hidden" th:value="${memberid}" name="memberid">
 					<div class="myinfo-area">
 						<div class="myinfo-tit">닉네임</div>
-						<div class="myinfo-content"><input th:value="${membername}" name="membername"></div>
+						<div class="myinfo-content">
+							<input th:value="${membername}" name="membername" id="membername" oninput="checkNameLength();" onblur="checkNameDuplicate();">
+						</div>
 						<span class="nickname-submit"><input type="submit" value="닉네임변경"></span>
+			           	<span id="checkResult" class="check-result"></span>
 					</div>				
 				</form>
 				

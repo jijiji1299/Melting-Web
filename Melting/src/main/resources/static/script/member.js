@@ -35,8 +35,8 @@
 	 checkResult3.textContent = "";
 	 
 
-	 if(membername.value.trim().length < 2 || membername.value.trim().length == 0) {
-		 checkResult4.textContent = "✔ 닉네임을 최소 2자 이상 입력하세요.";
+	 if(membername.value.trim().length < 2 || membername.value.trim().length > 5 ||membername.value.trim().length == 0) {
+		 checkResult4.textContent = "✔ 닉네임을 2~5자 사이로 입력하세요.";
 		 membername.focus();
 		 membername.select();
 		 return false;
