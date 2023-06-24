@@ -43,17 +43,25 @@
 			<h2>내가 단 댓글</h2>
 			
 			<div th:each="reply : ${list}" class="replylist">
-				
 				<div th:text="${reply.membername}" class="reply-membername"></div>
 				<div th:text="${reply.replytxt}" class="reply-replytxt"></div>
 				<div th:text="${reply.regdate}" class="reply-regdate"></div>
-				
-				
 			</div>
-			
-			
-			
 		</div>
 	</div>
+	
+	<!-- 밑 영역 -->
+	<div id="footer">
+		<div class="footer-area">
+			<div class="f-logo"><a th:href="@{/}"><img src="../images/meltingLogo.JPG"></a></div>
+			<div class="footer-list">
+				<a th:href="@{#}">서비스소개 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
+				<a th:href="@{#}">공지사항 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
+				<a th:href="@{#}">연락처 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
+				<a th:href="@{#}">신고가이드</a>
+			</div>
+		</div>
+	</div>	
+		
 </body>
 </html>

@@ -23,13 +23,6 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
-	public List<Board> getAllList(String memberid) {
-		List<Board> list = boardDao.getAllList(memberid);
-		return list;
-	}
-
-
-	@Override
 	public Board read(int boardseq) {
 		Board board = boardDao.read(boardseq);
 		return board;
@@ -59,6 +52,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<Board> getRecommendList(int boardseq) {
 		List<Board> list = boardDao.getRecommendList(boardseq);
+		return list;
+	}
+
+
+	@Override
+	public List<Board> getAllList() {
+		List<Board> list = boardDao.getAllList();
 		return list;
 	}
 

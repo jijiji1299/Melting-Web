@@ -47,11 +47,24 @@
 					<div sec:authorize="isAuthenticated()" class="myinfo-content">[[${#authentication.name}]]</div>
 				</div>
 				
-				<div class="myinfo-area">
-					<div class="myinfo-tit">닉네임</div>
-					<div sec:authorize="isAuthenticated()" class="myinfo-content"><input th:value="${membername}"></div>
-				</div>
+				<!-- <form th:action="@{/mypage/updatename}" method="POST">
+					<div class="myinfo-area">
+						<div class="myinfo-tit">닉네임</div>
+						<div sec:authorize="isAuthenticated()" class="myinfo-content"><input th:value="${membername}" name="membername"></div>
+						<input type="submit" value="닉넴변경">
+					</div>
+				</form> -->
 				
+				
+				
+				<form th:action="@{/mypage/updatename}" method="POST">
+				<input type="hidden" th:value="${memberid}" name="memberid">
+					<div class="myinfo-area">
+						<div class="myinfo-tit">닉네임</div>
+						<div class="myinfo-content"><input th:value="${membername}" name="membername"></div>
+						<span class="nickname-submit"><input type="submit" value="닉네임변경"></span>
+					</div>				
+				</form>
 				
 			</div>
 			<div class="right-bottom-area">
@@ -59,6 +72,20 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 밑 영역 -->
+	<div id="footer">
+		<div class="footer-area">
+			<div class="f-logo"><a th:href="@{/}"><img src="images/meltingLogo.JPG"></a></div>
+			<div class="footer-list">
+				<a th:href="@{#}">서비스소개 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
+				<a th:href="@{#}">공지사항 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
+				<a th:href="@{#}">연락처 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
+				<a th:href="@{#}">신고가이드</a>
+			</div>
+		</div>
+	</div>	
+	
 	
 </body>
 </html>

@@ -7,9 +7,9 @@
 
 	<insert id="writeReply" parameterType="Reply">
 		INSERT INTO m_reply
-		(replyseq, boardseq, membername, replytxt)
+		(replyseq, boardseq, membername, replytxt, memberid)
 		VALUES
-		(m_reply_seq.NEXTVAL, #{boardseq}, #{membername}, #{replytxt})
+		(m_reply_seq.NEXTVAL, #{boardseq}, #{membername}, #{replytxt}, #{memberid})
 	</insert>
 	
  	<select id="listReply" parameterType="int" resultType="Reply">

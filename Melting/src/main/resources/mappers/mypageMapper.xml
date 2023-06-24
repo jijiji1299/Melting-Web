@@ -23,6 +23,27 @@
 		ORDER BY regdate DESC
 	</select>
 	
+	<update id="updateMembername" parameterType="Member">
+		  UPDATE m_member
+		  SET membername = #{membername}
+		  WHERE memberid = #{memberid}
+		  
+	</update>
+	
+	<update id="updateBoardMembername" parameterType="Member">
+		  UPDATE m_board
+		  SET membername = #{membername}
+		  WHERE memberid = #{memberid}
+		  
+	</update>
+	
+	<update id="updateReplyMembername" parameterType="Member">
+		  
+		  UPDATE m_reply
+		  SET membername = #{membername}
+		  WHERE memberid = #{memberid}
+	</update>
+	
 </mapper>
 	
 	

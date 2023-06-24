@@ -27,9 +27,21 @@ public class ReplyController {
 	
 	/*댓글 달기*/
 	@PostMapping("/reply/replywrite")
-	public String replyWrite(Reply reply, Board board) {
+	public String replyWrite(Reply reply, Board board, Authentication authentication, Model model) {
 		int result = replyService.writeReply(reply);
 		System.out.println(reply);
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			String memberid = member.getMemberid();
+			
+			model.addAttribute("membername", membername);
+			model.addAttribute("memberid", memberid);
+		}
+		
 		return "redirect:/read?boardseq="+board.getBoardseq();
 	}
 	

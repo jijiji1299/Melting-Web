@@ -7,6 +7,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.melting.domain.Board;
 import com.melting.domain.Member;
@@ -24,7 +26,7 @@ public class MypageController {
 	private MemberService memberService;
 	private BoardService boardService;
 
-	public MypageController(MemberService memberService) {
+	public MypageController(MemberService memberService, BoardService boardService) {
 		this.memberService = memberService;
 		this.boardService = boardService;
 	}
@@ -38,7 +40,13 @@ public class MypageController {
 			String username = authentication.getName();
 			Member member = memberService.getMemberUsername(username);
 			String membername = member.getMembername();
+			String memberid = member.getMemberid();
+			
 			model.addAttribute("membername", membername);
+			model.addAttribute("memberid", memberid);
+			
+			System.out.println("memberid는" + memberid);
+			
 		}
 		
 		return "/mypage/mypage";
@@ -82,42 +90,29 @@ public class MypageController {
 	}
 	
 	
-	
-	
-	/////////////////////////////////////////////////////////////////////////////////
-	/*마이페이지 화면 요청*/
-	@GetMapping("/mypage2")
-	public String mypage2(Authentication authentication, Model model) {
+	/*닉네임 변경 처리*/
+	@PostMapping("/mypage/updatename")
+	public String updatename(Member member, Board board, Reply reply, 
+			RedirectAttributes rttr, Model model) {
 		
-		// 유저이름 불러오기 (membername)
-		if (authentication != null) {
-			String username = authentication.getName();
-			Member member = memberService.getMemberUsername(username);
-			String membername = member.getMembername();
-			model.addAttribute("membername", membername);
-		}
+		int result1 = mypageService.updateMembername(member);
+		int result2 = mypageService.updateBoardMembername(board);
+		int result3 = mypageService.updateReplyMembername(reply);
 		
-		return "/mypage/mypage2";
+		
+		rttr.addAttribute("memberid", member.getMemberid());
+		
+		String membername = member.getMembername();
+		String memberid = member.getMemberid();
+		
+		model.addAttribute("membername", membername);
+		model.addAttribute("memberid", memberid);
+		model.addAttribute("Member", member);
+		
+		
+		return "redirect:/";
 	}
 	
-	/*내가 쓴 글 확인하기*/
-	@GetMapping("/mypage/mywrite2")
-	public String mywrite2(String membername, Model model) {
-		List<Board> list = mypageService.mywrite(membername);
-		model.addAttribute("list", list);
-		
-		return "/mypage/mywrite2";
-	}
 	
-	/*내가 쓴 댓글 확인하기*/
-	@GetMapping("/mypage/myreply2")
-	public String myreply2(String membername, Model model) {
-		List<Reply> list = mypageService.myreply(membername);
-		model.addAttribute("list", list);
-		System.out.println("내가 쓴 댓글 :" + list);
-		
-		return "/mypage/myreply2";
-	}
-/////////////////////////////////////////////////////////////////////////////////////
 }
 
