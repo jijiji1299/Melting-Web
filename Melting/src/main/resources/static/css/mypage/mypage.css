@@ -264,12 +264,30 @@ a {
 
 .nickname-submit {
 	width:90px;
-	background-color: red;
     position: absolute;
     right: 130px;
     top: 172px;
     height: 40px;
 }
+
+.check-result {
+	display:block;
+	font-size:12.5px;
+	color: rgb(239 68 68);
+	float:left;
+	width:100%;
+	height:40px;
+}
+
+
+.nickname-submit input {
+	width:90px;
+	height: 40px;
+	border:1px solid #d4d4d4;
+    border-radius: 6px;
+    background-color: #f3f3f3;
+}
+
 
 
 .right-bottom-area {

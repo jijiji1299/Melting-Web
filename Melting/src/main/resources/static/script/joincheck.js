@@ -39,17 +39,18 @@ function fn_idChk(){
 	})
 }
 
+
  $(function(){
 	$("#membername").keyup(function() {
-		let mid = $(this).val();
-		if(mid.trim().length == 0 ) {
+		let mname = $(this).val();
+		if(mname.trim().length == 0 ) {
 			return false;	
 		} 
 		
 		$.ajax({
 			method : "GET"
 			, url : "nameCheck"
-			, data : {"membername" : mid}
+			, data : {"membername" : mname}
 			, success : function(resp) {	
 				if(resp == "OK") {  
 					$("#checkResult4").text('✔ 중복되지 않은 닉네임입니다.');
