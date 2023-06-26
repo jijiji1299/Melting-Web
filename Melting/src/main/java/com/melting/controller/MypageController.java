@@ -100,18 +100,29 @@ public class MypageController {
 		int result3 = mypageService.updateReplyMembername(reply);
 		
 		
-		rttr.addAttribute("memberid", member.getMemberid());
-		
-		String membername = member.getMembername();
-		String memberid = member.getMemberid();
-		
-		model.addAttribute("membername", membername);
-		model.addAttribute("memberid", memberid);
+//		rttr.addAttribute("memberid", member.getMemberid());
+//		
+//		String membername = member.getMembername();
+//		String memberid = member.getMemberid();
+//		
+//		model.addAttribute("membername", membername);
+//		model.addAttribute("memberid", memberid);
 		model.addAttribute("Member", member);
 		
 		
 		return "redirect:/";
 	}
+	
+//	/*회원 탈퇴 처리*/
+//	@PostMapping("/mypage/deletemember")
+//	public String deletemember(Member member, Board board, Reply reply) {
+//		
+//		mypageService.deletemember(member);
+//		mypageService.deletemember(board);
+//		mypageService.deletemember(reply);
+//		
+//		return "redirect:/main";
+//	}
 	
 	
 }

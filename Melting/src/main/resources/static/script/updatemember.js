@@ -24,7 +24,7 @@ function checkNameDuplicate() {
         data: { "membername": nameInput.value.trim() },
         success: function(resp) {
             if (resp === "FAIL") {
-                checkResult.textContent = "이미 사용 중인 닉네임입니다.";
+                checkResult.textContent = "이미 사용중인 닉네임입니다.";
             } else {
                 checkResult.textContent = "";
             }
@@ -32,14 +32,16 @@ function checkNameDuplicate() {
     });
 }
 
-function validateForm() {
+function validateNickname() {
     let nameInput = document.getElementById("membername");
     let checkResult = document.getElementById("checkResult");
+    let submitButton = document.getElementById("submitButton");
 
     if (nameInput.value.trim().length === 0 || checkResult.textContent !== "") {
-        return false; // 유효성 검사 실패 시 폼 제출 중단
+		submitButton.disabled = true; // 유효성 검사 실패 시 버튼 비활성화
+        return false; // 폼 제출 중단
     }
 
 	submitButton.disabled = false; // 유효성 검사 통과 시 버튼 활성화
-    return true; // 유효성 검사 통과 시 폼 제출
+    return true; // 폼 제출
 }
