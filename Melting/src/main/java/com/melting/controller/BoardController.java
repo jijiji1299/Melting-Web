@@ -122,71 +122,9 @@ public class BoardController{
 	}
 	
 	
-	///////////////////////////////////////////////////////////////////////////////////////////////
-	/*게시글 쓰기 화면 요청*/
-	@GetMapping("/write2")
-	public String write2(Model model, Member member, Authentication authentication) {
-		
-		// 유저이름 불러오기 (membername)
-		if (authentication != null) {
-			String username = authentication.getName();
-			member = memberService.getMemberUsername(username);
-			String membername = member.getMembername();
-			String memberid = member.getMemberid();
-			
-			model.addAttribute("membername", membername);
-			model.addAttribute("memberid", memberid);
-		}
-		
-		model.addAttribute("member", member);
-		return "/board/write2";
-	}
 	
 	
-	///////////////////////////////////////////////////////////////////////////////////////////
-	
-	@GetMapping("/main2")
-	public String main2(Model model, Authentication authentication) throws IOException {
-		
-		// 유저이름 불러오기 (membername)
-//		if (authentication != null) {
-//			String username = authentication.getName();
-//			Member member = memberService.getMemberUsername(username);
-//			String membername = member.getMembername();
-//			model.addAttribute("membername", membername);
-//		}
-		
-//		// DB 데이터 가져오기
-//		List<Crawling> list = crawlingService.getCrawlingList();
-//		model.addAttribute("list", list);
-//		
-		// 조회순으로 정렬
-		List<Crawling> viewscntSortedList = crawlingService.getViewscntSortedList();
-		model.addAttribute("viewscntSortedList", viewscntSortedList);
-//		System.out.println(viewscntSortedList);
-//		
-//		// 추천순으로 정렬
-//		List<Crawling> likecntSortedList = crawlingService.getLikecntSortedList();
-//		model.addAttribute("likecntSortedList", likecntSortedList);
-//
-//		// 댓글순으로 정렬
-//		List<Crawling> replycntSortedList = crawlingService.getReplycntSortedList();
-//		model.addAttribute("replycntSortedList", replycntSortedList);
-		
-		
-		// 크롤링 List
-        List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
-        List<Crawling> hitList = crawlingService.getHitCrawlingData();
 
-        model.addAttribute("dcSearchList", dcSearchList);
-        model.addAttribute("hitList", hitList);
-        
-        
-        
-        
-		return "/main2";
-	}
-	
 	/*게시글 쓰기 화면 요청*/
 	@GetMapping("/write")
 	public String write(Model model, Member member, Authentication authentication) {
@@ -259,58 +197,7 @@ public class BoardController{
 		return "/board/newlist";
 	}
 		
-	
-	
-	
-	///////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	/*게시글 목록 화면 요청*/
-	@GetMapping("/board/newlist2")
-	public String boardlist2(String memberid, Model model, Authentication authentication) {
-		List<Board> list = boardService.getAllList();
-		model.addAttribute("list", list);
-//		model.addAttribute("memberid", memberid);
-		
-		// 유저이름 불러오기 (membername)
-		if (authentication != null) {
-			String username = authentication.getName();
-			Member member = memberService.getMemberUsername(username);
-			String membername = member.getMembername();
-			model.addAttribute("membername", membername);
-		}
-		
-		// 크롤링 List
-		List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
-		model.addAttribute("dcSearchList", dcSearchList);
-		
-		return "/board/newlist2";
-	}
-	
-	/*게시글 읽기 화면 요청*/
-	@GetMapping("/read2")
-	public String read2(int boardseq, Model model, Authentication authentication) {
-		Board board = boardService.read(boardseq);
-		boardService.updateViewsCount(boardseq);
-		model.addAttribute("board", board);
-		
-		// 댓글 목록 출력
-		List<Reply> replylist = replyService.listReply(boardseq);
-		model.addAttribute("replylist", replylist);
-		
-		// 유저이름 불러오기 (membername)
-		if (authentication != null) {
-			String username = authentication.getName();
-			Member member = memberService.getMemberUsername(username);
-			String membername = member.getMembername();
-			model.addAttribute("membername", membername);
-		}
-		
-		return "/board/read2";
-		
-	}
-	
-	//////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	/*게시글 읽기 화면 요청*/
 	@GetMapping("/read")
 	public String read(int boardseq, Model model, Authentication authentication) {
@@ -382,13 +269,41 @@ public class BoardController{
 	
 	/*게시글 수정 처리*/
 	@PostMapping("/update")
-	public String update(Board board, RedirectAttributes rttr) {
+	public String update(String boardtxt, Board board, RedirectAttributes rttr,  MultipartFile upload) {
+		
+		// 마크다운 적용
+		String markdownContent = boardtxt;
+	    String htmlContent = MarkdownConverter.convertMarkdownToHtml(markdownContent);
+	    board.setContent(htmlContent);
+		
+	    // 파일 업로드
+		String originalFilename= null;
+		String savedFileName = null;
+		
+		if(upload != null && !upload.isEmpty()) {
+		
+			System.out.println(upload.isEmpty()+ "," + upload.getSize());
+		
+			originalFilename = upload.getOriginalFilename();
+			savedFileName=FileService.savedFile(upload, uploadPath);
+			
+	        // 파일이 성공적으로 저장되었을 경우에만 파일명을 Board에 세팅
+	        if (savedFileName != null) {
+	            board.setOriginalfile(originalFilename);
+	            board.setSavedfile(savedFileName);
+	        }
+	        
+		}
+     		
+		
 		int result = boardService.update(board);
 		System.out.println(result);
 		rttr.addAttribute("boardseq", board.getBoardseq());
 		System.out.println("board 글 수정됨");
 		return "redirect:/board/newlist";
 	}
+	
+
 	
 	/*첨부파일 다운로드*/
 	@GetMapping("/board/download")
@@ -434,5 +349,106 @@ public class BoardController{
 		
 	}
 
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////////////
+	
+	@GetMapping("/main2")
+	public String main2(Model model, Authentication authentication) throws IOException {
+		
+		// 유저이름 불러오기 (membername)
+//		if (authentication != null) {
+//			String username = authentication.getName();
+//			Member member = memberService.getMemberUsername(username);
+//			String membername = member.getMembername();
+//			model.addAttribute("membername", membername);
+//		}
+		
+//		// DB 데이터 가져오기
+//		List<Crawling> list = crawlingService.getCrawlingList();
+//		model.addAttribute("list", list);
+//		
+		// 조회순으로 정렬
+		List<Crawling> viewscntSortedList = crawlingService.getViewscntSortedList();
+		model.addAttribute("viewscntSortedList", viewscntSortedList);
+//		System.out.println(viewscntSortedList);
+//		
+//		// 추천순으로 정렬
+//		List<Crawling> likecntSortedList = crawlingService.getLikecntSortedList();
+//		model.addAttribute("likecntSortedList", likecntSortedList);
+//
+//		// 댓글순으로 정렬
+//		List<Crawling> replycntSortedList = crawlingService.getReplycntSortedList();
+//		model.addAttribute("replycntSortedList", replycntSortedList);
+		
+		
+		// 크롤링 List
+        List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
+        List<Crawling> hitList = crawlingService.getHitCrawlingData();
 
+        model.addAttribute("dcSearchList", dcSearchList);
+        model.addAttribute("hitList", hitList);
+        
+        
+        
+        
+		return "/main2";
+	}
+	/////////////////////////////////////////////////////////////////////////////////////
+	/*게시글 수정 화면 요청*/
+	@GetMapping("/update2")
+	public String update2(int boardseq, Model model, Authentication authentication) {
+		Board board = boardService.read(boardseq);
+		model.addAttribute("board", board);
+		System.out.println(board);
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			model.addAttribute("membername", membername);
+		}
+				
+		return "/board/update2";
+	}
+	
+	
+	/*게시글 수정 처리*/
+	@PostMapping("/update2")
+	public String update2(Board board, RedirectAttributes rttr) {
+		int result = boardService.update(board);
+		System.out.println(result);
+		rttr.addAttribute("boardseq", board.getBoardseq());
+		System.out.println("board 글 수정됨");
+		return "redirect:/board/newlist";
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	/*게시글 목록 화면 요청*/
+	@GetMapping("/board/newlist2")
+	public String boardlist2(String memberid, Model model, Authentication authentication) {
+		List<Board> list = boardService.getAllList();
+		model.addAttribute("list", list);
+//		model.addAttribute("memberid", memberid);
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			model.addAttribute("membername", membername);
+		}
+		
+		// 크롤링 List
+		List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
+		model.addAttribute("dcSearchList", dcSearchList);
+		
+		return "/board/newlist2";
+	}
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	
 }

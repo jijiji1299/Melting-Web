@@ -4,12 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
-<link rel="stylesheet" type="text/css" href="css/board/write2.css">
-<link rel="stylesheet" href="/webjars/bootstrap/5.0.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="/webjars/toastui-editor/2.5.2/toastui-editor-viewer.min.css">
-<script th:inline="javascript" th:src="@{/script/jquery-3.6.3.min.js}"></script>
-<script th:inline="javascript" th:src="@{/script/reply.js}"></script>
-<!-- 이미지 미리보기 기능 -->
+<link rel="stylesheet" type="text/css" href="css/board/update.css">
 <script>
   function previewImage(event) {
     var reader = new FileReader();
@@ -34,71 +29,69 @@
  			<div class="my">
  				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{/mypage}" th:text="${membername} + '님'"></a></div>
  				<div class="myid" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></div>
-			</div>				
+ 			</div>				
 		</div>
 	</div>
 	
 	<div id="container">
-		<div class="write-name"><h1>게시글 작성하기</h1></div>
+		<div class="write-name"><h1>게시글 수정하기</h1></div>
 		<div class="write-area">
-			<form th:action="@{/write}" id="uploadForm" method="POST" enctype="multipart/form-data">
-				<input type="hidden" name="memberid" th:value="${#authentication.name}" readonly>
+			<form th:action="@{/update}" method="POST" enctype="multipart/form-data">
+				<input type="hidden" name="boardseq" th:value="${board.boardseq}">
 				<table border="1">
 					<tr>
 						<th>파일첨부하기</th>
-						<td><input type="file" name="upload" onchange="previewImage(event)"></td>
+						<td>
+							<input type="file" name="upload" onchange="previewImage(event)">
+<!-- 							<div>첨부된 파일 : 
+								<a th:text="${board.originalfile}"></a>
+							</div> -->
+						</td>
 					</tr>
 					<tr>
 						<th>카테고리</th>
 						<td>
-							<select name="kind">
+							<select name="kind" th:value="${board.kind}">
 							    <option value="free" selected>자유게시판</option>
 							    <option value="humor">유머게시판</option>
 							    <option value="sports">스포츠게시판</option>
 							    <option value="game">게임게시판</option>
-							 </select>		
+							</select>	
 						</td>
-					
 					</tr>
 					<tr>
 						<th>제목</th>
-						<td style="width:250px;"><input type="text" name="title" required></td>
+						<td style="width:250px;"><input type="text" name="title" th:value="${board.title}"></td>
 					</tr>
 					<tr>
 						<th>내용</th>
 						<td>
-					      <div>
-					        <textarea name="boardtxt" id="boardtxt" required rows="7" cols="80"></textarea>
-					      </div>
-					      <div id="imagePreview"></div>
-					    </td>
+							<div>
+								<!-- <textarea name="boardtxt" required rows="7" cols="80">[[${board.boardtxt}]]</textarea> -->
+								<input type="text" name="boardtxt" th:value="${board.content}">
+								<div contenteditable="true" id="editor" th:value="${board.content}"></div>
+							</div>
+							<div id="imagePreview">
+			                    <!-- 이미지 미리보기를 표시할 영역 -->
+			                    <img th:src="@{/board/download(boardseq=${board.boardseq})}" alt="첨부 이미지">
+			                </div>
+							
+							<!-- <img th:src="@{/board/download(boardseq=${board.boardseq})}" alt="첨부 이미지" />
+							<div id="imagePreview"></div> -->
+						</td>
+					</tr>
 					<tr>
 						<th colspan="2">
-							<input type="submit" value="등록">
+							<input type="submit" value="수정하기">
 						</th>
 					</tr>
 				</table>
 			</form>
 		</div>
-		
 	</div>
-	
-	<script src="/webjars/toastui-editor/2.5.2/toastui-editor-all.min.js"></script>
-    <script>
-        $(function() {
-            var editor = new toastui.Editor({
-                el: document.querySelector("#editor"),
-                initialEditType: "markdown",
-                previewStyle: "vertical",
-                height: "300px"
-            });
-
-            // 게시글 내용을 hidden 필드에 설정하여 전송
-            $("form").submit(function() {
-                var markdownContent = editor.getMarkdown();
-                $("#boardtxt").val(markdownContent);
-            });
-        });
-    </script>
+	<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+	<script>
+	    CKEDITOR.replace('editor');
+	</script>
 </body>
 </html>
