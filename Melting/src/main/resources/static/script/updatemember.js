@@ -4,8 +4,10 @@ function checkNameLength() {
 
     if (nameInput.value.length < 2 || nameInput.value.length > 5) {
         checkResult.textContent = "닉네임은 2자에서 5자 사이어야 합니다.";
+        submitButton.disabled = true; // 유효성 검사 실패 시 버튼 비활성화
     } else {
         checkResult.textContent = "";
+        submitButton.disabled = false; // 유효성 검사 통과 시 버튼 활성화
     }
 }
 
@@ -38,10 +40,10 @@ function validateNickname() {
     let submitButton = document.getElementById("submitButton");
 
     if (nameInput.value.trim().length === 0 || checkResult.textContent !== "") {
-		submitButton.disabled = true; // 유효성 검사 실패 시 버튼 비활성화
+		submitButton.disabled = true;
         return false; // 폼 제출 중단
     }
 
-	submitButton.disabled = false; // 유효성 검사 통과 시 버튼 활성화
+	submitButton.disabled = false;
     return true; // 폼 제출
 }

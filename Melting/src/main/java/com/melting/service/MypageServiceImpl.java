@@ -41,16 +41,34 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public int updateBoardMembername(Board board) {
-		int result =mypageDao.updateBoardMembername(board);
+	public int updateBoardMembername(Member member) {
+		int result =mypageDao.updateBoardMembername(member);
 				return result;
 	}
 
 	@Override
-	public int updateReplyMembername(Reply reply) {
-		int result =mypageDao.updateReplyMembername(reply);
+	public int updateReplyMembername(Member member) {
+		int result =mypageDao.updateReplyMembername(member);
 				return result;
 	}
+
+	@Override
+	public void deleteMember(Member member) {
+		mypageDao.deleteMember(member);
+		
+	}
+
+	@Override
+	public void deleteBoardMember(Member member) {
+		mypageDao.deleteBoardMember(member);
+		
+	}
+
+	@Override
+	public void deleteReplyMember(Member member) {
+		mypageDao.deleteReplyMember(member);
+	}
+
 
 
 }

@@ -33,6 +33,7 @@
 	<div id="container">
 		<form th:action="@{/write}" method="POST" id=uploadForm enctype="multipart/form-data">
 			<input type="hidden" name="memberid" th:value="${#authentication.name}" readonly>
+			
 			<h3 class="top-title">글 작성하기</h3>
 			<div class="write-all-area">
 			
