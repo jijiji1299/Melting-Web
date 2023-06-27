@@ -44,6 +44,21 @@
 		  WHERE memberid = #{memberid}
 	</update>
 	
+	<delete id="deleteMember" parameterType="Member">
+		DELETE FROM m_member
+		WHERE memberid = #{memberid}
+	</delete>	
+
+	<delete id="deleteBoardMember" parameterType="Member">
+		DELETE FROM m_board
+		WHERE memberid = #{memberid}
+	</delete>	
+	
+	<delete id="deleteReplyMember" parameterType="Member">
+		DELETE FROM m_reply
+		WHERE memberid = #{memberid}
+	</delete>	
+	
 </mapper>
 	
 	

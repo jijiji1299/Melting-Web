@@ -2,13 +2,15 @@ package com.melting.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.melting.domain.Board;
 import com.melting.domain.Member;
@@ -92,37 +94,34 @@ public class MypageController {
 	
 	/*닉네임 변경 처리*/
 	@PostMapping("/mypage/updatename")
-	public String updatename(Member member, Board board, Reply reply, 
-			RedirectAttributes rttr, Model model) {
+	public String updatename(Member member) {
 		
-		int result1 = mypageService.updateMembername(member);
-		int result2 = mypageService.updateBoardMembername(board);
-		int result3 = mypageService.updateReplyMembername(reply);
-		
-		
-//		rttr.addAttribute("memberid", member.getMemberid());
-//		
-//		String membername = member.getMembername();
-//		String memberid = member.getMemberid();
-//		
-//		model.addAttribute("membername", membername);
-//		model.addAttribute("memberid", memberid);
-		model.addAttribute("Member", member);
-		
+		mypageService.updateMembername(member);
+		mypageService.updateBoardMembername(member);
+		mypageService.updateReplyMembername(member);
 		
 		return "redirect:/";
 	}
 	
-//	/*회원 탈퇴 처리*/
-//	@PostMapping("/mypage/deletemember")
-//	public String deletemember(Member member, Board board, Reply reply) {
-//		
-//		mypageService.deletemember(member);
-//		mypageService.deletemember(board);
-//		mypageService.deletemember(reply);
-//		
-//		return "redirect:/main";
-//	}
+	/*회원 탈퇴 처리*/
+	@PostMapping("/mypage/deletemember")
+	public String deletemember(HttpServletRequest request, Member member) {
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    
+	    // 인증되지 않은 상태로 돌아가는 처리
+	    if (authentication != null && authentication.isAuthenticated()) {
+	        SecurityContextHolder.clearContext();
+	        request.getSession().invalidate();
+	    }
+		
+	 // 회원 및 관련 데이터 삭제 로직
+		mypageService.deleteMember(member);
+		mypageService.deleteBoardMember(member);
+		mypageService.deleteReplyMember(member);
+		
+		return "redirect:/";
+	}
 	
 	
 }

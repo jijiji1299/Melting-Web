@@ -16,9 +16,15 @@ public interface MypageService {
 
 	public int updateMembername(Member member);
 
-	public int updateBoardMembername(Board board);
+	public int updateBoardMembername(Member member);
 
-	public int updateReplyMembername(Reply reply);
+	public int updateReplyMembername(Member member);
+
+	public void deleteMember(Member member);
+
+	public void deleteBoardMember(Member member);
+
+	public void deleteReplyMember(Member member);
 
 	
 	

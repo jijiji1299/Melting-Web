@@ -296,13 +296,30 @@ a {
 	
 }
 
+.right-bottom-area h2 {
+	margin-top:35px;
+}
+
 
 .accountdrop {
 	padding-left:80px;
 	margin:40px 0;
+	border:0;
+	float:right;
+	margin-right:90px;
 }
 
+.accountdrop input {
 
+	width:120px;
+	height:40px;
+	background-color: #DC2626;
+	border:0;
+	border-radius:4px;
+	color:white;
+	font-size:14px;
+	font-weight:500;
+}
 
 
 #footer {
