@@ -343,6 +343,14 @@ public class BoardController{
 		}
 		
 	}
+	
+	/*추천수 증가*/
+	@PostMapping("/updatelikecount")
+	public String updatelikecount(int boardseq, Board board) {
+		boardService.updateLikeCount(boardseq);
+		
+		return "redirect:/read?boardseq="+board.getBoardseq();
+	}
 
 	
 	

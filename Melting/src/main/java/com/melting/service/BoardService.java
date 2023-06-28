@@ -20,6 +20,8 @@ public interface BoardService {
 
 	public List<Board> getAllList();
 
+	public void updateLikeCount(int boardseq);
+
 
 
 

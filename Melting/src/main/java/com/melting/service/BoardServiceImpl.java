@@ -63,6 +63,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
+	@Override
+	public void updateLikeCount(int boardseq) {
+		boardDao.updateLikeCount(boardseq);
+		
+	}
+
+
 
 
 

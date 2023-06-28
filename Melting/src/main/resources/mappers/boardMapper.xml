@@ -22,7 +22,7 @@
 	
 	<select id="getAllList" resultType="Board">
 		SELECT 
-			boardseq, memberid, membername, title, kind, viewscnt, replycnt,
+			boardseq, memberid, membername, title, kind, viewscnt, replycnt, likecnt,
 			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate, content, originalfile, savedfile
 		FROM m_board
 		ORDER BY boardseq DESC, regdate DESC
@@ -62,5 +62,11 @@
 		SELECT * FROM m_board
 		WHERE boardseq != #{boardseq}
 	</select>
+	
+	<update id="updateLikeCount" parameterType="int">
+		UPDATE m_board
+		SET likecnt = likecnt + 1
+		WHERE boardseq = #{boardseq}
+	</update>
 	
 </mapper>

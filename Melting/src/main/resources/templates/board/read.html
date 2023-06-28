@@ -64,13 +64,18 @@
 			  
 				<div class="content-info-area">
 					<div class="content-info2-area">
-						<div class="content-info2-i"><img th:src="@{/images/like-i2.JPG}"></div>
-						<div th:text="${board.likecnt}" class="content-info2-num"></div>
+						<form th:action="@{/updatelikecount}" method="POST">
+							<input type="hidden" name="boardseq" th:value="${board.boardseq}">
+							<input type="image" th:src="@{/images/like-i2.JPG}" class="content-info2-i">
+							<div th:text="${board.likecnt}" class="content-info2-num"></div>
+						</form>
 					</div>
+					
 					<div class="content-info2-area">
 						<div class="content-info2-i"><img th:src="@{/images/reply-i2.JPG}"></div>
 						<div th:text="${board.replycnt}" class="content-info2-num"></div>
 					</div>
+					
 					<div class="content-info3-area">
 						<th:block th:if="${#authentication.name} == ${board.memberid}">
 							<a th:href="@{/update(boardseq=${board.boardseq})}">수정</a> 

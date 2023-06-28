@@ -23,5 +23,7 @@ public interface BoardDAO {
 	public List<Board> getRecommendList(int boardseq);
 
 	public List<Board> getAllList();
+
+	public void updateLikeCount(int boardseq);
 	
 }

@@ -299,6 +299,8 @@ a {
 .content-info2-i {
 	float:left;
 	margin-right:3px;
+	width:20px;
+	height:20px;
 }
 
 .content-info2-i img {
