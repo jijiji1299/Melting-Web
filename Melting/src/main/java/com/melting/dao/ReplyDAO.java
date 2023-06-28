@@ -15,5 +15,9 @@ public interface ReplyDAO {
 
 	public int deleteReply(int replyseq);
 
+	public void updateReplyCount(int boardseq);
+
+	public void downReplyCount(int boardseq);
+
 
 }

@@ -5,8 +5,6 @@
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
 <link rel="stylesheet" type="text/css" th:href="@{css/board/read.css}">
-<script th:src="@{/script/jquery-3.6.3.min.js}"></script>
-<script th:src="@{/script/reply.js}"></script>
 </head>
 <body>
 	<div id="header">
@@ -84,7 +82,7 @@
 				
 			<!-- 댓글 작성 폼 -->
 			<div class="reply-area1">
-				<h3>댓글</h3>
+				<h3>댓글<span th:text="${board.replycnt}"></span></h3>
 				<form class="reply-write-area" th:action="@{/reply/replywrite}" method="post">
 					<div class="replytxt-area">
 						<input type="text" id="replytxt" class="replytxt" name="replytxt" placeholder="댓글을 남겨주세요">
@@ -104,11 +102,17 @@
 					<div id="membername" th:text="${reply.membername}" class="reply-list-membername"></div>
 					<div id="replytxt" th:text="${reply.replytxt}" class="reply-list-replytxt"></div>
 					<div id="regdate" th:text="${reply.regdate}" class="reply-list-regdate"></div>
+					
 					<div class="reply-list-del">
 						<th:blok th:if="${membername} == ${reply.membername}">
-						<a th:href="@{/reply/replydelete(replyseq=${reply.replyseq})}"><img th:src="@{/images/delete-i.JPG}"></a>
+							<form th:action="@{/reply/replydelete}" method="POST">
+								<input type="hidden" name="replyseq" th:value="${reply.replyseq}">
+								<input type="hidden" name="boardseq"  th:value="${board.boardseq}">
+								<input type="image" th:src="@{/images/delete-i.JPG}" alt="댓글 삭제하기">
+							</form>
 						</th:blok>
 					</div>
+					
 					<div class="reply-list-bottom"></div>
 				</div>
 			</div>

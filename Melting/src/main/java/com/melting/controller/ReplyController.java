@@ -27,9 +27,8 @@ public class ReplyController {
 	
 	/*댓글 달기*/
 	@PostMapping("/reply/replywrite")
-	public String replyWrite(Reply reply, Board board, Authentication authentication, Model model) {
+	public String replyWrite(Reply reply, Board board, Authentication authentication, Model model, int boardseq) {
 		int result = replyService.writeReply(reply);
-		System.out.println(reply);
 		
 		// 유저이름 불러오기 (membername)
 		if (authentication != null) {
@@ -42,12 +41,15 @@ public class ReplyController {
 			model.addAttribute("memberid", memberid);
 		}
 		
+		// 댓글수 증가
+		replyService.updateReplyCount(boardseq);
+		
 		return "redirect:/read?boardseq="+board.getBoardseq();
 	}
 	
 	/*댓글 삭제*/
-	@GetMapping("/reply/replydelete")
-	public String replydelete(int replyseq, Model model, Authentication authentication) {
+	@PostMapping("/reply/replydelete")
+	public String replydelete(int replyseq, Board board, Model model, Authentication authentication, int boardseq) {
 		int result = replyService.deleteReply(replyseq);
 		
 		// 유저이름 불러오기 (membername)
@@ -58,41 +60,12 @@ public class ReplyController {
 			model.addAttribute("membername", membername);
 		}
 		
-		return "redirect:/";
+		// 댓글수 감소
+		replyService.downReplyCount(boardseq);
+		
+		return "redirect:/read?boardseq="+board.getBoardseq();
 	}
 	
 	
-//	@PostMapping("reply/replywrite")
-//	@ResponseBody
-//	public String replyWrite(Reply reply, @AuthenticationPrincipal UserDetails user) {
-//		System.out.println(reply);
-//		reply.setMemberid(user.getUsername()); // 로그인 후 수정
-//		
-//		int result = replyService.writeReply(reply);
-//		if(result == 1) {
-//			return "OK";	
-//		}
-//		return "Fail";
-//	}
-//	
-//	@GetMapping("/reply/replylist")
-//	@ResponseBody
-//	public List<Reply> replylist(int boardseq) {
-//		List<Reply> replylist = replyService.listReply(boardseq);
-//		
-//		return replylist;
-//	}
-//	
-//	
-//	@GetMapping("/reply/replydelete")
-//	@ResponseBody
-//	public String replydelete(int replyseq) {
-//		int result = replyService.deleteReply(replyseq);
-//		
-//		if(result == 1) {
-//			return "OK";
-//		}
-//		return "Fail";
-//	}
 
 }

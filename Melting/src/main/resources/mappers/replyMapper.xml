@@ -14,7 +14,7 @@
 	
  	<select id="listReply" parameterType="int" resultType="Reply">
 		SELECT
-			replyseq, boardseq, membername, replytxt, replycnt, 
+			replyseq, boardseq, membername, replytxt, 
 			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate
 		FROM m_reply
 		WHERE boardseq = #{boardseq}
@@ -25,4 +25,17 @@
 		DELETE m_reply
 		WHERE replyseq = #{replyseq}
 	</delete>
+	
+	<update id="updateReplyCount" parameterType="int">
+		UPDATE m_board
+		SET replycnt = replycnt + 1
+		WHERE boardseq = #{boardseq}
+	</update>
+	
+	<update id="downReplyCount" parameterType="int">
+		UPDATE m_board
+		SET replycnt = replycnt -1
+		WHERE boardseq = #{boardseq}
+	</update>
+	
 </mapper>

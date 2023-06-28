@@ -337,6 +337,10 @@ a {
     font-weight:600;
 }
 
+.reply-area1 span {
+    margin-left: 5px;
+}
+
 
 .reply-write-area {
 	width:100%;
@@ -436,7 +440,7 @@ a {
 	float:right;
 }
 
-.reply-list-del img {
+.reply-list-del input {
     width: 14px;
     height: 16px;
 }

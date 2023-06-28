@@ -19,7 +19,6 @@ public class Reply {
 	private String memberid;
 	private String membername;
 	private String replytxt;
-	private int replycnt;
 	private String regdate;
 
 }

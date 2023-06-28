@@ -88,7 +88,6 @@ public class BoardController{
         
         
         
-        
 		return "/main";
 	}
 	
@@ -97,7 +96,6 @@ public class BoardController{
 	public String bestlist(Model model, Authentication authentication) {
 		List<Board> list = boardService.getAllList();
 		model.addAttribute("list", list);
-//		model.addAttribute("memberid", memberid);
 		
 		// 유저이름 불러오기 (membername)
 		if (authentication != null) {
@@ -122,9 +120,6 @@ public class BoardController{
 	}
 	
 	
-	
-	
-
 	/*게시글 쓰기 화면 요청*/
 	@GetMapping("/write")
 	public String write(Model model, Member member, Authentication authentication) {
@@ -180,7 +175,6 @@ public class BoardController{
 	public String boardlist(String memberid, Model model, Authentication authentication) {
 		List<Board> list = boardService.getAllList();
 		model.addAttribute("list", list);
-//		model.addAttribute("memberid", memberid);
 		
 		// 유저이름 불러오기 (membername)
 		if (authentication != null) {
@@ -202,8 +196,11 @@ public class BoardController{
 	@GetMapping("/read")
 	public String read(int boardseq, Model model, Authentication authentication) {
 		Board board = boardService.read(boardseq);
+		
+		// 조회수 증가
 		boardService.updateViewsCount(boardseq);
 		
+		// 추천글 목록 10개 출력
 		List<Board> recommendlist = boardService.getRecommendList(boardseq);
 		if (recommendlist.size() > 10) {
 		    recommendlist = recommendlist.subList(0, 10);
@@ -253,7 +250,6 @@ public class BoardController{
 	public String update(int boardseq, Model model, Authentication authentication) {
 		Board board = boardService.read(boardseq);
 		model.addAttribute("board", board);
-		System.out.println(board);
 		
 		// 유저이름 불러오기 (membername)
 		if (authentication != null) {
@@ -295,7 +291,6 @@ public class BoardController{
 	        
 		}
      		
-		
 		int result = boardService.update(board);
 		System.out.println(result);
 		rttr.addAttribute("boardseq", board.getBoardseq());

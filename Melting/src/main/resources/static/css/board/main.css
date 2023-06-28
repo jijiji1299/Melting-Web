@@ -348,10 +348,11 @@ a {
 }
 
 .all-area {
-	font:14px;
+	font-size:14px;
 	line-height: 30px;
 	float:left;
 	height:100%;
+	width:350px;
 }
 
 .all-title-area {
@@ -410,7 +411,7 @@ a {
 	float:left;
 	width:350px;
 	height:100%;
-	font:14px;
+	font-size:14px;
 	line-height: 30px;
 	margin-left:23px;
 }
@@ -426,7 +427,7 @@ a {
 	float:left;
 	width:350px;
 	height:100%;
-	font:14px;
+	font-size:14px;
 	line-height: 30px;
 	
 }
@@ -435,7 +436,7 @@ a {
 	float:left;
 	width:350px;
 	height:100%;
-	font:14px;
+	font-size:14px;
 	line-height: 30px;
 	margin-left:23px;
 }

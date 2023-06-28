@@ -22,7 +22,7 @@
 	
 	<select id="getAllList" resultType="Board">
 		SELECT 
-			boardseq, memberid, membername, title, kind, viewscnt,
+			boardseq, memberid, membername, title, kind, viewscnt, replycnt,
 			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate, content, originalfile, savedfile
 		FROM m_board
 		ORDER BY boardseq DESC, regdate DESC

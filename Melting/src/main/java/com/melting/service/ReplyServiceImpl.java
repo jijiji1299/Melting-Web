@@ -31,5 +31,17 @@ public class ReplyServiceImpl implements ReplyService {
 		return result;
 	}
 
+	@Override
+	public void updateReplyCount(int boardseq) {
+		replyDao.updateReplyCount(boardseq);
+		
+	}
+
+	@Override
+	public void downReplyCount(int boardseq) {
+		replyDao.downReplyCount(boardseq);
+		
+	}
+
 
 }
