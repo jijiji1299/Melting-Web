@@ -5,20 +5,13 @@
   
 <mapper namespace="com.melting.dao.CrawlingDAO">
 
- 	<insert id="saveCrawlingData" parameterType="Crawling">
+  	<insert id="saveCrawlingData" parameterType="Crawling">
 		INSERT INTO m_crawling 
-        	(crawlingseq, title, site, kind, replycnt2, membername, link, viewscnt2, likecnt2, regdate)
+        	(crawlingseq, title, site, kind, replycnt, membername, link, viewscnt, likecnt, regdate)
         VALUES 
-        	(m_crawling_seq.NEXTVAL, #{title}, #{site}, #{kind}, #{replycnt2}, #{membername}, #{link}, #{viewscnt2}, #{likecnt2}, #{regdate})
+        	(m_crawling_seq.NEXTVAL, #{title}, #{site}, #{kind}, #{replycnt}, #{membername}, #{link}, #{viewscnt}, #{likecnt}, #{regdate})
 	</insert>
 
-<!--  	<insert id="saveCrawlingData" parameterType="Crawling">
-		INSERT INTO m_crawling 
-        	(crawlingseq, title, replycnt2, image, kind, membername, link, viewscnt2, likecnt2, site, regdate)
-        VALUES 
-        	(m_crawling_seq.NEXTVAL, #{title}, #{replycnt2}, #{image}, #{kind}, #{membername}, #{link}, #{viewscnt2}, #{likecnt2}, #{site}, #{regdate})
-	</insert> -->
-	
     <select id="countCrawlingData" parameterType="String" resultType="int">
        SELECT COUNT(*) 
        FROM m_crawling
@@ -46,19 +39,19 @@
  	<select id="getViewscntSortedList" resultType="Crawling" >
 		SELECT *
 		FROM m_crawling
-		ORDER BY viewscnt2 DESC
+		ORDER BY viewscnt DESC
 	</select>
 	
  	<select id="getLikecntSortedList" resultType="Crawling" >
 		SELECT *
 		FROM m_crawling
-		ORDER BY likecnt2 DESC
+		ORDER BY likecnt DESC
 	</select>
 	
  	<select id="getReplycntSortedList" resultType="Crawling" >
 		SELECT *
 		FROM m_crawling
-		ORDER BY replycnt2 DESC
+		ORDER BY replycnt DESC
 	</select>
 	
 

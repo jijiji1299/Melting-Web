@@ -26,14 +26,15 @@ public class Crawling {
 	private String image;
 	private String membername;
 	private Date created_at;
-	private String replycnt;
-	private int replycnt2;
-	private String likecnt;
-	private int likecnt2;
-	private String viewscnt;
-	private int viewscnt2;
+	private String replycnt1;
+	private int replycnt;
+	private String likecnt1;
+	private int likecnt;
+	private String viewscnt1;
+	private int viewscnt;
 	private String site;
 	private String regdate;
+	private String regdate1;
 	
 
 }

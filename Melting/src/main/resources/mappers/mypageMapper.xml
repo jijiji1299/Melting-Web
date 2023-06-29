@@ -16,7 +16,7 @@
 	
 	<select id="myreply" parameterType="String" resultType="Reply">
 		SELECT
-			replyseq, boardseq, membername, replytxt, replycnt, 
+			replyseq, boardseq, membername, replytxt, 
 			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate
 		FROM m_reply
 		WHERE membername = #{membername}

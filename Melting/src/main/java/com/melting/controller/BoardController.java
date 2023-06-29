@@ -66,8 +66,12 @@ public class BoardController{
 //		List<Crawling> list = crawlingService.getCrawlingList();
 //		model.addAttribute("list", list);
 //		
-		// 조회순으로 정렬
+		
+		// 조회순으로 정렬(10개)
 		List<Crawling> viewscntSortedList = crawlingService.getViewscntSortedList();
+		if (viewscntSortedList.size() > 10) {
+			viewscntSortedList = viewscntSortedList.subList(0, 10);
+		}
 		model.addAttribute("viewscntSortedList", viewscntSortedList);
 		
 //		// 추천순으로 정렬

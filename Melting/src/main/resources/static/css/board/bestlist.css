@@ -341,11 +341,11 @@ a {
 }
 
 .boardlist-regdate {
-    width: 90px;
     padding-top: 7.5px;
 	float:right;
 	color:#94969B;
 	font-size:14px;
+    padding-right: 7px;
 }
 
 
