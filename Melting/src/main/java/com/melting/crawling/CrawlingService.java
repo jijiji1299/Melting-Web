@@ -1,4 +1,4 @@
-package com.melting.service;
+package com.melting.crawling;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public interface CrawlingService {
 
 //	public List<Crawling> getPpomppuCrawlingData();
 	
-	public List<Crawling> getTheqooCrawlingData();
+//	public List<Crawling> getTheqooCrawlingData();
 	
 	public List<Crawling> getDcSearchCrawlingData();
 

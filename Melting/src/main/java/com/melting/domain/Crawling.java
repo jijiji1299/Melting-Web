@@ -35,6 +35,7 @@ public class Crawling {
 	private String site;
 	private String regdate;
 	private String regdate1;
+	private String sort;
 	
 
 }

@@ -5,13 +5,40 @@
   
 <mapper namespace="com.melting.dao.CrawlingDAO">
 
-  	<insert id="saveCrawlingData" parameterType="Crawling">
-		INSERT INTO m_crawling 
-        	(crawlingseq, title, site, kind, replycnt, membername, link, viewscnt, likecnt, regdate)
-        VALUES 
-        	(m_crawling_seq.NEXTVAL, #{title}, #{site}, #{kind}, #{replycnt}, #{membername}, #{link}, #{viewscnt}, #{likecnt}, #{regdate})
+	<insert id="saveCrawlingData" parameterType="Crawling">
+		INSERT INTO m_crawling
+			(crawlingseq, title, site, kind, 
+        	membername, link)
+        VALUES
+        	(m_crawling_seq.NEXTVAL, #{title}, #{site}, #{kind}, 
+        	#{membername}, #{link})
 	</insert>
 
+<!-- 	
+  	<insert id="saveCrawlingData" parameterType="Crawling">
+		INSERT INTO m_crawling 
+        	(crawlingseq, title, site, kind, 
+        	membername, link, viewscnt, regdate, 
+        	sort, likecnt, replycnt)
+        VALUES 
+        	(m_crawling_seq.NEXTVAL, #{title}, #{site}, #{kind}, 
+        	#{membername}, #{link}, #{viewscnt}, #{regdate}, 
+        	#{sort}, #{likecnt}, #{replycnt})
+	</insert>
+	 -->
+
+
+<!-- 	
+  	<insert id="saveCrawlingData" parameterType="Crawling">
+		INSERT INTO m_crawling 
+        	(crawlingseq, title, site, kind, replycnt, 
+        	membername, link, viewscnt, likecnt, regdate, sort)
+        VALUES 
+        	(m_crawling_seq.NEXTVAL, #{title}, #{site}, #{kind}, #{replycnt}, 
+        	#{membername}, #{link}, #{viewscnt}, #{likecnt}, #{regdate}, #{sort})
+	</insert>
+	 -->
+	
     <select id="countCrawlingData" parameterType="String" resultType="int">
        SELECT COUNT(*) 
        FROM m_crawling
