@@ -16,31 +16,30 @@ import com.melting.dao.CrawlingDAO;
 import com.melting.domain.Crawling;
 
 @Service
-public class CrawlingSportsServiceImpl implements CrawlingSportsService {
+public class CrawlingGameServiceImpl implements CrawlingGameService {
 	
 	@Autowired
 	CrawlingDAO crawlingDao;
 	
 	int count = 10;
 
-
-
-//	/*디시 Sports*/
+//	/*디시 Game*/
 //	@Override
 //	@Scheduled(fixedDelay = 120000)
-//	public List<Crawling> getDcInsideSportsCrawlingData() {
+//	public List<Crawling> getDcInsideGameCrawlingData() {
 //		List<Crawling> crawlingDataList = new ArrayList<>();
 //		
 //		String site = "dcinside";
-//		String sort = "sports";
-//
+//		String sort = "game";
+//		
 //		try {
 //			
-//			// 스포츠 개념글
-//			String dcUrl = "https://sports.dcinside.com/";
+//			// 게임 개념글
+//			String dcUrl = "https://game.dcinside.com/";
 //			Document document = Jsoup.connect(dcUrl)
 //	    		.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
 //	    		.get();
+//			
 //			
 //			Elements titles = document.select(".txt_box .tit");
 //			Elements links = document.select(".bgcover a");
@@ -127,45 +126,45 @@ public class CrawlingSportsServiceImpl implements CrawlingSportsService {
 //			crawlingDao.deleteOldData(site);
 //		}
 //		
-//		
 //		return crawlingDataList;
 //	}
-//
-//	
-//	
-//	/*뽐뿌 Sports*/
+
+	
+	
+//	/*뽐뿌 Game*/
 //	@Override
 //	@Scheduled(fixedDelay = 120000)
-//	public List<Crawling> getPpomppuSportsCrawlingData() {
+//	public List<Crawling> getPpomppuGameCrawlingData() {
 //		List<Crawling> crawlingDataList = new ArrayList<>();
 //		
 //		String site = "ppomppu";
-//		String sort = "sports";
-//		String kind = "야구포럼";
+//		String sort = "game";
+//		String kind = "게임포럼";
 //		
 //		try {
 //			
-//			// 야구포럼
-//			String ppomppuUrl = "https://www.ppomppu.co.kr/zboard/zboard.php?id=baseball";
+//			// 게임포럼
+//			String ppomppuUrl = "https://www.ppomppu.co.kr/zboard/zboard.php?id=gameforum";
 //			Document document = Jsoup.connect(ppomppuUrl)
 //					.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
 //            		.get();
 //			
 //			Elements titles = document.select(".list_title");
-//            Elements links = document.select(".list_vspace a");	
-//            Elements membernames = document.select(".list_name .list_vspace a");
-//            Elements regdates = document.select("#revolution_main_table tr td:nth-child(4) nobr");
-//            Elements viewscnts = document.select("#revolution_main_table tr td:nth-child(6)");
+//            Elements links = document.select(".cont03.list-col .title a");	
+//            
+//            Elements membernames = document.select(".nick .list_name a");
+//            Elements regdates = document.select(".time.eng time");
+//            Elements viewscnts = document.select(".hit.eng");
 //
 //            Math.min(count, titles.size());
 //            for (int i = 0; i < count; i++) {
-//                Element titleElement = titles.get(i+1);
+//                Element titleElement = titles.get(i);
 //                String title = titleElement.text();
 //                
-//                Element linkElement = links.get(2*i+4);
+//                Element linkElement = links.get(i);
 //                String link = "https://www.ppomppu.co.kr/zboard/"+linkElement.attr("href");
 //                
-//                Element membernameElement = membernames.get(i+1);
+//                Element membernameElement = membernames.get(i);
 //                String membername1 = membernameElement.text();
 //                String membername;
 //                
@@ -175,11 +174,11 @@ public class CrawlingSportsServiceImpl implements CrawlingSportsService {
 //                	membername = membername1;
 //                }
 //                
-//                Element regdateElement = regdates.get(i+2);
+//                Element regdateElement = regdates.get(i);
 //                String regdate = regdateElement.text();
 //                regdate = regdate.substring(0, regdate.length() - 3);
 //                
-//                Element viewscntElement = viewscnts.get(i+3);
+//                Element viewscntElement = viewscnts.get(i);
 //                String viewscnt1 = viewscntElement.text();
 //
 //                
@@ -242,82 +241,5 @@ public class CrawlingSportsServiceImpl implements CrawlingSportsService {
 	
 	
 	
-//	/*더쿠 Sports*/
-//	@Override
-//	@Scheduled(fixedDelay = 120000)
-//	public List<Crawling> getTheqooSportsCrawlingData() {
-//		List<Crawling> crawlingDataList = new ArrayList<>();
-//		
-//		String site = "theqoo";
-//        String sort = "Sports";
-//        String membername = "무명의 더쿠";
-//        int likecnt = 0; 
-//        String kind = "국내야구";
-//        
-//        try {
-//        	
-//        	// 국내야구 - 기아
-//        	String theqooUrl = "https://theqoo.net/kbaseball?group_srl=185338643";
-//            Document document = Jsoup.connect(theqooUrl)
-//            		.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
-//            		.get();
-//            
-//            Elements titles = document.select(".title");
-//            Elements links = document.select(".title a");
-//
-//            
-//            Math.min(count, titles.size());
-//            for (int i = 0; i < count; i++) {
-//            	
-//            	Element titleElement = titles.get(i+8);
-//            	String title = titleElement.text();
-//            	
-//            	String link;
-//            	
-//            	
-//            	int linksSize = links.size();
-//            	
-//            	if (linksSize >= 2) {
-//                    Element linkElement = links.get(i+8);
-//                    link = "https://theqoo.net" + linkElement.attr("href");
-//                } else {
-//                    continue;
-//                }
-//            	
-//            	Crawling crawling = Crawling.builder()
-//            			.site(site)
-//            			.sort(sort)
-//            			.membername(membername)
-//            			.likecnt(likecnt)
-//            			.kind(kind)
-//            			.title(title)
-//            			.link(link)
-//            			.build();
-//            	
-//            	crawlingDataList.add(crawling);
-//            	
-//            }
-//            
-//			
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//        
-//        for (int i = 0; i < count; i++) {
-//            Crawling crawling = crawlingDataList.get(i);
-//            crawlingDao.saveCrawlingData(crawling);
-//        }
-//        
-//        int rowcount = crawlingDao.countCrawlingData(site);
-//        
-//        if (rowcount > count) {
-//			crawlingDao.deleteOldData(site);
-//		}
-//        
-//		return crawlingDataList;
-//	}
-	
-	
-
 
 }
