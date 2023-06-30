@@ -5,6 +5,15 @@
   
 <mapper namespace="com.melting.dao.CrawlingDAO">
 
+<!-- 
+  	<insert id="saveCrawlingData" parameterType="Crawling">
+		INSERT INTO m_crawling 
+        	(crawlingseq, title, site, link, sort)
+        VALUES 
+        	(m_crawling_seq.NEXTVAL, #{title}, #{site}, #{link}, #{sort})
+	</insert>
+
+ -->
 
   	<insert id="saveCrawlingData" parameterType="Crawling">
 		INSERT INTO m_crawling 
@@ -16,6 +25,7 @@
         	#{membername}, #{link}, #{viewscnt}, #{regdate}, 
         	#{sort}, #{likecnt}, #{replycnt})
 	</insert>
+
 
 <!-- 	
   	<insert id="saveCrawlingData" parameterType="Crawling">
