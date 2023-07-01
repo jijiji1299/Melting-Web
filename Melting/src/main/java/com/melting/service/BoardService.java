@@ -22,6 +22,14 @@ public interface BoardService {
 
 	public void updateLikeCount(int boardseq);
 
+	public List<Board> getWritedBestList();
+
+	public List<Board> getWritedHumorList();
+
+	public List<Board> getWritedGameList();
+
+	public List<Board> getWritedSportsList();
+
 
 
 

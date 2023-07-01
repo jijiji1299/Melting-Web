@@ -50,6 +50,7 @@
 	<select id="getCrawlingList" resultType="Crawling">
 		SELECT *
 		FROM m_crawling
+		ORDER BY regdate DESC
 	</select>
 	
  	<select id="getViewscntSortedList" resultType="Crawling" >
@@ -97,6 +98,8 @@
 		WHERE sort = 'sports'
 		ORDER BY viewscnt DESC
 	</select>
+	
+	
 	
 	
 	

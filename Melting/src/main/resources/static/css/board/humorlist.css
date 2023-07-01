@@ -58,6 +58,9 @@ a {
 	font-size: 20px;
 }
 
+.humor a {
+	font-weight: bold;
+}
 
 .all {
 	margin-left:-8px;
@@ -68,10 +71,6 @@ a {
 	
 }
 
-
-.all a {
-	font-weight: bold;
-}
 
 .humor {
 	margin-left:5px;
@@ -198,7 +197,6 @@ a {
 	display:flex;
 	overflow:hidden;
 	margin-top: 5px;
-	
 }
 
 #container2 {
@@ -208,7 +206,6 @@ a {
 	display:flex;
 	min-height:830px;
 	overflow:hidden;
-	
 }
 
 .boardlist-area {
@@ -300,6 +297,7 @@ a {
 .boardlist-bottom {
 	height:30px;
 }
+
 
 .boardlist-reply-area {
 	float:left;

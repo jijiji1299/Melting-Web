@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
-<link rel="stylesheet" type="text/css" th:href="@{../css/board/newlist.css}">
+<link rel="stylesheet" type="text/css" th:href="@{../css/board/gamelist.css}">
 </head>
 <body>
 	<div id="header">
@@ -38,9 +38,9 @@
 	<div id="container">
 		<div class="boardlist-area">
 			<div class="boardlist-sort">
-				<h3>멜팅 최신글</h3>
+				<h3>멜팅 베스트</h3>
 			</div>
-			<div th:each="board : ${list}" class="boardlist">
+			<div th:each="board : ${writedGameList}" class="boardlist">
 				<div class="boardlist-kind">
 					<span th:if="${board.kind=='free'}">자유</span>
 					<span th:if="${board.kind=='humor'}">유머</span>
@@ -78,13 +78,12 @@
 		</div>
 	</div>
 	
-	
 	<div id="container2">
 		<div class="boardlist-area">
 			<div class="boardlist-sort">
-				<h3>다른 사이트 최신글</h3>
+				<h3>다른 사이트 베스트</h3>
 			</div>
-			<div th:each="crawlingData : ${crawlingList}" class="boardlist">
+			<div th:each="crawlingData : ${viewsSortedGameList}" class="boardlist">
 				<div th:text="${crawlingData.kind}" class="boardlist-kind"></div>
 				
 				<div class="boardlist-middle2">
@@ -113,9 +112,9 @@
 	</div>
 	
 	
-	<div id="footer">
+	 <div id="footer">
 		<div class="footer-area">
-			<div class="f-logo"><a th:href="@{/}"><img th:src="@{../images/meltingLogo.JPG}"></a></div>
+			<div class="f-logo"><a th:href="@{/}"><img src="../images/meltingLogo.JPG"></a></div>
 			<div class="footer-list">
 				<a th:href="@{#}">서비스소개 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
 				<a th:href="@{#}">공지사항 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
@@ -124,6 +123,5 @@
 			</div>
 		</div>
 	</div>
-	
 </body>
 </html>
