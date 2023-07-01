@@ -5,16 +5,6 @@
   
 <mapper namespace="com.melting.dao.CrawlingDAO">
 
-<!-- 
-  	<insert id="saveCrawlingData" parameterType="Crawling">
-		INSERT INTO m_crawling 
-        	(crawlingseq, title, site, link, sort)
-        VALUES 
-        	(m_crawling_seq.NEXTVAL, #{title}, #{site}, #{link}, #{sort})
-	</insert>
-
- -->
-
   	<insert id="saveCrawlingData" parameterType="Crawling">
 		INSERT INTO m_crawling 
         	(crawlingseq, title, site, kind, 
@@ -53,7 +43,7 @@
 		    FROM m_crawling
 		    WHERE site = #{site}
 		  )
-		  WHERE row_num > (SELECT COUNT(*) - 10 FROM m_crawling WHERE site=#{site})
+		  WHERE row_num > (SELECT COUNT(*) - 20 FROM m_crawling WHERE site=#{site})
 		)
 	</delete>
 	
@@ -79,6 +69,36 @@
 		FROM m_crawling
 		ORDER BY replycnt DESC
 	</select>
+	
+	<select id="getViewsSortedBestList" resultType="Crawling">
+		SELECT *
+		FROM m_crawling
+		WHERE sort = 'best'
+		ORDER BY viewscnt DESC
+	</select>
+	
+	<select id="getViewsSortedHumorList" resultType="Crawling">
+		SELECT *
+		FROM m_crawling
+		WHERE sort = 'humor'
+		ORDER BY viewscnt DESC
+	</select>
+	
+	<select id="getViewsSortedGameList" resultType="Crawling">
+		SELECT *
+		FROM m_crawling
+		WHERE sort = 'game'
+		ORDER BY viewscnt DESC
+	</select>
+	
+	<select id="getViewsSortedSportsList" resultType="Crawling">
+		SELECT *
+		FROM m_crawling
+		WHERE sort = 'sports'
+		ORDER BY viewscnt DESC
+	</select>
+	
+	
 	
 
 </mapper>

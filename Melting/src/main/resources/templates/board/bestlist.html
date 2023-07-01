@@ -42,7 +42,7 @@
 				<div class="sort-reply">댓글순</div>
 				<div class="sort-like">추천순</div>
 			</div>
-			<div th:each="crawlingData : ${viewscntSortedList}" class="boardlist">
+			<div th:each="crawlingData : ${viewsSortedBestList}" class="boardlist">
 				<div th:text="${crawlingData.kind}" class="boardlist-kind"></div>
 				<h3><a th:href="${crawlingData.link}" th:text="${crawlingData.title}" class="boardlist-title"></a></h3>
 				<div th:text="${crawlingData.membername}" class="boardlist-membername"></div>

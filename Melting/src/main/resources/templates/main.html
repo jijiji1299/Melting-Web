@@ -115,7 +115,7 @@
 					</div>
 					<div class="all-list">
 						<table>
-							<tr th:each="crawlingData, iteration : ${viewscntSortedList}" th:if="${iteration.index} &lt; 5">
+							<tr th:each="crawlingData, iteration : ${viewsSortedHumorList}" th:if="${iteration.index} &lt; 5">
 							    <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}" class="all-title2"></a></td>
 							    <td>
 							    	<div class="all-views-area">
@@ -137,7 +137,7 @@
 					</div>
 					<div class="all-list">
 						<table>
-							<tr th:each="crawlingData, iteration : ${viewscntSortedList}" th:if="${iteration.index} &lt; 5">
+							<tr th:each="crawlingData, iteration : ${viewsSortedGameList}" th:if="${iteration.index} &lt; 5">
 							    <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}" class="all-title2"></a></td>
 							    <td>
 							    	<div class="all-views-area">
@@ -157,7 +157,7 @@
 					</div>
 					<div class="all-list">
 						<table>
-							<tr th:each="crawlingData, iteration : ${viewscntSortedList}" th:if="${iteration.index} &lt; 5">
+							<tr th:each="crawlingData, iteration : ${viewsSortedSportsList}" th:if="${iteration.index} &lt; 5">
 							    <td><a th:href="${crawlingData.link}" th:text="${crawlingData.title}" class="all-title2"></a></td>
 							    <td>
 							    	<div class="all-views-area">

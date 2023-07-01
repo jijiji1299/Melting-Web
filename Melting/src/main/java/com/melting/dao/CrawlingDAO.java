@@ -24,6 +24,15 @@ public interface CrawlingDAO {
 	public List<Crawling> getLikecntSortedList();
 	
 	public List<Crawling> getReplycntSortedList();
+
+	public List<Crawling> getViewsSortedBestList();
+
+	public List<Crawling> getViewsSortedHumorList();
+
+	public List<Crawling> getViewsSortedGameList();
+
+	public List<Crawling> getViewsSortedSportsList();
+
 	
 
 	

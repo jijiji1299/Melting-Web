@@ -82,6 +82,39 @@ public class BoardController{
 //		List<Crawling> replycntSortedList = crawlingService.getReplycntSortedList();
 //		model.addAttribute("replycntSortedList", replycntSortedList);
 		
+		// Best 카테고리(조회순)
+		List<Crawling> viewsSortedBestList = crawlingService.getViewsSortedBestList();
+		if (viewsSortedBestList.size() >10) {
+			viewsSortedBestList = viewsSortedBestList.subList(0, 10);
+		}
+		model.addAttribute("viewsSortedBestList", viewsSortedBestList);
+		
+		// Humor 카테고리 (조회순)
+		List<Crawling> viewsSortedHumorList = crawlingService.getViewsSortedHumorList();
+		if (viewsSortedHumorList.size() >10) {
+			viewsSortedHumorList = viewsSortedHumorList.subList(0, 10);
+		}
+		model.addAttribute("viewsSortedHumorList", viewsSortedHumorList);
+		
+
+		// Game 카테고리 (조회순)
+		List<Crawling> viewsSortedGameList = crawlingService.getViewsSortedGameList();
+		if (viewsSortedGameList.size() >10) {
+			viewsSortedGameList = viewsSortedGameList.subList(0, 10);
+		}
+		model.addAttribute("viewsSortedGameList", viewsSortedGameList);
+
+		
+		// Sports 카테고리 (조회순)
+		List<Crawling> viewsSortedSportsList = crawlingService.getViewsSortedSportsList();
+		if (viewsSortedSportsList.size() >10) {
+			viewsSortedSportsList = viewsSortedSportsList.subList(0, 10);
+		}
+		model.addAttribute("viewsSortedSportsList", viewsSortedSportsList);
+		
+		
+		
+		
 		
 		// 크롤링 List
         List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
@@ -112,13 +145,14 @@ public class BoardController{
 			model.addAttribute("memberid", memberid);
 		}
 		
-		// 크롤링 List
-		List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
-		model.addAttribute("dcSearchList", dcSearchList);
 		
-		// 조회순으로 정렬
-		List<Crawling> viewscntSortedList = crawlingService.getViewscntSortedList();
-		model.addAttribute("viewscntSortedList", viewscntSortedList);
+//		// 조회순으로 정렬
+//		List<Crawling> viewscntSortedList = crawlingService.getViewscntSortedList();
+//		model.addAttribute("viewscntSortedList", viewscntSortedList);
+		
+		// 베스트 크롤링 리스트
+		List<Crawling> viewsSortedBestList = crawlingService.getViewsSortedBestList();
+		model.addAttribute("viewsSortedBestList", viewsSortedBestList);
 		
 		return "/board/bestlist";
 	}

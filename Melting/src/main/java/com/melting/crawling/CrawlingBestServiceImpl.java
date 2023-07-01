@@ -1,6 +1,5 @@
 package com.melting.crawling;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,19 +16,18 @@ import com.melting.dao.CrawlingDAO;
 import com.melting.domain.Crawling;
 
 @Service
-public class CrawlingServiceImpl implements CrawlingService {
+public class CrawlingBestServiceImpl implements CrawlingBestService {
 	
-
 	@Autowired
 	CrawlingDAO crawlingDao;
 	
-	int count = 10;
+	int count = 20;
 	
 //	/*디시 BEST*/
 //	@Scheduled(fixedDelay = 120000)
-//	public List<Crawling> getDcInsideCrawlingData() {
+//	public List<Crawling> getDcInsideBestCrawlingData() {
 //        List<Crawling> crawlingDataList = new ArrayList<>();
-//        String site = "dcinside";
+//        String site = "dcinside-best";
 //        String sort = "best";
 //        
 //        try {
@@ -137,9 +135,9 @@ public class CrawlingServiceImpl implements CrawlingService {
 //
 //	/*뽐뿌 BEST*/
 //	@Scheduled(fixedDelay = 120000)
-//    public List<Crawling> getPpomppuCrawlingData() {
+//    public List<Crawling> getPpomppuBestCrawlingData() {
 //        List<Crawling> crawlingDataList = new ArrayList<>();
-//        String site = "ppomppu";
+//        String site = "ppomppu-best";
 //        String sort = "best";
 //        
 //        try {
@@ -206,13 +204,6 @@ public class CrawlingServiceImpl implements CrawlingService {
 //					image = "https:" + imageElement.attr("src");
 //				}
 //                
-////                Element regdateElement = postDocument.selectFirst(".sub-top-text-box");
-////            	String regdate1 = regdateElement.text();
-////            	int startIndex = regdate1.indexOf("등록일:") + 5;
-////            	int endIndex = regdate1.indexOf("조회수:");
-////            	regdate = regdate1.substring(startIndex, endIndex).trim();
-////            	System.out.println("뽐뿌 regdate : "+ regdate);
-//                
 //                
 //                int likecnt = Integer.parseInt(likecnt1);
 //                int replycnt = Integer.parseInt(replycnt1);
@@ -258,9 +249,9 @@ public class CrawlingServiceImpl implements CrawlingService {
 //	/*더쿠 BEST*/
 //	@Scheduled(fixedDelay = 120000)
 //	@Override
-//	public List<Crawling> getTheqooCrawlingData() {
+//	public List<Crawling> getTheqooBestCrawlingData() {
 //		List<Crawling> crawlingDataList = new ArrayList<>();
-//        String site = "theqoo";
+//        String site = "theqoo-best";
 //        String sort = "best";
 //        String membername = "무명의 더쿠";
 //        int likecnt = 0;
@@ -274,7 +265,6 @@ public class CrawlingServiceImpl implements CrawlingService {
 //            		.get();
 //
 //            Elements titles = document.select(".title a");
-////            Elements kinds = document.select(".cate");
 //            Elements replycnts = document.select(".replyNum");
 //            Elements links = document.select(".title a");	
 //            Elements viewscnts = document.select(".m_no");
@@ -285,8 +275,6 @@ public class CrawlingServiceImpl implements CrawlingService {
 //              Element titleElement = titles.get(2*i+5);
 //              String title = titleElement.text();
 //              
-////              Element kindElement = kinds.get(i+5);
-////              String kind = kindElement.text();
 //              
 //              Element replycntElement = replycnts.get(i);
 //              String replycnt1 = replycntElement.text();
@@ -303,9 +291,10 @@ public class CrawlingServiceImpl implements CrawlingService {
 //            		.referrer(theqooUrl)
 //            		.get();
 //            
-//            Element regdateElement = postDocument.selectFirst("div.side.fr > span");
-//            String regdate = regdateElement.text().replace(".","-");
-//    		regdate = regdate.substring(2, regdate.length());
+//    		
+//    		Element regdateElement = postDocument.selectFirst(".gall_date");
+//            String regdate = regdateElement.text().replace(".", "-");
+//            regdate = regdate.substring(2, regdate.length() - 3);
 //            
 //            int replycnt = Integer.parseInt(replycnt1);
 //            int viewscnt = Integer.parseInt(viewscnt1);
@@ -348,150 +337,12 @@ public class CrawlingServiceImpl implements CrawlingService {
 	
 	
 	
-	
-	/*사이트별 hot 게시판 크롤링 end*/
-	
-	
-
-	
-	@Override
-	public List<Crawling> getDcSearchCrawlingData() {
-		List<Crawling> crawlingDataList = new ArrayList<>();
-		
-		try {
-			
-			String dcUrl = "https://www.dcinside.com/";
-            Document document = Jsoup.connect(dcUrl).get();
-
-            Elements titles = document.select(".rank_txt");
-            Elements links = document.select(".busygall");
-            
-            int count = Math.min(10, titles.size());
-            for (int i = 0; i < count; i++) {
-                Element titleElement = titles.get(i);
-                String title = titleElement.text();
-
-                Element linkElement = links.get(i);
-                String link = linkElement.attr("href");
-
-                Crawling crawling = Crawling.builder()
-                        .title(title)
-                        .link(link)
-                        .build();
-
-                crawlingDataList.add(crawling);
-                
-            }
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return crawlingDataList;
-	}
-
-	@Override
-	public List<Crawling> getHitCrawlingData() {
-		List<Crawling> crawlingDataList = new ArrayList<>();
-		
-		try {
-			
-			String dcUrl = "https://www.dcinside.com/";
-            Document document = Jsoup.connect(dcUrl).get();
-
-            Elements titles = document.select(".txt_box .tit");
-            Elements images = document.select(".img_box img");
-            Elements links = document.select(".link_thumb.main_log");
-            
-            int count = Math.min(4, images.size());
-            for (int i = 0; i < count; i++) {
-            	
-            	Element titleElement = titles.get(i);
-                String title = titleElement.text();
-            	
-                Element imageElement = images.get(i);
-                String image = imageElement.attr("src");
-                
-                Element linkElement = links.get(i);
-                String link = linkElement.attr("href");
-
-                Crawling crawling = Crawling.builder()
-                		.title(title)
-                        .image(image)
-                        .link(link)
-                        .build();
-
-                crawlingDataList.add(crawling);
-                
-            }
-            
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return crawlingDataList;
-	}
-
-
-	@Override
-	public List<Crawling> getCrawlingList() {
-		List<Crawling> list = crawlingDao.getCrawlingList();
-		return list;
-	}
-
-
-	@Override
-	public List<Crawling> getViewscntSortedList() {
-		List<Crawling> list = crawlingDao.getViewscntSortedList();
-		return list;
-	}
-
-
-	@Override
-	public List<Crawling> getLikecntSortedList() {
-		List<Crawling> list = crawlingDao.getLikecntSortedList();
-		return list;
-	}
-
-
-	@Override
-	public List<Crawling> getReplycntSortedList() {
-		List<Crawling> list = crawlingDao.getReplycntSortedList();
-		return list;
-	}
-
-	@Override
-	public List<Crawling> getViewsSortedBestList() {
-		List<Crawling> list = crawlingDao.getViewsSortedBestList();
-		return list;
-	}
-
-	@Override
-	public List<Crawling> getViewsSortedHumorList() {
-		List<Crawling> list = crawlingDao.getViewsSortedHumorList();
-		return list;
-	}
-
-	@Override
-	public List<Crawling> getViewsSortedGameList() {
-		List<Crawling> list = crawlingDao.getViewsSortedGameList();
-		return list;
-	}
-
-	@Override
-	public List<Crawling> getViewsSortedSportsList() {
-		List<Crawling> list = crawlingDao.getViewsSortedSportsList();
-		return list;
-	}
-
-
-
-	
 //	/*에펨 BEST*/
 //	@Scheduled(fixedDelay = 120000)
-//	public List<Crawling> getFmKoreaCrawlingData() {
+//	public List<Crawling> getFmKoreaBestCrawlingData() {
 //        List<Crawling> crawlingDataList = new ArrayList<>();
 //        String site = "fm";
+//		String sort = "best";
 //        
 //        try {
 //        	
@@ -581,10 +432,4 @@ public class CrawlingServiceImpl implements CrawlingService {
 //        return crawlingDataList;
 //    }
 
-
-
-
-    
-	
 }
-

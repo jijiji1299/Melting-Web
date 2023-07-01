@@ -7,7 +7,7 @@ import com.melting.domain.Crawling;
 public interface CrawlingGameService {
 	
 //	public List<Crawling> getDcInsideGameCrawlingData();
-	
+//	
 //	public List<Crawling> getPpomppuGameCrawlingData();
 
 }
