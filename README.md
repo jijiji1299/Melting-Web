@@ -12,7 +12,7 @@ Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 웹 사이트
 - 마이페이지 쓴 글 알림, 댓글 알림, 글 스크랩
 
 # 개발 기간
-- 1차 : 2023년 5월 16일 ~ (진행중)
+ 2023년 5월 16일 ~ (진행중)
 
 
 #  기술 스택
@@ -37,14 +37,9 @@ Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 웹 사이트
 <img src="https://img.shields.io/badge/Git-orange?style=flat&logo=git&logoColor=white"/>
 <img src="https://img.shields.io/badge/github-black?style=flat&logo=github&logoColor=white"/>
 
-- <div>API</div>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/kakao-yellow?style=flat&logo=kakaotalk&logoColor=black"/>
-
 - <div>ETC</div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/Notion-white?style=flat&logo=Notion&logoColor=black"/>
-<img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=Figma&logoColor=white"/>
 
 <br><br>
 
@@ -55,5 +50,6 @@ Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 웹 사이트
 4. 루리웹(예정)
 5. 인벤(예정)
 
-# 협업 Notion
-(추후 추가)
+# ERD & 테이블 명세서
+
+# 아키텍처
