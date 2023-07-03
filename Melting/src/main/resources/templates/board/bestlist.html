@@ -13,9 +13,9 @@
 			<div class="menu">
 				<div class="home"><a th:href="@{/board/bestlist}">홈</a></div>
 				<div class="all"><a th:href="@{/board/newlist}">전체</a></div>
-				<div class="humor">유머</div>
-				<div class="game">게임</div>
-				<div class="sports">스포츠</div>
+				<div class="humor"><a th:href="@{/board/humorlist}">유머</a></div>
+				<div class="game"><a th:href="@{/board/gamelist}">게임</a></div>
+				<div class="sports"><a th:href="@{/board/sportslist}">스포츠</a></div>
 			</div>
 			<div class="search">
 				<div class="search-icon">
@@ -38,14 +38,58 @@
 	<div id="container">
 		<div class="boardlist-area">
 			<div class="boardlist-sort">
-				<div class="sort-views">조회순</div>
-				<div class="sort-reply">댓글순</div>
-				<div class="sort-like">추천순</div>
+				<h3>멜팅 베스트</h3>
+			</div>
+			<div th:each="board : ${writedBestList}" class="boardlist">
+				<div class="boardlist-kind">
+					<span th:if="${board.kind=='free'}">자유</span>
+					<span th:if="${board.kind=='humor'}">유머</span>
+					<span th:if="${board.kind=='sports'}">스포츠</span>
+					<span th:if="${board.kind=='game'}">게임</span>
+				</div>
+				
+				<div class="boardlist-middle">
+					<h3><a th:href="@{/read(boardseq=${board.boardseq})}" th:text="${board.title}" class="boardlist-title"></a></h3>
+					<div th:text="${board.membername}" class="boardlist-membername"></div>
+					<div class="boardlist-img">
+						<img th:if="${board.originalfile}" th:src="@{/board/download(boardseq=${board.boardseq})}" />
+						<div><a th:href="@{/board/download(boardseq=${board.boardseq})}" th:if="${board.originalfile}"></a></div>
+					</div>
+				</div>
+				
+				<div class="boardlist-bottom">
+					<div class="boardlist-reply-area">
+						<div class="boardlist-reply-i"><img src="../images/reply-i.JPG"></div>
+						<div th:text="${board.replycnt}" class="boardlist-reply-num"></div>
+					</div>
+					<div class="boardlist-like-area">
+						<div class="boardlist-like-i"><img src="../images/like-i.JPG"></div>
+						<div th:text="${board.likecnt}" class="boardlist-like-num"></div>
+					</div>
+					
+					<div class="boardlist-views-area">
+						<div class="boardlist-views-i"><img src="../images/views-i.JPG"></div>
+						<div th:text="${board.viewscnt}" class="boardlist-views-num"></div>
+					</div>
+					
+					<div th:text="${board.regdate}" class="boardlist-regdate"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="container2">
+		<div class="boardlist-area">
+			<div class="boardlist-sort">
+				<h3>다른 사이트 베스트</h3>
 			</div>
 			<div th:each="crawlingData : ${viewsSortedBestList}" class="boardlist">
 				<div th:text="${crawlingData.kind}" class="boardlist-kind"></div>
-				<h3><a th:href="${crawlingData.link}" th:text="${crawlingData.title}" class="boardlist-title"></a></h3>
-				<div th:text="${crawlingData.membername}" class="boardlist-membername"></div>
+				
+				<div class="boardlist-middle2">
+					<h3><a th:href="${crawlingData.link}" th:text="${crawlingData.title}" class="boardlist-title2"></a></h3>
+					<div th:text="${crawlingData.membername}" class="boardlist-membername2"></div>
+				</div>
 				
 				<div class="boardlist-bottom">
 					<div class="boardlist-reply-area">

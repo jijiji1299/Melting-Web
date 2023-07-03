@@ -69,4 +69,52 @@
 		WHERE boardseq = #{boardseq}
 	</update>
 	
+	<select id="getWritedBestList" resultType="Board">
+		SELECT 
+			boardseq, memberid, membername, title, kind, viewscnt, replycnt, likecnt,
+			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate, content, originalfile, savedfile 
+		FROM m_board 
+		ORDER BY likecnt DESC
+	</select>
+	
+	<select id="getWritedHumorList" resultType="Board">
+		SELECT 
+			boardseq, memberid, membername, title, kind, viewscnt, replycnt, likecnt,
+			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate, content, originalfile, savedfile
+		FROM m_board
+		WHERE kind = 'humor'
+		ORDER BY viewscnt DESC
+	</select>
+	
+	<select id="getWritedGameList" resultType="Board">
+		SELECT 
+			boardseq, memberid, membername, title, kind, viewscnt, replycnt, likecnt,
+			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate, content, originalfile, savedfile
+		FROM m_board
+		WHERE kind = 'game'
+		ORDER BY viewscnt DESC
+	</select>
+		
+	<select id="getWritedSportsList" resultType="Board">
+		SELECT 
+			boardseq, memberid, membername, title, kind, viewscnt, replycnt, likecnt,
+			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate, content, originalfile, savedfile
+		FROM m_board
+		WHERE kind = 'sports'
+		ORDER BY viewscnt DESC
+	</select>
+	 
+	 <select id="search" resultType="Board">
+	 	SELECT 
+			boardseq, memberid, membername, title, kind, viewscnt, replycnt, likecnt,
+			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate, content, originalfile, savedfile
+		FROM m_board
+		WHERE title LIKE '%' || #{searchword} || '%'
+		   OR membername LIKE '%' || #{searchword} || '%'
+		   OR kind LIKE '%' || #{searchword} || '%'
+		   OR boardtxt LIKE '%' || #{searchword} || '%'
+	 
+	 </select>
+	
+	
 </mapper>

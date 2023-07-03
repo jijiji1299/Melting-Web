@@ -195,6 +195,15 @@ a {
 	position:relative;
 	margin: 35px auto 0;
 	display:flex;
+	overflow:hidden;
+	margin-top: 5px;
+}
+
+#container2 {
+	width: 1140px;
+	position:relative;
+	margin: 35px auto 0;
+	display:flex;
 	min-height:830px;
 	overflow:hidden;
 }
@@ -210,36 +219,17 @@ a {
 	width:100%;
 	height:40px;
 	border-bottom:1px solid #d4d4d4;
+	letter-spacing: -1px;
 }
 
-.sort-views {
-	float:left;
-    width: 55px;
-    text-align: center;
-    font-size: 14px;
-}
-
-.sort-reply {
-	float:left;
-    width: 55px;
-    text-align: center;
-    font-size: 14px;
-}
-
-
-.sort-like {
-	float:left;
-    width: 55px;
-    text-align: center;
-    font-size: 14px;
-}
 
 .boardlist {
 	width:550px;
-	height:150px;
+	height:170px;
 	float:left;
 	border-right: 1px solid #eee;
 	border-bottom: 1px solid #eee;
+	border-left: 1px solid #eee;
 	padding-left: 20px;
 }
 
@@ -250,7 +240,29 @@ a {
     font-size:13px;
 }
 
+.boardlist-middle {
+	width:100%;
+	min-height:98px;
+}
+
+.boardlist-middle2 {
+	width:100%;
+	min-height:98px;
+}
+
 .boardlist-title {
+    height: 52px;
+    max-height: 52px;
+    margin-top: 1px;
+    font-size: 18px;
+    line-height: 1.4em;
+    padding-right: 5px;
+    display: block;
+    width: 430px;
+    float:left;
+}
+
+.boardlist-title2 {
     height: 52px;
     max-height: 52px;
     margin-top: 1px;
@@ -262,8 +274,31 @@ a {
 
 .boardlist-membername {
     font-size: 14px;
-    width:100%;
+    width: 430px;
+    float:left;
 }
+
+.boardlist-membername2 {
+    font-size: 14px;
+}
+
+.boardlist-img {
+	width:80px;
+	height:80px;
+	float:right;
+    margin-top: -52px;
+    margin-right: 15px;
+}
+
+.boardlist-img img {
+	width:80px;
+	height:80px;
+}
+
+.boardlist-bottom {
+	height:30px;
+}
+
 
 .boardlist-reply-area {
 	float:left;
@@ -288,9 +323,6 @@ a {
 	padding-top: 7.5px;
 }
 	
-.boardlist-bottom {
-	height:30px;
-}
 
 .boardlist-like-area {
 	float:left;
@@ -354,6 +386,7 @@ a {
 	width:100%;
 	height:80px;
 	border-top:1px solid #d4d4d4;
+	margin-top: 120px;
 }
 
 .footer-area {

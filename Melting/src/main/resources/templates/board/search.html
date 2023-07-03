@@ -4,12 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Melting | 통합 유머 커뮤니티</title>
-<link rel="stylesheet" type="text/css" th:href="@{../css/board/newlist.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/board/search.css}">
 </head>
 <body>
 	<div id="header">
 		<div class="header-area">
-			<div class="logo"><a th:href="@{/}"><img src="../images/meltingLogo.JPG"></a></div>
+			<div class="logo"><a th:href="@{/}"><img src="images/meltingLogo.JPG"></a></div>
 			<div class="menu">
 				<div class="home"><a th:href="@{/board/bestlist}">홈</a></div>
 				<div class="all"><a th:href="@{/board/newlist}">전체</a></div>
@@ -20,7 +20,7 @@
 			<div class="search">
 				<div class="search-icon">
 					<a th:href="@{#}">
-						<img src="../images/search-icon.JPG">
+						<img src="images/search-icon.JPG">
 					</a>
 				</div>
 				<input type="text" name="searchWord" class="form-control" placeholder=" 검색어를 입력하세요" onkeypress="if( event.keyCode == 13 ){enterKey();}">
@@ -35,12 +35,14 @@
 		</div>
 	</div>
 	
-	<div id="container">
+	<div id=container>
+		<div class="search-result">
+			<strong th:text="${searchword}"></strong>
+			검색결과
+		</div>
+		
 		<div class="boardlist-area">
-			<div class="boardlist-sort">
-				<h3>멜팅 최신글</h3>
-			</div>
-			<div th:each="board : ${list}" class="boardlist">
+			<div th:each="board : ${searchWrited}" class="boardlist">
 				<div class="boardlist-kind">
 					<span th:if="${board.kind=='free'}">자유</span>
 					<span th:if="${board.kind=='humor'}">유머</span>
@@ -59,32 +61,24 @@
 				
 				<div class="boardlist-bottom">
 					<div class="boardlist-reply-area">
-						<div class="boardlist-reply-i"><img src="../images/reply-i.JPG"></div>
+						<div class="boardlist-reply-i"><img src="images/reply-i.JPG"></div>
 						<div th:text="${board.replycnt}" class="boardlist-reply-num"></div>
 					</div>
 					<div class="boardlist-like-area">
-						<div class="boardlist-like-i"><img src="../images/like-i.JPG"></div>
+						<div class="boardlist-like-i"><img src="images/like-i.JPG"></div>
 						<div th:text="${board.likecnt}" class="boardlist-like-num"></div>
 					</div>
 					
 					<div class="boardlist-views-area">
-						<div class="boardlist-views-i"><img src="../images/views-i.JPG"></div>
+						<div class="boardlist-views-i"><img src="images/views-i.JPG"></div>
 						<div th:text="${board.viewscnt}" class="boardlist-views-num"></div>
 					</div>
 					
 					<div th:text="${board.regdate}" class="boardlist-regdate"></div>
 				</div>
 			</div>
-		</div>
-	</div>
-	
-	
-	<div id="container2">
-		<div class="boardlist-area">
-			<div class="boardlist-sort">
-				<h3>다른 사이트 최신글</h3>
-			</div>
-			<div th:each="crawlingData : ${crawlingList}" class="boardlist">
+			
+			<div th:each="crawlingData : ${searchCrawling}" class="boardlist">
 				<div th:text="${crawlingData.kind}" class="boardlist-kind"></div>
 				
 				<div class="boardlist-middle2">
@@ -94,16 +88,16 @@
 				
 				<div class="boardlist-bottom">
 					<div class="boardlist-reply-area">
-						<div class="boardlist-reply-i"><img src="../images/reply-i.JPG"></div>
+						<div class="boardlist-reply-i"><img src="images/reply-i.JPG"></div>
 						<div th:text="${crawlingData.replycnt}" class="boardlist-reply-num"></div>
 					</div>
 					<div class="boardlist-like-area">
-						<div class="boardlist-like-i"><img src="../images/like-i.JPG"></div>
+						<div class="boardlist-like-i"><img src="images/like-i.JPG"></div>
 						<div th:text="${crawlingData.likecnt}" class="boardlist-like-num"></div>
 					</div>
 					
 					<div class="boardlist-views-area">
-						<div class="boardlist-views-i"><img src="../images/views-i.JPG"></div>
+						<div class="boardlist-views-i"><img src="images/views-i.JPG"></div>
 						<div th:text="${crawlingData.viewscnt}" class="boardlist-views-num"></div>
 					</div>
 					<div th:text="${crawlingData.regdate}" class="boardlist-regdate"></div>
@@ -112,10 +106,10 @@
 		</div>
 	</div>
 	
-	
+	<!-- 밑 영역 -->
 	<div id="footer">
 		<div class="footer-area">
-			<div class="f-logo"><a th:href="@{/}"><img th:src="@{../images/meltingLogo.JPG}"></a></div>
+			<div class="f-logo"><a th:href="@{/}"><img src="images/meltingLogo.JPG"></a></div>
 			<div class="footer-list">
 				<a th:href="@{#}">서비스소개 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
 				<a th:href="@{#}">공지사항 &nbsp;&nbsp;|&nbsp;&nbsp;</a>
@@ -124,6 +118,5 @@
 			</div>
 		</div>
 	</div>
-	
 </body>
 </html>

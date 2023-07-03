@@ -51,6 +51,7 @@ public class BoardController{
 	@Value("${spring.servlet.multipart.location}")
 	String uploadPath;
 	
+	/*메인 화면 요청*/
 	@GetMapping({"/", ""})
 	public String main(Model model, Authentication authentication) throws IOException {
 		
@@ -62,11 +63,6 @@ public class BoardController{
 			model.addAttribute("membername", membername);
 		}
 		
-//		// DB 데이터 가져오기
-//		List<Crawling> list = crawlingService.getCrawlingList();
-//		model.addAttribute("list", list);
-//		
-		
 		// 조회순으로 정렬(10개)
 		List<Crawling> viewscntSortedList = crawlingService.getViewscntSortedList();
 		if (viewscntSortedList.size() > 10) {
@@ -74,13 +70,6 @@ public class BoardController{
 		}
 		model.addAttribute("viewscntSortedList", viewscntSortedList);
 		
-//		// 추천순으로 정렬
-//		List<Crawling> likecntSortedList = crawlingService.getLikecntSortedList();
-//		model.addAttribute("likecntSortedList", likecntSortedList);
-//
-//		// 댓글순으로 정렬
-//		List<Crawling> replycntSortedList = crawlingService.getReplycntSortedList();
-//		model.addAttribute("replycntSortedList", replycntSortedList);
 		
 		// Best 카테고리(조회순)
 		List<Crawling> viewsSortedBestList = crawlingService.getViewsSortedBestList();
@@ -89,6 +78,7 @@ public class BoardController{
 		}
 		model.addAttribute("viewsSortedBestList", viewsSortedBestList);
 		
+		
 		// Humor 카테고리 (조회순)
 		List<Crawling> viewsSortedHumorList = crawlingService.getViewsSortedHumorList();
 		if (viewsSortedHumorList.size() >10) {
@@ -96,7 +86,7 @@ public class BoardController{
 		}
 		model.addAttribute("viewsSortedHumorList", viewsSortedHumorList);
 		
-
+		
 		// Game 카테고리 (조회순)
 		List<Crawling> viewsSortedGameList = crawlingService.getViewsSortedGameList();
 		if (viewsSortedGameList.size() >10) {
@@ -113,10 +103,7 @@ public class BoardController{
 		model.addAttribute("viewsSortedSportsList", viewsSortedSportsList);
 		
 		
-		
-		
-		
-		// 크롤링 List
+		// 크롤링 검색어순위, hit
         List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
         List<Crawling> hitList = crawlingService.getHitCrawlingData();
 
@@ -128,11 +115,9 @@ public class BoardController{
 		return "/main";
 	}
 	
-	/*게시글 목록 화면 요청*/
+	/*게시글 '홈-Best' 목록 화면 요청*/
 	@GetMapping("/board/bestlist")
 	public String bestlist(Model model, Authentication authentication) {
-		List<Board> list = boardService.getAllList();
-		model.addAttribute("list", list);
 		
 		// 유저이름 불러오기 (membername)
 		if (authentication != null) {
@@ -146,11 +131,14 @@ public class BoardController{
 		}
 		
 		
-//		// 조회순으로 정렬
-//		List<Crawling> viewscntSortedList = crawlingService.getViewscntSortedList();
-//		model.addAttribute("viewscntSortedList", viewscntSortedList);
+		// 작성글 Best 카테고리(조회순) - 최대 6개 제한
+		List<Board> writedBestList = boardService.getWritedBestList();
+		if (writedBestList.size() > 6) {
+			writedBestList = writedBestList.subList(0, 6);
+		}
+		model.addAttribute("writedBestList", writedBestList);
 		
-		// 베스트 크롤링 리스트
+		// 크롤링 Best 카테고리(조회순)
 		List<Crawling> viewsSortedBestList = crawlingService.getViewsSortedBestList();
 		model.addAttribute("viewsSortedBestList", viewsSortedBestList);
 		
@@ -176,7 +164,7 @@ public class BoardController{
 	
 	/*게시글 저장 요청*/
 	@PostMapping("/write")
-	public String write(Board board,  String boardtxt, MultipartFile upload) {
+	public String write(Board board, String boardtxt, MultipartFile upload) {
 		
 		// 마크다운 적용
 		String markdownContent = boardtxt;
@@ -208,11 +196,34 @@ public class BoardController{
 		
 	}
 	
-	/*게시글 목록 화면 요청*/
+	/*게시글 '전체' 목록 화면 요청*/
 	@GetMapping("/board/newlist")
-	public String boardlist(String memberid, Model model, Authentication authentication) {
+	public String boardlist(Model model, Authentication authentication) {
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			model.addAttribute("membername", membername);
+		}
+
+		// 작성글 전체(최신순)
 		List<Board> list = boardService.getAllList();
 		model.addAttribute("list", list);
+		
+		// 크롤링 전체(최신순)
+		List<Crawling> crawlingList = crawlingService.getCrawlingList();
+		model.addAttribute("crawlingList", crawlingList);
+		
+		
+		return "/board/newlist";
+	}
+	
+	
+	/*게시글 '유머' 목록 화면 요청*/
+	@GetMapping("/board/humorlist")
+	public String humorlist(Model model, Authentication authentication) {
 		
 		// 유저이름 불러오기 (membername)
 		if (authentication != null) {
@@ -222,13 +233,67 @@ public class BoardController{
 			model.addAttribute("membername", membername);
 		}
 		
-		// 크롤링 List
-		List<Crawling> dcSearchList = crawlingService.getDcSearchCrawlingData();
-		model.addAttribute("dcSearchList", dcSearchList);
+		// 작성글 유머 카테고리(조회순)
+		List<Board> writedHumorList = boardService.getWritedHumorList();
+		model.addAttribute("writedHumorList", writedHumorList);
 		
-		return "/board/newlist";
+		
+		// 크롤링 유머 카테고리(조회순)
+		List<Crawling> viewsSortedHumorList = crawlingService.getViewsSortedHumorList();
+		model.addAttribute("viewsSortedHumorList", viewsSortedHumorList);
+		
+		return "/board/humorlist";
 	}
+	
+	
+	/*게시글 '게임' 목록 화면 요청*/
+	@GetMapping("/board/gamelist")
+	public String gamelist(Model model, Authentication authentication) {
 		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			model.addAttribute("membername", membername);
+		}
+		
+		// 작성글 게임 카테고리(조회순)
+		List<Board> writedGameList = boardService.getWritedGameList();
+		model.addAttribute("writedGameList", writedGameList);
+		
+		
+		// 크롤링 게임 카테고리(조회순)
+		List<Crawling> viewsSortedGameList = crawlingService.getViewsSortedGameList();
+		model.addAttribute("viewsSortedGameList", viewsSortedGameList);
+		
+		return "/board/gamelist";
+	}
+	
+	/*게시글 '스포츠' 목록 화면 요청*/
+	@GetMapping("/board/sportslist")
+	public String sportslist(Model model, Authentication authentication) {
+		
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			model.addAttribute("membername", membername);
+		}
+		
+		// 작성글 스포츠 카테고리(조회순)
+		List<Board> writedSportsList = boardService.getWritedSportsList();
+		model.addAttribute("writedSportsList", writedSportsList);
+		
+		
+		// 크롤링 스포츠 카테고리(조회순)
+		List<Crawling> viewsSortedSportsList = crawlingService.getViewsSortedSportsList();
+		model.addAttribute("viewsSortedSportsList", viewsSortedSportsList);
+		
+		return "/board/sportslist";
+	}
+	
 
 	/*게시글 읽기 화면 요청*/
 	@GetMapping("/read")
@@ -262,11 +327,16 @@ public class BoardController{
 			model.addAttribute("memberid", memberid);
 		}
 		
-		// [크롤링] 조회순으로 정렬
-		List<Crawling> viewscntSortedList = crawlingService.getViewscntSortedList();
-		model.addAttribute("viewscntSortedList", viewscntSortedList);
 		
-		// 크롤링 List
+		// 크롤링 Best 카테고리(조회순)
+		List<Crawling> viewsSortedBestList = crawlingService.getViewsSortedBestList();
+		if (viewsSortedBestList.size() >10) {
+			viewsSortedBestList = viewsSortedBestList.subList(0, 10);
+		}
+		model.addAttribute("viewsSortedBestList", viewsSortedBestList);
+		
+		
+		// 크롤링 Hit 목록
         List<Crawling> hitList = crawlingService.getHitCrawlingData();
         model.addAttribute("hitList", hitList);
 		
@@ -389,7 +459,44 @@ public class BoardController{
 		
 		return "redirect:/read?boardseq="+board.getBoardseq();
 	}
+	
+	
+	/*검색 기능*/
+	@PostMapping("/search")
+	public String search(@RequestParam(value="searchword") String searchword, Model model, Authentication authentication) {
+	
+		
+		// 검색
+		List<Board> searchWrited = boardService.search(searchword);
+		List<Crawling> searchCrawling = crawlingService.search(searchword);
+		
+		model.addAttribute("searchWrited", searchWrited);
+		model.addAttribute("searchCrawling", searchCrawling);
+		model.addAttribute("searchword", searchword);
 
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			String memberid = member.getMemberid();
+			
+			model.addAttribute("membername", membername);
+			model.addAttribute("memberid", memberid);
+		}
+		return "/board/search";
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	///////////////////////////////////////////////////////////////////////////////////////////

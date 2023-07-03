@@ -242,14 +242,14 @@ a {
 }
 
 #imagePreview {
-	width:450px;
-	height:100%;
-	/* margin: auto; */
+	max-height: 450px;
+	max-width:830px;
 }
 
 #imagePreview img {
-	width:450px;
 	height:450px;
+	max-height: 450px;
+	max-width:830px;
 }
 
 .file-content {

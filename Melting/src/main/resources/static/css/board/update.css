@@ -238,6 +238,7 @@ a {
 .boardimg {
 	margin-bottom:10px;
 	max-height: 450px;
+	max-width:830px;
 }
 
 

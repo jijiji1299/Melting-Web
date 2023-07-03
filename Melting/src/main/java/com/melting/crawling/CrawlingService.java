@@ -6,14 +6,6 @@ import com.melting.domain.Crawling;
 
 public interface CrawlingService {
 
-//	public List<Crawling> getDcInsideCrawlingData();
-
-//	public List<Crawling> getFmKoreaCrawlingData();
-
-//	public List<Crawling> getPpomppuCrawlingData();
-	
-//	public List<Crawling> getTheqooCrawlingData();
-	
 	public List<Crawling> getDcSearchCrawlingData();
 
 	public List<Crawling> getHitCrawlingData();
@@ -33,9 +25,11 @@ public interface CrawlingService {
 	public List<Crawling> getViewsSortedGameList();
 
 	public List<Crawling> getViewsSortedSportsList();
-	
 
-	
+	public List<Crawling> search(String searchword);
+
+
+
 
 
 }

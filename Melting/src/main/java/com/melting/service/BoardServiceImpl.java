@@ -70,6 +70,41 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
+	@Override
+	public List<Board> getWritedBestList() {
+		List<Board> getWritedBestList = boardDao.getWritedBestList();
+		return getWritedBestList;
+	}
+
+
+	@Override
+	public List<Board> getWritedHumorList() {
+		List<Board> getWritedHumorList = boardDao.getWritedHumorList();
+		return getWritedHumorList;
+	}
+
+
+	@Override
+	public List<Board> getWritedGameList() {
+		List<Board> getWritedGameList = boardDao.getWritedGameList();
+		return getWritedGameList;
+	}
+
+
+	@Override
+	public List<Board> getWritedSportsList() {
+		List<Board> getWritedSportsList = boardDao.getWritedSportsList();
+		return getWritedSportsList;
+	}
+
+
+	@Override
+	public List<Board> search(String searchword) {
+		List<Board> list = boardDao.search(searchword);
+		return list;
+	}
+
+
 
 
 

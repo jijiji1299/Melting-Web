@@ -58,7 +58,7 @@ a {
 	font-size: 20px;
 }
 
-.home a {
+.game a {
 	font-weight: bold;
 }
 
@@ -95,6 +95,7 @@ a {
 	width: 75px;	
 	font-size: 20px;
 }
+
 
 .write {
 	width: 50px;
@@ -156,105 +157,152 @@ a {
 	
 }
 
+
+.search{
+	height:60px;
+	position:absolute;
+	margin-top: 25px;
+    left: 685px;
+}
+
+.search-icon {
+	width:30px;
+	height:30px;
+	position:absolute;
+    top: 13px;
+    left: 19px;
+}
+
+.search-icon img {
+	width:20px;
+	height:20px;
+}
+
+.form-control {
+	color:gray;
+    padding: 0 10px 0 41px;
+    border:1px solid #d4d4d4;
+    border-radius: 20px;
+    font-size: 14px;
+    padding: 0 10px 0 62px;
+    width: 260px;
+    height: 40px;
+}
+
+
 #container {
 	width: 1140px;
 	position:relative;
 	margin: 35px auto 0;
 	display:flex;
+	overflow:hidden;
+	margin-top: 5px;
 }
 
-
-
-#left {
-	width:730px;
-	height:100%;
-	float:left;
-}
-
-
-.search{
-	height:60px;
+#container2 {
+	width: 1140px;
 	position:relative;
-	margin-top: 25px;
+	margin: 35px auto 0;
+	display:flex;
+	min-height:830px;
+	overflow:hidden;
 }
 
-.search-icon {
-    width: 25px;
-    height: 25px;
-	position:absolute;
-    top: 18px;
-    left: 19px;
+.boardlist-area {
+	width:1150px;
+    padding: 40px 20px 0;
+    margin: 0 auto;
+
 }
 
-.form-control {
-	width: 730px;
-    height: 60px;
-	color:gray;
-    border: 2px solid #222;
-    border-radius: 30px;
-    font-size: 18px;
-    padding: 0 10px 0 62px;
-}
-
-
-.board {
-	position:relative;
+.boardlist-sort {
 	width:100%;
-	height:450px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.board-top {
 	height:40px;
-	width:100%;
 	border-bottom:1px solid #d4d4d4;
-	margin-bottom: 15px;
-}
-
-.board-title {
-	float:left;
-}
-
-.board-more {
-	float:left;
-	position:absolute;
-	right:0px;
-	top:10px;
-	font-size: 13px;
+	letter-spacing: -1px;
 }
 
 
 .boardlist {
-	width:100%;
-	margin-bottom: 20px;
-	line-height: 30px;
-	font-size:14.5px;
-	
-	
-}
-
-.boardlist table {
-	width:100%;
+	width:550px;
+	height:170px;
+	float:left;
+	border-right: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	border-left: 1px solid #eee;
+	padding-left: 20px;
 }
 
 .boardlist-kind {
-	border : 1px solid #eee;
-	text-align:center;
-	font-size:12px;
-	float:left;
-	margin-right: 8px;
-    padding: 0px 6px 0px 6px;
-	
+    width: 100%;
+    height: 20px;
+    margin-top: 15px;
+    font-size:13px;
+}
+
+.boardlist-middle {
+	width:100%;
+	min-height:98px;
+}
+
+.boardlist-middle2 {
+	width:100%;
+	min-height:98px;
 }
 
 .boardlist-title {
-	float:left;
+    height: 52px;
+    max-height: 52px;
+    margin-top: 1px;
+    font-size: 18px;
+    line-height: 1.4em;
+    padding-right: 5px;
+    display: block;
+    width: 430px;
+    float:left;
 }
+
+.boardlist-title2 {
+    height: 52px;
+    max-height: 52px;
+    margin-top: 1px;
+    font-size: 18px;
+    line-height: 1.4em;
+    padding-right: 5px;
+    display: block;
+}
+
+.boardlist-membername {
+    font-size: 14px;
+    width: 430px;
+    float:left;
+}
+
+.boardlist-membername2 {
+    font-size: 14px;
+}
+
+.boardlist-img {
+	width:80px;
+	height:80px;
+	float:right;
+    margin-top: -52px;
+    margin-right: 15px;
+}
+
+.boardlist-img img {
+	width:80px;
+	height:80px;
+}
+
+.boardlist-bottom {
+	height:30px;
+}
+
 
 .boardlist-reply-area {
 	float:left;
-	width: 50px;
+	width: 70px;
 }
 
 .boardlist-reply-i {
@@ -270,14 +318,15 @@ a {
 .boardlist-reply-num {
 	padding:2px;
 	color:#94969B;
-	font-size:12px;
+	font-size:14px;
 	float:left;
-	
+	padding-top: 7.5px;
 }
+	
 
 .boardlist-like-area {
 	float:left;
-	width: 50px;
+	width: 70px;
 }
 
 .boardlist-like-i {
@@ -293,207 +342,51 @@ a {
 .boardlist-like-num {
 	padding:2px;
 	color:#94969B;
-	font-size:12px;
-	float:left;
-}
-
-
-
-.hit-area {
-	width:100%;
-	height:280px;
-}
-
-.hit-title {
-	border-bottom:1px solid #d4d4d4;
-	margin-bottom:15px;
-	height: 40px;
-}
-
-.hit-list {
-     list-style:none;
-}
-
-.hit-list li {
-	position:relative;
-	float:left;
-}
-
-.hit-l {
-	height:114px;
-	width:auto;
-}
-
-.hit-l img {
-	height:114px;
-    width: 180px;
-    margin: 0px 1px 0px 1px;
-    border-radius: 3px;
-    border: 1px #ccc solid;
-}
-
-.hit-title2 {
-    width: 171px;
-    height: 42px;
-    position:absolute;
-    top:120px;
-    left:1px;
-    font-weight: 600;
-    letter-spacing: -1px;
-}
-
-.side-board-1 {
-	height:300px;
-	width:100%;
-}
-
-.all-area {
 	font-size:14px;
-	line-height: 30px;
 	float:left;
-	height:100%;
-	width:350px;
-}
-
-.all-title-area {
-    border-bottom:1px solid #d4d4d4;
-	margin-bottom:15px;
-	height:40px;
+	padding-top: 7.5px;
 	
 }
 
-.all-title {
-    float:left;
-}
-
-.all-title-more {
-	float:right;
-	font-size:12px;
-	margin-right:5px;
-}
-
-.all-list {
-    margin-bottom: 80px;
-	
-}
-
-.all-title2 {
-	display:inline-block;
-	width: 285px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size:14.5px;
-}
-
-.all-views-area {
-	width:52px;
+.boardlist-views-area {
 	float:left;
-    max-width: 70px;
+	width: 70px;
 }
 
-.all-views-i {
+.boardlist-views-i {
 	float:left;
 }
 
-.all-views-i img {
+.boardlist-views-i img {
 	width:16px;
 	height:16px;
-	margin-top: 7.5px;
+	margin-top: 10px;
 }
 
-.all-views-num {
-	font-size:12px;
+.boardlist-views-num {
+	padding:2px;
 	color:#94969B;
-}
-
-
-.humor-area {
-	float:left;
-	width:350px;
-	height:100%;
 	font-size:14px;
-	line-height: 30px;
-	margin-left:23px;
-}
-
-.side-board-2 {
-	margin-top:40px;
-	height:270px;
-	width:100%;
-	margin-bottom:100px;
-}
-
-.game-area {
 	float:left;
-	width:350px;
-	height:100%;
-	font-size:14px;
-	line-height: 30px;
+	padding-top: 7.5px;
 	
 }
 
-.sports-area {
-	float:left;
-	width:350px;
-	height:100%;
+.boardlist-regdate {
+    padding-top: 7.5px;
+	float:right;
+	color:#94969B;
 	font-size:14px;
-	line-height: 30px;
-	margin-left:23px;
+    padding-right: 7px;
 }
 
 
-
-#right {
-    width: 300px;
-    margin-left: 64px;
-}
-
-
-.bestsearch {
-    width: 300px;
-    height: 400px;
-    margin-top: 120px;
-    background-color: #f8f8f8;
-}
-
-.bestsearch h3 {
-	padding: 22px 21px 0px;
-}
-
-.bestsearch-list {
-    margin-bottom: 24px;
-    padding: 22px 21px 14px;
-}
-
-.bestsearch-list p {
-	padding:0px 10px 10px 0px;
-}
-
-.bestsearch-list span {
-	display: inline-block;
-	color: #94969b;
-	width: 20px;
-    margin-right: 10px;
-    text-align:center;
-	
-}
-
-.bestkeyword {
-	width:248px;
-	position: relative;
-	margin-top: 40px;
-}
-
-.bestkeyword-list {
-	background-color:lightgray;
-	border:1px solid gray;
-}
 
 #footer {
 	width:100%;
 	height:80px;
 	border-top:1px solid #d4d4d4;
+	margin-top: 120px;
 }
 
 .footer-area {
@@ -526,6 +419,3 @@ a {
 .footer-list a {
 	color: #94969b;
 }
-
-
-
