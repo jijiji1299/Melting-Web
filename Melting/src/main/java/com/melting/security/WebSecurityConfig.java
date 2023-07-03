@@ -30,6 +30,7 @@ public class WebSecurityConfig {
 				"/read",
 				"/board/download",
 				"/join",
+				"/search",
 				"/images/**",
 				"/css/**",
 				"/script/**",

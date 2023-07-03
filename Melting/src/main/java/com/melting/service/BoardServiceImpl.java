@@ -98,6 +98,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
+	@Override
+	public List<Board> search(String searchword) {
+		List<Board> list = boardDao.search(searchword);
+		return list;
+	}
+
+
 
 
 

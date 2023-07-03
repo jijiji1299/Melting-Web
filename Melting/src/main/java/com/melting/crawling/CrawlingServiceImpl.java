@@ -155,6 +155,12 @@ public class CrawlingServiceImpl implements CrawlingService {
 		return list;
 	}
 
+	@Override
+	public List<Crawling> search(String searchword) {
+		List<Crawling> list = crawlingDao.search(searchword);
+		return list;
+	}
+
 
 
 

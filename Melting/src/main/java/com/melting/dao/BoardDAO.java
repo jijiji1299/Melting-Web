@@ -33,5 +33,7 @@ public interface BoardDAO {
 	public List<Board> getWritedGameList();
 
 	public List<Board> getWritedSportsList();
+
+	public List<Board> search(String searchword);
 	
 }

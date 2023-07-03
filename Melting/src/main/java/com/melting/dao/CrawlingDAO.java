@@ -33,6 +33,8 @@ public interface CrawlingDAO {
 
 	public List<Crawling> getViewsSortedSportsList();
 
+	public List<Crawling> search(String searchword);
+
 	
 
 	

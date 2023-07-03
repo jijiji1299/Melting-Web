@@ -142,7 +142,7 @@
 				<div class="best-area">
 					<h3 class="best-title">오늘의 베스트</h3>
 					<div class="best-list-area">
-						<div th:each="crawlingData : ${viewscntSortedList}" class="best-list">
+						<div th:each="crawlingData : ${viewsSortedBestList}" class="best-list">
 							<div th:text="${crawlingData.kind}" class="best-list-kind"></div>
 							<div th:text="${crawlingData.title}" class="best-list-title"></div>
 							<div class="best-bottom-list">

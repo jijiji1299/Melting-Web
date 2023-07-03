@@ -51,6 +51,7 @@ public class BoardController{
 	@Value("${spring.servlet.multipart.location}")
 	String uploadPath;
 	
+	/*메인 화면 요청*/
 	@GetMapping({"/", ""})
 	public String main(Model model, Authentication authentication) throws IOException {
 		
@@ -293,8 +294,6 @@ public class BoardController{
 		return "/board/sportslist";
 	}
 	
-	
-		
 
 	/*게시글 읽기 화면 요청*/
 	@GetMapping("/read")
@@ -328,11 +327,16 @@ public class BoardController{
 			model.addAttribute("memberid", memberid);
 		}
 		
-		// [크롤링] 조회순으로 정렬
-		List<Crawling> viewscntSortedList = crawlingService.getViewscntSortedList();
-		model.addAttribute("viewscntSortedList", viewscntSortedList);
 		
-		// 크롤링 List
+		// 크롤링 Best 카테고리(조회순)
+		List<Crawling> viewsSortedBestList = crawlingService.getViewsSortedBestList();
+		if (viewsSortedBestList.size() >10) {
+			viewsSortedBestList = viewsSortedBestList.subList(0, 10);
+		}
+		model.addAttribute("viewsSortedBestList", viewsSortedBestList);
+		
+		
+		// 크롤링 Hit 목록
         List<Crawling> hitList = crawlingService.getHitCrawlingData();
         model.addAttribute("hitList", hitList);
 		
@@ -454,6 +458,33 @@ public class BoardController{
 		boardService.updateLikeCount(boardseq);
 		
 		return "redirect:/read?boardseq="+board.getBoardseq();
+	}
+	
+	
+	/*검색 기능*/
+	@PostMapping("/search")
+	public String search(@RequestParam(value="searchword") String searchword, Model model, Authentication authentication) {
+	
+		
+		// 검색
+		List<Board> searchWrited = boardService.search(searchword);
+		List<Crawling> searchCrawling = crawlingService.search(searchword);
+		
+		model.addAttribute("searchWrited", searchWrited);
+		model.addAttribute("searchCrawling", searchCrawling);
+		model.addAttribute("searchword", searchword);
+
+		// 유저이름 불러오기 (membername)
+		if (authentication != null) {
+			String username = authentication.getName();
+			Member member = memberService.getMemberUsername(username);
+			String membername = member.getMembername();
+			String memberid = member.getMemberid();
+			
+			model.addAttribute("membername", membername);
+			model.addAttribute("memberid", memberid);
+		}
+		return "/board/search";
 	}
 
 	

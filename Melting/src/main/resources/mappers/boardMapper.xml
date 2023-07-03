@@ -103,7 +103,18 @@
 		WHERE kind = 'sports'
 		ORDER BY viewscnt DESC
 	</select>
-	
+	 
+	 <select id="search" resultType="Board">
+	 	SELECT 
+			boardseq, memberid, membername, title, kind, viewscnt, replycnt, likecnt,
+			to_char(regdate, 'YY-MM-DD HH24:MI') as regdate, content, originalfile, savedfile
+		FROM m_board
+		WHERE title LIKE '%' || #{searchword} || '%'
+		   OR membername LIKE '%' || #{searchword} || '%'
+		   OR kind LIKE '%' || #{searchword} || '%'
+		   OR boardtxt LIKE '%' || #{searchword} || '%'
+	 
+	 </select>
 	
 	
 </mapper>

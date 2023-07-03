@@ -1,31 +1,31 @@
-//package com.melting.crawling;
-//
-//import java.io.IOException;
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//import org.jsoup.Jsoup;
-//import org.jsoup.nodes.Document;
-//import org.jsoup.nodes.Element;
-//import org.jsoup.select.Elements;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.scheduling.annotation.Scheduled;
-//import org.springframework.stereotype.Service;
-//
-//import com.melting.dao.CrawlingDAO;
-//import com.melting.domain.Crawling;
-//
-//@Service
-//public class CrawlingHumorServiceImpl implements CrawlingHumorService {
-//	
-//	@Autowired
-//	CrawlingDAO crawlingDao;
-//	
-//	int count = 20;
-//
+package com.melting.crawling;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
+import com.melting.dao.CrawlingDAO;
+import com.melting.domain.Crawling;
+
+@Service
+public class CrawlingHumorServiceImpl implements CrawlingHumorService {
+	
+	@Autowired
+	CrawlingDAO crawlingDao;
+	
+	int count = 20;
+
 //	/*디시 Humor*/
 //	@Override
-//	@Scheduled(fixedDelay = 120000)
+//	@Scheduled(fixedDelay = 600000)
 //	public List<Crawling> getDcInsideHumorCrawlingData() {
 //		List<Crawling> crawlingDataList = new ArrayList<>();
 //		
@@ -122,104 +122,202 @@
 //		
 //		return crawlingDataList;
 //	}
-//	
-//	
-//
-//	/*뽐뿌 Humor*/
+	
+	
+
+	/*뽐뿌 Humor*/
+	@Override
+	@Scheduled(fixedDelay = 600000)
+	public List<Crawling> getPpomppuHumorCrawlingData() {
+		List<Crawling> crawlingDataList = new ArrayList<>();
+		
+		String site = "ppomppu-humor";
+		String sort = "humor";
+		String kind = "유머";
+		
+		try {
+			
+			// 유머/감동 커뮤니티
+			String ppomppuUrl = "https://www.ppomppu.co.kr/zboard/zboard.php?id=humor";
+			Document document = Jsoup.connect(ppomppuUrl)
+					.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+            		.get();
+			
+			Elements titles = document.select(".list_title");
+            Elements links = document.select(".list_vspace a");	
+            Elements membernames = document.select(".list_name .list_vspace a");
+            Elements regdates = document.select("#revolution_main_table tr td:nth-child(4) nobr");
+            Elements viewscnts = document.select("#revolution_main_table tr td:nth-child(6)");
+
+            Math.min(count, titles.size());
+            for (int i = 0; i < count; i++) {
+            	
+                Element titleElement = titles.get(i+2);
+                String title = titleElement.text();
+                
+                Element linkElement = links.get(2*i+5);
+                String link = "https://www.ppomppu.co.kr/zboard/"+linkElement.attr("href");
+                
+                Element membernameElement = membernames.get(i+1);
+                String membername1 = membernameElement.text();
+                String membername;
+                
+                if (membername1.isEmpty()) {
+                	membername = "익명";
+                } else {
+                	membername = membername1;
+                }
+                
+                Element regdateElement = regdates.get(i+3);
+                String regdate = regdateElement.text().replace("/", "-");
+
+                if (regdate.contains(":")) {
+                    regdate = regdate.substring(0, regdate.length() - 3);
+                }
+                
+                Element viewscntElement = viewscnts.get(i+4);
+                String viewscnt1 = viewscntElement.text();
+
+                
+                // 게시물 페이지로 접속
+                Document postDocument = Jsoup.connect(link)
+                		.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+                		.referrer(ppomppuUrl)
+                		.get();
+                
+                Element replycntElement = postDocument.selectFirst(".list_comment");
+                String replycnt1;
+                
+                if(replycntElement == null) {
+                	replycnt1 = "0";
+                } else {
+                	replycnt1 = replycntElement.text();
+                }
+                
+                Element likecntElement = postDocument.selectFirst("#vote_list_btn_txt");
+                String likecnt1 = likecntElement.text();
+                		
+                	
+                int likecnt = Integer.parseInt(likecnt1);
+                int replycnt = Integer.parseInt(replycnt1);
+                int viewscnt = Integer.parseInt(viewscnt1);
+                
+                Crawling crawling = Crawling.builder()
+                		.site(site)
+                        .title(title)
+                        .kind(kind)
+                        .link(link)
+                        .membername(membername)
+                        .likecnt(likecnt)
+                        .replycnt(replycnt)
+                        .viewscnt(viewscnt)
+                        .regdate(regdate)
+                        .sort(sort)
+                        .build();
+                
+                crawlingDataList.add(crawling);
+            }
+            
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		for (int i = 0; i < count; i++) {
+            Crawling crawling = crawlingDataList.get(i);
+            crawlingDao.saveCrawlingData(crawling);
+        }
+        
+        int rowcount = crawlingDao.countCrawlingData(site);
+        
+        if (rowcount > count) {
+			crawlingDao.deleteOldData(site);
+		}
+		
+		return crawlingDataList;
+	}
+
+
+
+//	/*더쿠 Humor*/
 //	@Override
-//	@Scheduled(fixedDelay = 120000)
-//	public List<Crawling> getPpomppuHumorCrawlingData() {
+//	@Scheduled(fixedDelay = 600000)
+//	public List<Crawling> getTheqooHumorCrawlingData() {
 //		List<Crawling> crawlingDataList = new ArrayList<>();
 //		
-//		String site = "ppomppu-humor";
-//		String sort = "humor";
-//		String kind = "유머";
-//		
-//		try {
-//			
-//			// 유머/감동 커뮤니티
-//			String ppomppuUrl = "https://www.ppomppu.co.kr/zboard/zboard.php?id=humor";
-//			Document document = Jsoup.connect(ppomppuUrl)
-//					.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+//		String site = "theqoo-humor";
+//        String sort = "humor";
+//        String membername = "무명의 더쿠";
+//        int likecnt = 0; 
+//        String kind = "유머";
+//        
+//        
+//        try {
+//        	
+//        	// 스퀘어 - 유머
+//        	String theqooUrl = "https://theqoo.net/square/category/512000937";
+//            Document document = Jsoup.connect(theqooUrl)
+//            		.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
 //            		.get();
-//			
-//			Elements titles = document.select(".list_title");
-//            Elements links = document.select(".list_vspace a");	
-//            Elements membernames = document.select(".list_name .list_vspace a");
-//            Elements regdates = document.select("#revolution_main_table tr td:nth-child(4) nobr");
-//            Elements viewscnts = document.select("#revolution_main_table tr td:nth-child(6)");
+//            
+//            Elements titles = document.select(".title a:nth-child(1)");
+//            Elements links = document.select(".title a:nth-child(1)");
+//            Elements viewscnts = document.select(".m_no");
 //
+//            
 //            Math.min(count, titles.size());
 //            for (int i = 0; i < count; i++) {
 //            	
-//                Element titleElement = titles.get(i+2);
-//                String title = titleElement.text();
-//                
-//                Element linkElement = links.get(2*i+5);
-//                String link = "https://www.ppomppu.co.kr/zboard/"+linkElement.attr("href");
-//                
-//                Element membernameElement = membernames.get(i+1);
-//                String membername1 = membernameElement.text();
-//                String membername;
-//                
-//                if (membername1.isEmpty()) {
-//                	membername = "익명";
-//                } else {
-//                	membername = membername1;
-//                }
-//                
-//                Element regdateElement = regdates.get(i+3);
-//                String regdate = regdateElement.text();
-//                regdate = regdate.substring(0, regdate.length() - 3);
-//                
-//                Element viewscntElement = viewscnts.get(i+4);
-//                String viewscnt1 = viewscntElement.text();
-//
-//                
+//            	Element titleElement = titles.get(i+11);
+//            	String title = titleElement.text();
+//            	
+//            	Element linkElement = links.get(i+11);
+//            	String link = "https://theqoo.net" + linkElement.attr("href");
+//            	
+//            	Element viewscntElement = viewscnts.get(i+13);
+//            	String viewscnt1 = viewscntElement.text().replace(",", "").trim();
+//            	
 //                // 게시물 페이지로 접속
 //                Document postDocument = Jsoup.connect(link)
 //                		.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
-//                		.referrer(ppomppuUrl)
+//                		.referrer(theqooUrl)
 //                		.get();
 //                
-//                Element replycntElement = postDocument.selectFirst(".list_comment");
-//                String replycnt1;
 //                
-//                if(replycntElement == null) {
-//                	replycnt1 = "0";
-//                } else {
-//                	replycnt1 = replycntElement.text();
-//                }
+//        		Element regdateElement = postDocument.selectFirst(".side.fr span");
+//                String regdate = regdateElement.text().replace(".", "-");
+//                regdate = regdate.substring(2);
+//            	
+//                Element replycntElement = postDocument.selectFirst(".comment_header_bar b");
+//                String replycnt1 = replycntElement.text().trim();
 //                
-//                Element likecntElement = postDocument.selectFirst("#vote_list_btn_txt");
-//                String likecnt1 = likecntElement.text();
-//                		
-//                	
-//                int likecnt = Integer.parseInt(likecnt1);
+//                
 //                int replycnt = Integer.parseInt(replycnt1);
 //                int viewscnt = Integer.parseInt(viewscnt1);
 //                
-//                Crawling crawling = Crawling.builder()
-//                		.site(site)
-//                        .title(title)
-//                        .kind(kind)
-//                        .link(link)
-//                        .membername(membername)
-//                        .likecnt(likecnt)
-//                        .replycnt(replycnt)
-//                        .viewscnt(viewscnt)
-//                        .regdate(regdate)
-//                        .sort(sort)
-//                        .build();
-//                
-//                crawlingDataList.add(crawling);
+//            	
+//            	Crawling crawling = Crawling.builder()
+//            			.site(site)
+//            			.sort(sort)
+//            			.membername(membername)
+//            			.likecnt(likecnt)
+//            			.kind(kind)
+//            			.title(title)
+//            			.link(link)
+//            			.viewscnt(viewscnt)
+//            			.regdate(regdate)
+//            			.replycnt(replycnt)
+//            			.build();
+//            	
+//            	crawlingDataList.add(crawling);
+//            	
 //            }
 //            
+//			
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}
-//		
-//		for (int i = 0; i < count; i++) {
+//        
+//        for (int i = 0; i < count; i++) {
 //            Crawling crawling = crawlingDataList.get(i);
 //            crawlingDao.saveCrawlingData(crawling);
 //        }
@@ -229,10 +327,10 @@
 //        if (rowcount > count) {
 //			crawlingDao.deleteOldData(site);
 //		}
-//		
+//        
 //		return crawlingDataList;
 //	}
-//	
-//	
-//
-//}
+	
+	
+
+}

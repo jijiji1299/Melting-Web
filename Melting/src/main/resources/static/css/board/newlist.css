@@ -232,6 +232,7 @@ a {
 	float:left;
 	border-right: 1px solid #eee;
 	border-bottom: 1px solid #eee;
+	border-left: 1px solid #eee;
 	padding-left: 20px;
 }
 

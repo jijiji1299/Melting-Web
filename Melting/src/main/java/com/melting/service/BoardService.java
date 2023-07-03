@@ -30,6 +30,9 @@ public interface BoardService {
 
 	public List<Board> getWritedSportsList();
 
+	public List<Board> search(String searchword);
+
+
 
 
 

@@ -28,16 +28,13 @@
 	</div>
 	
 	<div id="container">
-	
 		<!-- 왼쪽 영역 -->
 		<div id="left">
 			<div class="search">
-				<div class="search-icon">
-					<a th:href="@{#}">
-						<img src="images/search-icon.JPG">
-					</a>
-				</div>
-				<input type="text" name="searchWord" class="form-control" placeholder=" 검색어를 입력하세요" onkeypress="if( event.keyCode == 13 ){enterKey();}">
+				<form th:action="@{/search}" method="POST">
+					<input type="text" name="searchword" class="form-control" placeholder=" 검색어를 입력하세요" >
+					<input type="image" th:src="@{/images/search-icon.JPG}" class="search-icon">
+				</form>
 			</div>
 			
 			<div class="board">
@@ -91,7 +88,7 @@
 				<div class="all-area">
 					<div class="all-title-area">
 						<div class="all-title"><h3>전체</h3></div>
-						<div class="all-title-more"><a th:href="@{#}">더보기</a></div>
+						<div class="all-title-more"><a th:href="@{/board/newlist}">더보기</a></div>
 					</div>
 					<div class="all-list">
 						<table>
@@ -111,7 +108,7 @@
 				<div class="humor-area">
 					<div class="all-title-area">
 						<div class="all-title"><h3>유머</h3></div>
-						<div class="all-title-more"><a th:href="@{#}">더보기</a></div>
+						<div class="all-title-more"><a th:href="@{/board/humorlist}">더보기</a></div>
 					</div>
 					<div class="all-list">
 						<table>
@@ -133,7 +130,7 @@
 				<div class="game-area">
 					<div class="all-title-area">
 						<div class="all-title"><h3>게임</h3></div>
-						<div class="all-title-more"><a th:href="@{#}">더보기</a></div>
+						<div class="all-title-more"><a th:href="@{/board/gamelist}">더보기</a></div>
 					</div>
 					<div class="all-list">
 						<table>
@@ -153,7 +150,7 @@
 				<div class="sports-area">
 					<div class="all-title-area">
 						<div class="all-title"><h3>스포츠</h3></div>
-						<div class="all-title-more"><a th:href="@{#}">더보기</a></div>
+						<div class="all-title-more"><a th:href="@{/board/sportslist}">더보기</a></div>
 					</div>
 					<div class="all-list">
 						<table>

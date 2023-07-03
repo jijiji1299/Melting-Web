@@ -38,7 +38,7 @@
 	<div id="container">
 		<div class="boardlist-area">
 			<div class="boardlist-sort">
-				<h3>멜팅 베스트</h3>
+				<h3>멜팅 스포츠글</h3>
 			</div>
 			<div th:each="board : ${writedSportsList}" class="boardlist">
 				<div class="boardlist-kind">
@@ -81,7 +81,7 @@
 	<div id="container2">
 		<div class="boardlist-area">
 			<div class="boardlist-sort">
-				<h3>다른 사이트 베스트</h3>
+				<h3>다른 사이트 스포츠글</h3>
 			</div>
 			<div th:each="crawlingData : ${viewsSortedSportsList}" class="boardlist">
 				<div th:text="${crawlingData.kind}" class="boardlist-kind"></div>

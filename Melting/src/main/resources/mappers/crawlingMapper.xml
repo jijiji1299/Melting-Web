@@ -16,7 +16,6 @@
         	#{sort}, #{likecnt}, #{replycnt})
 	</insert>
 
-
 <!-- 	
   	<insert id="saveCrawlingData" parameterType="Crawling">
 		INSERT INTO m_crawling 
@@ -99,8 +98,14 @@
 		ORDER BY viewscnt DESC
 	</select>
 	
-	
-	
+	<select id="search" resultType="Crawling">
+	    SELECT * 
+	    FROM m_crawling
+	    WHERE title LIKE '%' || #{searchword} || '%'
+	    OR membername LIKE '%' || #{searchword} || '%'
+	    OR kind LIKE '%' || #{searchword} || '%'
+	    OR site LIKE '%' || #{searchword} || '%'
+	</select>
 	
 	
 
