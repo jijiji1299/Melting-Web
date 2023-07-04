@@ -1,23 +1,14 @@
-<!-- <p align="center"><img src="readmeimg/Logo.png" height="180px"></p> -->
+# Melting
+통합 유머 커뮤니티<br>
+1인 개발 : 김지원<br>
+개발 기간 :  2023년 05월 16일 ~ 2023년 07월 04일 (7주)<br><br>
 
-# 프로젝트 소개
-Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 웹 사이트입니다.<br>
-디시인사이드, 더쿠 등 다양한 인기 사이트를 실시간으로 제공합니다.
-
-
-# 기능
-- 10분 단위로 유머 사이트 카테고리별 최신글 목록 확인
-- 회원가입, 로그인
-- 게시글 쓰기, 수정, 삭제, 추천 이미지 다운로드
-- 게시글 검색
-- 댓글 쓰기, 삭제
-- 회원정보 수정, 작성한 글 확인, 남긴 댓글 확인
-
-# 개발 기간
- 2023년 5월 16일 ~ 2023년 7월 20일
+## 📃 프로젝트 소개
+Melting은 인기 유머 사이트를 통합한 커뮤니티 웹 사이트입니다.<br>
+디시인사이드, 더쿠 등 다양한 인기 사이트를 실시간으로 제공하며 한곳에서 다양한 유머 사이트를 이용할 수 있습니다.
 
 
-#  기술 스택
+## 🛠 기술 스택
 - <div>Backend </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=spring&logoColor=white">
@@ -27,7 +18,7 @@ Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 웹 사이트
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/HTML-red?style=flat&logo=html5&logoColor=white"/>
 <img src="https://img.shields.io/badge/CSS-blue?style=flat&logo=css3&logoColor=white"/>
-<img src="https://img.shields.io/badge/JavaScript-yellow?style=flat&logo=JavaScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-yellow?style=flat&logo=JavaScript&logoColor=black"/>
 <img src="https://img.shields.io/badge/jQuery-blue?style=flat&logo=jquery&logoColor=black"/>
 
 - <div>Database </div>
@@ -36,16 +27,30 @@ Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 웹 사이트
 
 - <div>VCS</div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/Git-orange?style=flat&logo=git&logoColor=white"/>
-<img src="https://img.shields.io/badge/github-black?style=flat&logo=github&logoColor=white"/>
+<img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white"/>
+<img src="https://img.shields.io/badge/GitHub-black?style=flat&logo=github&logoColor=white"/>
 
 - <div>ETC</div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/Notion-white?style=flat&logo=Notion&logoColor=black"/>
 
-<br><br>
 
-# 서비스 화면
+## 📍 이용 가능 사이트
+1. 디시 인사이드
+2. 뽐뿌
+3. 더쿠
+
+## 🛠 아키텍처
+![Melting 아키텍처](https://github.com/jijiji1299/Melting-Web/assets/116232841/03ffe87d-fa4e-4659-b461-f3dabd3c9e0e)
+
+## 🖥 IA
+![Melting IA 설계](https://github.com/jijiji1299/Melting-Web/assets/116232841/c5e26101-85c3-4893-8dbb-131f795c3508)
+
+## 💷 ERD
+![melting-erd](https://github.com/jijiji1299/Melting-Web/assets/116232841/b53fc858-c8da-444d-809c-a0364a5b5365)
+
+
+## 🖥 서비스 화면
 ### 메인 화면
 ![메인화면 전체](https://github.com/jijiji1299/Melting-Web/assets/116232841/e5d2f0d0-c6c9-4858-88d2-4f7ebcd91f78)
 
@@ -54,6 +59,9 @@ Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 웹 사이트
 
 ### 해당 사이트로 이동
 ![해당사이트이동](https://github.com/jijiji1299/Melting-Web/assets/116232841/aad5ebe6-ee47-490e-8df4-32db5d79ff1d)
+
+### 카테고리별 글 목록
+![카테고리별 글목록](https://github.com/jijiji1299/Melting-Web/assets/116232841/b436d9e4-9c62-47a9-b745-a977f1d434c5)
 
 ### 검색
 ![검색1](https://github.com/jijiji1299/Melting-Web/assets/116232841/b6d6712d-9ea8-496c-86b0-47588279ce8b)
@@ -67,12 +75,11 @@ Melting은 인기 커뮤니티 사이트를 통합한 커뮤니티 웹 사이트
 ### 게시글 수정 & 삭제
 ![글수정삭제](https://github.com/jijiji1299/Melting-Web/assets/116232841/53c7d23b-0bab-4c62-9e60-826766152908)
 
+### 닉네임 수정 & 마이페이지
+![마이페이지](https://github.com/jijiji1299/Melting-Web/assets/116232841/200c219c-eaa9-41fa-90c6-19383c66a3c6)
 
-# 이용 가능 커뮤니티
-1. 디시 인사이드
-2. 뽐뿌
-3. 더쿠
 
-# ERD & 테이블 명세서
 
-# 아키텍처
+## 📈 고도화 계획
+게시글 스크랩
+
