@@ -39,7 +39,6 @@ public class MemberController {
 	@GetMapping("/idCheck")
 	@ResponseBody
 	public String idCheck(String memberid) {
-		System.out.println("전달된 id :"+ memberid);
 		boolean result = memberService.idCheck(memberid);
 		
 		if(result)
@@ -60,7 +59,6 @@ public class MemberController {
 	@ResponseBody
 	@GetMapping("/nameCheck")
 	public String nameCheck(String membername) {
-		System.out.println("전달된 name :"+ membername);
 		boolean result = memberService.nameCheck(membername);
 		
 		if(result)

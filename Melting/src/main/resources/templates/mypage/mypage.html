@@ -15,9 +15,15 @@
 			<div class="menu">
 				<div class="home"><a th:href="@{/board/bestlist}">홈</a></div>
 				<div class="all"><a th:href="@{/board/newlist}">전체</a></div>
-				<div class="humor">유머</div>
-				<div class="game">게임</div>
-				<div class="sports">스포츠</div>
+				<div class="humor"><a th:href="@{/board/humorlist}">유머</a></div>
+				<div class="game"><a th:href="@{/board/gamelist}">게임</a></div>
+				<div class="sports"><a th:href="@{/board/sportslist}">스포츠</a></div>
+			</div>
+			<div class="search">
+				<form th:action="@{/search}" method="POST">
+					<input type="text" name="searchword" class="form-control" placeholder="검색">
+					<input type="image" th:src="@{/images/search-icon.JPG}" class="search-icon">
+				</form>
 			</div>
 			<div class="write">
 				<a th:href="@{/write}">글쓰기</a>

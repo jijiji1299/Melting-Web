@@ -18,12 +18,10 @@
 				<div class="sports"><a th:href="@{/board/sportslist}">스포츠</a></div>
 			</div>
 			<div class="search">
-				<div class="search-icon">
-					<a th:href="@{#}">
-						<img src="../images/search-icon.JPG">
-					</a>
-				</div>
-				<input type="text" name="searchWord" class="form-control" placeholder=" 검색어를 입력하세요" onkeypress="if( event.keyCode == 13 ){enterKey();}">
+				<form th:action="@{/search}" method="POST">
+					<input type="text" name="searchword" class="form-control" placeholder="검색">
+					<input type="image" th:src="@{/images/search-icon.JPG}" class="search-icon">
+				</form>
 			</div>
 			<div class="write">
 				<a th:href="@{/write}">글쓰기</a>

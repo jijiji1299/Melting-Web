@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.melting.domain.Board;
 import com.melting.domain.Member;
 import com.melting.domain.Reply;
-import com.melting.service.BoardService;
 import com.melting.service.MemberService;
 import com.melting.service.MypageService;
 
@@ -26,11 +25,9 @@ public class MypageController {
 	MypageService mypageService;
 	
 	private MemberService memberService;
-	private BoardService boardService;
 
-	public MypageController(MemberService memberService, BoardService boardService) {
+	public MypageController(MemberService memberService) {
 		this.memberService = memberService;
-		this.boardService = boardService;
 	}
 	
 	/*마이페이지 화면 요청*/
@@ -46,8 +43,6 @@ public class MypageController {
 			
 			model.addAttribute("membername", membername);
 			model.addAttribute("memberid", memberid);
-			
-			System.out.println("memberid는" + memberid);
 			
 		}
 		
@@ -76,9 +71,6 @@ public class MypageController {
 	public String myreply(String membername, Model model, Authentication authentication) {
 		List<Reply> list = mypageService.myreply(membername);
 		model.addAttribute("list", list);
-		System.out.println("내가 쓴 댓글 :" + list);
-		
-		
 		
 		// 유저이름 불러오기 (membername)
 		if (authentication != null) {
@@ -115,7 +107,7 @@ public class MypageController {
 	        request.getSession().invalidate();
 	    }
 		
-	 // 회원 및 관련 데이터 삭제 로직
+	    // 회원 및 관련 데이터 삭제 로직
 		mypageService.deleteMember(member);
 		mypageService.deleteBoardMember(member);
 		mypageService.deleteReplyMember(member);

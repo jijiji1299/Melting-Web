@@ -167,17 +167,13 @@ a {
 }
 
 .search-icon {
-	width:30px;
-	height:30px;
+	width:22px;
+	height:22px;
 	position:absolute;
-    top: 13px;
+    top: 11px;
     left: 19px;
 }
 
-.search-icon img {
-	width:20px;
-	height:20px;
-}
 
 .form-control {
 	color:gray;

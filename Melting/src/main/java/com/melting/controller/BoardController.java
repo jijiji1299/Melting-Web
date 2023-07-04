@@ -177,7 +177,6 @@ public class BoardController{
 		
 		if(upload != null && !upload.isEmpty()) {
 		
-			System.out.println(upload.isEmpty()+ "," + upload.getSize());
 		
 			originalFilename = upload.getOriginalFilename();
 			savedFileName=FileService.savedFile(upload, uploadPath);
@@ -386,8 +385,6 @@ public class BoardController{
 		
 		if(upload != null && !upload.isEmpty()) {
 		
-			System.out.println(upload.isEmpty()+ "," + upload.getSize());
-		
 			originalFilename = upload.getOriginalFilename();
 			savedFileName=FileService.savedFile(upload, uploadPath);
 			
@@ -400,9 +397,7 @@ public class BoardController{
 		}
      		
 		int result = boardService.update(board);
-		System.out.println(result);
 		rttr.addAttribute("boardseq", board.getBoardseq());
-		System.out.println("board 글 수정됨");
 		return "redirect:/board/newlist";
 	}
 	
