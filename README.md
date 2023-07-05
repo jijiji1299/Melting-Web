@@ -39,12 +39,13 @@ Melting은 인기 유머 사이트를 통합한 커뮤니티 웹 사이트입니
 1. 디시 인사이드
 2. 뽐뿌
 3. 더쿠
+4. 에펨코리아
 
 ## 🛠 아키텍처
 ![Melting 아키텍처](https://github.com/jijiji1299/Melting-Web/assets/116232841/03ffe87d-fa4e-4659-b461-f3dabd3c9e0e)
 
 ## 🖥 IA
-![Melting IA 설계](https://github.com/jijiji1299/Melting-Web/assets/116232841/c5e26101-85c3-4893-8dbb-131f795c3508)
+![Melting IA 설계](https://github.com/jijiji1299/Melting-Web/assets/116232841/6a53e212-4125-458a-ad4e-9624afc1056e)
 
 ## 💷 ERD
 ![melting-erd](https://github.com/jijiji1299/Melting-Web/assets/116232841/b53fc858-c8da-444d-809c-a0364a5b5365)
@@ -81,5 +82,7 @@ Melting은 인기 유머 사이트를 통합한 커뮤니티 웹 사이트입니
 
 
 ## 📈 고도화 계획
-게시글 스크랩
+- 게시글 스크랩
+- 이용 가능 사이트 확장
+
 
