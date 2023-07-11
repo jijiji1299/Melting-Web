@@ -23,7 +23,7 @@ Melting은 인기 유머 사이트를 통합한 커뮤니티 웹 사이트입니
 
 - <div>Database </div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/oracle SQL-F80000?style=flat&logo=oracle&logoColor=white">
+<img src="https://img.shields.io/badge/oracle-F80000?style=flat&logo=oracle&logoColor=white">
 
 - <div>VCS</div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
