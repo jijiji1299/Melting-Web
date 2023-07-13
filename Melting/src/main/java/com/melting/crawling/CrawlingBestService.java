@@ -6,13 +6,12 @@ import com.melting.domain.Crawling;
 
 public interface CrawlingBestService {
 	
-//	public List<Crawling> getDcInsideBestCrawlingData();
+	public List<Crawling> getDcInsideBestCrawlingData();
 
 	public List<Crawling> getPpomppuBestCrawlingData();
 	
-//	public List<Crawling> getTheqooBestCrawlingData();
+	public List<Crawling> getTheqooBestCrawlingData();
 
-	
-//	public List<Crawling> getFmKoreaBestCrawlingData();
+	public List<Crawling> getFmKoreaBestCrawlingData();
 
 }

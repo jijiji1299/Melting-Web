@@ -6,10 +6,10 @@ import com.melting.domain.Crawling;
 
 public interface CrawlingHumorService {
 	
-//	public List<Crawling> getDcInsideHumorCrawlingData();
+	public List<Crawling> getDcInsideHumorCrawlingData();
 	
 	public List<Crawling> getPpomppuHumorCrawlingData();
 	
-//	public List<Crawling> getTheqooHumorCrawlingData();
+	public List<Crawling> getTheqooHumorCrawlingData();
 
 }
