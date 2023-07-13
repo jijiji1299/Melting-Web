@@ -6,10 +6,10 @@ import com.melting.domain.Crawling;
 
 public interface CrawlingGameService {
 	
-//	public List<Crawling> getDcInsideGameCrawlingData();
+	public List<Crawling> getDcInsideGameCrawlingData();
 	
 	public List<Crawling> getPpomppuGameCrawlingData();
 	
-//	public List<Crawling> getTheqooGameCrawlingData();
+	public List<Crawling> getTheqooGameCrawlingData();
 	
 }
