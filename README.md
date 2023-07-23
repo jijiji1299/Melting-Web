@@ -42,7 +42,7 @@ Melting은 인기 유머 사이트를 통합한 커뮤니티 웹 사이트입니
 4. 에펨코리아
 
 ## 🛠 아키텍처
-![Melting 아키텍처](https://github.com/jijiji1299/Melting-Web/assets/116232841/03ffe87d-fa4e-4659-b461-f3dabd3c9e0e)
+![Melting아키텍처2](https://github.com/jijiji1299/Melting-Web/assets/116232841/226e3978-dc00-4441-a175-46925050b8c2)
 
 ## 🖥 IA
 ![Melting IA 설계](https://github.com/jijiji1299/Melting-Web/assets/116232841/6a53e212-4125-458a-ad4e-9624afc1056e)
